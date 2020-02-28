@@ -2,12 +2,12 @@
 
 ## Initial Setup
 
-cd Django
+`cd Django`
 
-python -m venv pt_venv
+`python -m venv pt_venv`
 
-Windows: ./pt_venv/Scripts/activate
+Windows: `./pt_venv/Scripts/activate`
 
-Mac/Linux: source ./pt_venv/bin/activate
+Mac/Linux: `source pt_venv/bin/activate`
 
-pip install -r requirements.txt
+`pip install -r requirements.txt`
