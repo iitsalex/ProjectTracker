@@ -1,2 +1,4 @@
-Django/pt_venv
-Django/project_tracker/project_tracker/__pycache__
+django_app/pt_venv
+__pycache__/
+
+/react_app/node_modules
