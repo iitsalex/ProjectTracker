@@ -116,7 +116,11 @@ USE_L10N = True
 
 USE_TZ = True
 
-CORS_ORIGIN_ALLOW_ALL = True  # for development purposes
+CORS_ORIGIN_ALLOW_ALL = False
+
+CORS_ORIGIN_WHITELIST = (
+       'localhost:3000',
+) # for development purposes
 
 
 # Static files (CSS, JavaScript, Images)
