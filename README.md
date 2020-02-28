@@ -6,6 +6,8 @@ cd Django
 
 python -m venv pt_venv
 
-./pt_venv/Scripts/activate
+Windows: ./pt_venv/Scripts/activate
 
-pip install -r requirements.txts
+Mac/Linux: source ./pt_venv/bin/activate
+
+pip install -r requirements.txt
