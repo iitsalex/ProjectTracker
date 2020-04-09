@@ -16,18 +16,17 @@ var Pivot = {
         return db.query('SELECT * FROM projects WHERE id=?', project_id, callback);
     },
     getprojectsbyteam: function (team_id, callback) {
-        return db.query('SELECT p.* FROM projects AS p, ' +
-            '(SELECT user_id AS o_id FROM user_team WHERE team_id=?)' +
-            'WHERE user_id = o_id',
+        return db.query('SELECT * FROM projects WHERE id IN' +
+            '(SELECT project_id FROM team_project WHERE team_id=?)',
             team_id, callback);
     },
     createproject: function(project, callback) {
-        return db.query('INSERT INTO projects(name, team_id, owner_id, created) VALUES(?, ?, ?, ?)',
-            [project.name, project.team_id, project.owner_id, project.created], callback);
+        return db.query('INSERT INTO projects(name, owner_id, created) VALUES(?, ?, ?, ?)',
+            [project.name, project.owner_id, project.created], callback);
     },
     updateproject: function(project, callback) {
-        return db.query('UPDATE projects SET name=?, team_id=?, owner_id=? WHERE id=?',
-            [project.name, project.team_id, project.owner_id, project.id], callback);
+        return db.query('UPDATE projects SET name=?, owner_id=? WHERE id=?',
+            [project.name, project.owner_id, project.id], callback);
     },
     deleteproject: function(project_id, callback) {
         return db.query('DELETE FROM projects WHERE id=?', project_id, callback);
@@ -52,19 +51,21 @@ var Pivot = {
             [val, team_id], callback);
     },
     createteam: function(team, callback) {
-        return db.query('INSERT INTO teams(name, size, owner_id) VALUES(?, ?)',
-            [team.name, 1, team.owner_id], callback);
+        return db.query('INSERT INTO teams(name, size, lead_id) VALUES(?, ?)',
+            [team.name, 1, team.lead_id], callback);
     },
     updateteam: function(team, callback) {
     	return db.query('UPDATE teams SET name=?, owner_id=? WHERE id=?',
-            [team.name, team.owner_id, team.id], callback);
+            [team.name, team.lead_id, team.id], callback);
     },
     deleteteam: function(team_id, callback) {
     	return db.query('DELETE FROM teams WHERE id=?', team_id, callback);
     },
 
     gettasksbyproject: function(project_id, callback) {
-        return db.query('SELECT * from tasks WHERE id IN (SELECT task_id FROM project_task WHERE project_id=?)', project_id, callback);
+        return db.query('SELECT * from tasks WHERE id IN' +
+            '(SELECT task_id FROM project_task WHERE project_id=?)',
+            project_id, callback);
     },
     addtask: function(data, callback) {
         return db.query('INSERT INTO project_task (project_id, task_id) VALUES(?, ?)',
