@@ -1,11 +1,13 @@
 import React from 'react';
 import MainNavbar from './Navbar';
+import Login from './Login';
 import logo from './logo.svg';
 import './App.css';
 
 function App() {
   return (
-      <MainNavbar></MainNavbar>
+      // <MainNavbar></MainNavbar>
+      <Login></Login>
     // <div className="App">
     //   <header className="App-header">
     //     <img src={logo} className="App-logo" alt="logo" />
