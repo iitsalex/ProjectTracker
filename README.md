@@ -19,3 +19,5 @@ Mac/Linux: `source pt_venv/bin/activate`
 `cd react-app`
 
 `npm install`
+
+`npm start`
