@@ -4,7 +4,7 @@ var app = express();
 
 app.use(cors());
 
-var PivotController = require('./petbook/PivotController');
+var PivotController = require('./pivot/PivotController');
 app.use('/api', PivotController);
 
 module.exports = app;
