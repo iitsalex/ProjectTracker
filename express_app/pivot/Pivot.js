@@ -1,6 +1,7 @@
 var db = require('../db');
 
 var Pivot = {
+    // Users
     getuser: function(email, callback) {
         return db.query('SELECT * FROM users WHERE email=?', email, callback);
     },
@@ -9,6 +10,7 @@ var Pivot = {
             [user.email, hash, user.name], callback);
     },
 
+    // Projects
     createproject: function(project, callback) {
         return db.query('INSERT INTO projects(name, owner_id, created) VALUES(?, ?, ?, ?)',
         [project.name, project.owner_id, project.created], callback);
@@ -32,6 +34,7 @@ var Pivot = {
         return db.query('DELETE FROM projects WHERE id=?', project_id, callback);
     },
 
+    // Teams
     createteam: function(team, callback) {
         return db.query('INSERT INTO teams(name, size, lead_id) VALUES(?, ?)',
         [team.name, 1, team.lead_id], callback);
@@ -40,7 +43,7 @@ var Pivot = {
         return db.query('SELECT * FROM teams WHERE id=?', team_id, callback);
     },
     getteamsbyuser: function(user_id, callback) {
-        return db.query('SELECT * FROM teams WHERE id IN '
+        return db.query('SELECT * FROM teams WHERE id IN ' +
             '(SELECT team_id FROM user_team WHERE user_id=?)',
             user_id, callback);
     },
@@ -64,6 +67,7 @@ var Pivot = {
     	return db.query('DELETE FROM teams WHERE id=?', team_id, callback);
     },
 
+    // Tasks
     createtask: function(data, callback) {
         return db.query('INSERT INTO tasks (owner_id, project_id, name, created) VALUES(?, ?, ?, ?)',
         [data.owner_id, data.project_id, data.name, data.created], callback);

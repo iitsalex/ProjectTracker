@@ -14,6 +14,7 @@ var Pivot = require('./Pivot');
  * parks calls require park interface
  */
 
+// Users
 router.get('/user/login', function (req, res) {
     Pivot.getuser(req.query.email, function(err, user) {
         if(err) {
@@ -49,12 +50,13 @@ router.post('/user/create', function (req, res) {
     });
 });
 
-router.get('/projects/owner/:user_id', function (req, res) {
-    Pivot.getprojectsbyowner(req.params.user_id, function(err, rows) {
+// Projects
+router.post('/projects', function (req, res) {
+    Pivot.createproject(req.body, function(err, count) {
         if(err) {
             res.status(400).json(err);
         } else {
-            res.json(rows);
+            res.json(req.body);
         }
     });
 });
@@ -69,8 +71,8 @@ router.get('/projects/id/:project_id', function (req, res) {
     });
 });
 
-router.get('/projects/team/:team', function (req, res) {
-    Pivot.getprojectsbyteam(req.params.team, function(err, rows) {
+router.get('/projects/owner/:user_id', function (req, res) {
+    Pivot.getprojectsbyowner(req.params.user_id, function(err, rows) {
         if(err) {
             res.status(400).json(err);
         } else {
@@ -79,12 +81,12 @@ router.get('/projects/team/:team', function (req, res) {
     });
 });
 
-router.post('/projects', function (req, res) {
-    Pivot.createproject(req.body, function(err, count) {
+router.get('/projects/team/:team', function (req, res) {
+    Pivot.getprojectsbyteam(req.params.team, function(err, rows) {
         if(err) {
             res.status(400).json(err);
         } else {
-            res.json(req.body);
+            res.json(rows);
         }
     });
 });
@@ -105,6 +107,17 @@ router.delete('/projects/:project_id', function (req, res) {
             res.status(400).json(err);
         } else {
             res.json(req.body);
+        }
+    });
+});
+
+// Teams
+router.post('/teams', function (req, res) {
+    Pivot.createteam(req.body, function(err, team) {
+        if(err) {
+            res.status(400).json(err);
+        } else {
+            res.json(team.insertId);
         }
     });
 });
@@ -175,16 +188,6 @@ router.post('/teams/leave', function (req, res) {
     });
 });
 
-router.post('/teams', function (req, res) {
-    Pivot.createteam(req.body, function(err, team) {
-        if(err) {
-            res.status(400).json(err);
-        } else {
-            res.json(team.insertId);
-        }
-    });
-});
-
 router.put('/teams', function (req, res) {
     Pivot.updateteam(req.body, function(err, count) {
         if(err) {
@@ -201,6 +204,27 @@ router.delete('/teams/:team_id', function (req, res) {
             res.status(400).json(err);
         } else {
             res.json(req.body);
+        }
+    });
+});
+
+// Tasks
+router.post('/tasks', function (req, res) {
+    Pivot.createtask(req.body, function(err, task) {
+        if(err) {
+            res.status(400).json(err);
+        } else {
+            res.json(task.insertId);
+        }
+    });
+});
+
+router.get('/tasks/id/:task_id', function (req, res) {
+    Pivot.gettask(req.params.task_id, function(err, rows) {
+        if(err) {
+            res.status(400).json(err);
+        } else {
+            res.json(rows[0]);
         }
     });
 });
@@ -231,6 +255,26 @@ router.post('/tasks/assign', function(req, res) {
             res.status(400).json(err);
         } else {
             res.json(tasks);
+        }
+    });
+});
+
+router.put('/tasks', function (req, res) {
+    Pivot.updatetask(req.body, function(err, count) {
+        if(err) {
+            res.status(400).json(err);
+        } else {
+            res.json(req.body);
+        }
+    });
+});
+
+router.delete('/tasks/:task_id', function (req, res) {
+    Pivot.deletetask(req.params.task_id, function(err, count) {
+        if(err) {
+            res.status(400).json(err);
+        } else {
+            res.json(req.body);
         }
     });
 });
