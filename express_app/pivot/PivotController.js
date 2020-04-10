@@ -134,7 +134,7 @@ router.post('/teams/join', function (req, res) {
         if(err) {
             res.status(400).json(err);
         } else {
-            Pivot.teamadd(req.body.team_id, 1, function(err, count) {
+            Pivot.teamaddusers(req.body.team_id, 1, function(err, count) {
                 if(err) {
                     res.status(400).json(err);
                 }
@@ -162,7 +162,11 @@ router.post('/teams/leave', function (req, res) {
                   if(err) {
                       res.status(400).json(err);
                   } else {
-                      Pivot.teamadd(req.body.team_id, -1);
+                      Pivot.teamaddusers(req.body.team_id, -1, function(err, count) {
+                          if(err) {
+                              res.status(400).json(err);
+                          }
+                      });
                       res.json(req.body);
                   }
               });
@@ -213,6 +217,16 @@ router.get('/tasks/project/:project_id', function(req, res) {
 
 router.post('/tasks', function(req, res) {
     Pivot.addtask(req.body, function(err, tasks) {
+        if(err) {
+            res.status(400).json(err);
+        } else {
+            res.json(tasks);
+        }
+    });
+});
+
+router.post('/tasks/assign', function(req, res) {
+    Pivot.assigntask(req.body, function(err, tasks) {
         if(err) {
             res.status(400).json(err);
         } else {

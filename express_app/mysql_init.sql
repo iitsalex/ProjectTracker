@@ -35,10 +35,12 @@ CREATE TABLE teams(
 CREATE TABLE tasks(
     id INT NOT NULL AUTO_INCREMENT,
     owner_id INT NOT NULL,
+    project_id INT NOT NULL,
     name VARCHAR(45) NOT NULL,
     created DATE,
     PRIMARY KEY (id),
-    FOREIGN KEY (owner_id) REFERENCES users(id) ON DELETE CASCADE
+    FOREIGN KEY (owner_id) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (project_id) REFERENCES projects(id) ON DELETE CASCADE
 );
 
 CREATE TABLE user_team(
