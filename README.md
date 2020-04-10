@@ -1,22 +1,28 @@
-# ProjectTracker
+# Pivot ProjectTracker
 
 ## Initial Setup
 
-### Django
+### Express
 
-`cd django-app`
+`cd express_app`
 
-`python -m venv pt_venv`
+This step can be done with a GUI for easier set up.
 
-Windows: `./pt_venv/Scripts/activate`
+`mysql -u username -p password pivot < ./mysql_init.sql`
 
-Mac/Linux: `source pt_venv/bin/activate`
+`npm install`
 
-`pip install -r requirements.txt`
+`node server.js`
+
+This should print out all API paths available.
+As a general rule, posts and puts will rely on JSON body.
+
+To test functionality, visit http://localhost:3000/.
+Alternatively, use CURL or Postman to test POST and GET
 
 ### React
 
-`cd react-app`
+`cd react_app`
 
 `npm install`
 
