@@ -1,11 +1,18 @@
 import React from 'react';
-import { Navbar, Nav, NavDropdown, Form, FormControl, Button } from 'react-bootstrap';
+import { Navbar, Nav, NavItem, NavDropdown, Form, FormControl, Button } from 'react-bootstrap';
+import { Link } from "react-router-dom";
+import { LinkContainer } from "react-router-bootstrap";
+import Login from './containers/Login'
+import SignUp from './containers/SignUp'
 import './App.css';
 
 function MainNavbar() {
   return (
+    <div className="MainNavbar">
       <Navbar variant="dark" bg="dark" expand="lg">
-        <Navbar.Brand href="#home">Pivot</Navbar.Brand>
+        <Navbar.Brand href="#home">
+          <Link to="/">Pivot</Link>
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
@@ -22,9 +29,15 @@ function MainNavbar() {
             <FormControl type="text" placeholder="Search" className="mr-sm-2" />
             <Button variant="outline-success">Search</Button>
           </Form>
-          <Button href="#login">Login</Button>
+          <LinkContainer to="/signup">
+            <Button>Signup</Button>
+          </LinkContainer>
+          <LinkContainer to="/login">
+            <Button>Login</Button>
+          </LinkContainer>
         </Navbar.Collapse>
       </Navbar>
+    </div>
   );
 }
 
