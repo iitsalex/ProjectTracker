@@ -9,9 +9,9 @@ USE pivot;
 
 CREATE TABLE users(
     id INT NOT NULL AUTO_INCREMENT,
-    email VARCHAR(45) NOT NULL,
+    email VARCHAR(100) NOT NULL,
     password CHAR(60) NOT NULL,
-    name VARCHAR(45) NOT NULL,
+    name VARCHAR(100) NOT NULL,
     PRIMARY KEY (id)
 );
 
@@ -19,6 +19,7 @@ CREATE TABLE projects(
     id INT NOT NULL AUTO_INCREMENT,
     owner_id INT NOT NULL,
     name VARCHAR(100) NOT NULL,
+    description TEXT,
     created DATE,
     PRIMARY KEY (id),
     FOREIGN KEY (owner_id) REFERENCES users(id) ON DELETE CASCADE
@@ -26,7 +27,7 @@ CREATE TABLE projects(
 
 CREATE TABLE teams(
     id INT NOT NULL AUTO_INCREMENT,
-    name VARCHAR(45) NOT NULL,
+    name VARCHAR(100) NOT NULL,
     size INT NOT NULL,
     lead_id INT NOT NULL,
     PRIMARY KEY (id)
@@ -36,7 +37,8 @@ CREATE TABLE tasks(
     id INT NOT NULL AUTO_INCREMENT,
     owner_id INT NOT NULL,
     project_id INT NOT NULL,
-    name VARCHAR(45) NOT NULL,
+    name VARCHAR(100) NOT NULL,
+    description TEXT,
     created DATE,
     PRIMARY KEY (id),
     FOREIGN KEY (owner_id) REFERENCES users(id) ON DELETE CASCADE,
