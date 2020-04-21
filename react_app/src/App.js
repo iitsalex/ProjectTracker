@@ -2,9 +2,7 @@ import React, {Component} from 'react';
 import './App.css';
 
 import MainNavbar from './MainNavbar';
-import Dump from './Dump';
-import Login from './containers/Login'
-import SignUp from './containers/SignUp'
+import Routes from './Routes';
 
 class App extends Component {
   state = {
@@ -22,7 +20,7 @@ class App extends Component {
     return (
       <div className="App">
         <MainNavbar/>
-        <Login/>
+        <Routes />
       </div>
     );
   }

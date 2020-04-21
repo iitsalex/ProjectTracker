@@ -1,22 +1,21 @@
-// src/components/dump.js
+import React, {Component} from 'react'
 
-import React from 'react'
+class Dump extends Component {
+  constructor(props) {
+      super(props);
+      this.state = {
+          username: '',
+          password: ''
+      }
+  }
 
-const Dump = ({ dump }) => {
-  return (
-    <div>
-      <center><h1>Dump</h1></center>
-      {dump.map((user) => (
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">{user.name}</h5>
-            <h6 class="card-subtitle mb-2 text-muted">{user.email}</h6>
-            <p class="card-text">{user.password}</p>
-          </div>
-        </div>
-      ))}
-    </div>
-  )
-};
+  render() {
+    return (
+      <div>
+        <h3>React Dump Component</h3>
+      </div>
+    );
+  }
+}
 
 export default Dump
