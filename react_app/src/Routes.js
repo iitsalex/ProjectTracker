@@ -6,7 +6,7 @@ import Dump from './Dump';
 import Login from './containers/Login'
 import SignUp from './containers/SignUp'
 
-export default function Routes() {
+function Routes() {
   return (
     <Switch>
       <Route exact path="/">
@@ -21,3 +21,5 @@ export default function Routes() {
     </Switch>
   );
 }
+
+export default Routes;
