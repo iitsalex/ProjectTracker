@@ -1,9 +1,6 @@
 import React, {Component} from 'react'
-var Pivot_logo = require('./assets/images/Pivot_logo.png');
 
 class Home extends Component {
-
-
   render() {
     return (
       <div>
