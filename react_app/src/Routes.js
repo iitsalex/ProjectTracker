@@ -5,6 +5,7 @@ import MainNavbar from './MainNavbar';
 import Home from './Home';
 import Login from './containers/Login'
 import SignUp from './containers/SignUp'
+import PasswordReset from './containers/PasswordReset'
 
 function Routes() {
   return (
@@ -17,6 +18,9 @@ function Routes() {
       </Route>
       <Route exact path="/signup">
         <SignUp />
+      </Route>
+      <Route exact path="/passwordreset">
+        <PasswordReset />
       </Route>
     </Switch>
   );

@@ -9,7 +9,7 @@ class Home extends Component {
       <h1>Your Project Tracking Solution</h1>
       <br/>
       <Button bsSize="large" type="submit">
-        <Link to="/users" style={{ color: '#FFF' }}>Sign Up</Link>
+        <Link to="/signup" style={{ color: '#FFF' }}>Sign Up</Link>
       </Button>
       </div>
     );

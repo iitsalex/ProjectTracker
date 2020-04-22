@@ -1,6 +1,5 @@
 import React, { useState, Component } from "react";
-import { Button, FormGroup, FormControl, FormLabel, FormCheck } from "react-bootstrap"
-import { useAppContext } from "../libs/contextLib";
+import { Button, FormGroup, FormControl, FormLabel, FormCheck } from "react-bootstrap";
 import "./Login.css";
 
 class Login extends Component {
@@ -49,7 +48,7 @@ class Login extends Component {
 
           <button type="submit" className="btn btn-primary btn-block">Submit</button>
           <p className="forgot-password text-right">
-            Forgot <a href="#">password?</a>
+            Forgot <a href="passwordreset">password?</a>
           </p>
         </form>
       </div>
