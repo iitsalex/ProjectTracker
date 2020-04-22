@@ -1,5 +1,5 @@
 import React, { useState, Component } from "react";
-import { Button, FormGroup, FormControl, FormLabel, FormCheck } from "react-bootstrap";
+import { Button, FormGroup, FormControl, FormLabel, FormCheck } from "react-bootstrap"
 import "./Login.css";
 
 class Login extends Component {
