@@ -25,10 +25,6 @@ function MainNavbar() {
             </NavDropdown>
             <Nav.Link href="/settings">Settings</Nav.Link>
           </Nav>
-          <Form inline>
-            <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-            <Button variant="outline-success">Search</Button>
-          </Form>
           <Nav.Link href="/login">Login</Nav.Link>
         </Navbar.Collapse>
       </Navbar>
