@@ -1,52 +1,60 @@
 import React, { useState, Component } from "react";
 import { Button, FormGroup, FormControl, FormLabel, FormCheck } from "react-bootstrap"
+import { useAppContext } from "../libs/contextLib";
 import "./Login.css";
 
-export default function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
-  function validateForm() {
-    return email.length > 0 && password.length > 0;
+class Login extends Component {
+  constructor(props) {
+      super(props);
+      this.state = {
+          username: '',
+          password: ''
+      }
   }
 
-  function handleSubmit(event) {
-    event.preventDefault();
+  // function validateForm() {
+  //     return email.length > 0 && password.length > 0;
+  // }
+  //
+  // function handleSubmit(event) {
+  //   event.preventDefault();
+  // }
+  // function handleClick(e) {
+  //   e.preventDefault();
+  //   console.log('The link was clicked.');
+  // }
+
+  render() {
+    return (
+      <div className="Login">
+        <form>
+          <h3>Sign In</h3>
+
+          <div className="form-group">
+            <label>Email address</label>
+            <input type="email" className="form-control" placeholder="Enter email" />
+          </div>
+
+          <div className="form-group">
+            <label>Password</label>
+            <input type="password" className="form-control" placeholder="Enter password" />
+          </div>
+
+          <div className="form-group">
+            <div className="custom-control custom-checkbox">
+              <input type="checkbox" className="custom-control-input" id="customCheck1" />
+              <label className="custom-control-label" htmlFor="customCheck1">Remember me</label>
+            </div>
+          </div>
+
+          <button type="submit" className="btn btn-primary btn-block">Submit</button>
+          <p className="forgot-password text-right">
+            Forgot <a href="#">password?</a>
+          </p>
+        </form>
+      </div>
+    );
   }
-  function handleClick(e) {
-    e.preventDefault();
-    console.log('The link was clicked.');
-  }
-  return (
-    <div className="Login">
-      <form onSubmit={handleSubmit}>
-        <FormGroup controlId="email" bsSize="large">
-          <FormLabel>Email</FormLabel>
-          <FormControl
-            autoFocus
-            type="email"
-            value={email}
-            onChange={e => setEmail(e.target.value)}
-          />
-        </FormGroup>
-        <FormGroup controlId="password" bsSize="large">
-          <FormLabel>Password</FormLabel>
-          <FormControl
-            value={password}
-            onChange={e => setPassword(e.target.value)}
-            type="password"
-          />
-        </FormGroup>
-        <FormGroup controlId="formBasicCheckbox">
-          <FormCheck type="checkbox" label="Remember me" />
-        </FormGroup>
-        <Button block bsSize="large" disabled={!validateForm()} type="submit">
-          Login
-        </Button>
-        <Button block type="button" disabled={false}>
-          Forgot Password? (not hooked up yet)
-        </Button>
-      </form>
-    </div>
-  );
 }
+
+export default Login;
