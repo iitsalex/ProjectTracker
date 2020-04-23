@@ -16,7 +16,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    fetch('http://localhost:5000/api/test')
+    fetch('/api/test')
       .then(res => res.text())
       .then(data => this.setState({message: data}))
       .catch(console.log)
