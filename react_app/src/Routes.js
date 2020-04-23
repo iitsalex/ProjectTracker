@@ -17,31 +17,36 @@ class Routes extends Component {
     }
   }
 
+  componentDidMount() {
+    fetch('/api/user/auth').then(res => {
+      if (res.status === 200) {
+        this.state.isAuthenticated = true;
+      } else if (res.status === 401) {
+        this.state.isAuthenticated = false;
+      } else {
+        const error = new Error(res.error);
+        throw error;
+      }
+    }).catch(err => {
+      console.error(err);
+      alert('Error logging in please try again');
+    });
+  }
+
   setAuthenticated = (isAuthenticated) => {
     this.setState({isAuthenticated});
   }
 
   render () {
+
     return (
       <Switch>
-        <Route exact path="/">
-          <Home />
-        </Route>
-        <Route exact path="/login">
-          <Login />
-        </Route>
-        <Route exact path="/signup">
-          <SignUp />
-        </Route>
-        <Route exact path="/passwordreset">
-          <PasswordReset />
-        </Route>
-        <Route exact path="/settings">
-          <Settings />
-        </Route>
-        <Route exact path="/dashboard">
-          <Dashboard />
-        </Route>
+        <Route exact path="/" component={Home} />
+        <Route exact path="/login" component={Login} />
+        <Route exact path="/signup" component={SignUp} />
+        <Route exact path="/passwordreset" component={PasswordReset} />
+        <Route exact path="/settings" component={Settings} />
+        <Route exact path="/dashboard" component={Dashboard} />
       </Switch>
     );
   }

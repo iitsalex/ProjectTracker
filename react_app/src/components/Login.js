@@ -28,7 +28,7 @@ class Login extends Component {
       }
     }).then(res => {
       if (res.status === 200) {
-        window.location.href = 'home';
+        window.location.href = '/';
       } else {
         const error = new Error(res.error);
         throw error;
