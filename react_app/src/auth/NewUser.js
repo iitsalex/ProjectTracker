@@ -13,7 +13,7 @@ function AuthUser(ComponentToProtect) {
 
     componentDidMount() {
       fetch('/api/user/auth').then(res => {
-        if (res.status === 200) {
+        if (res.status === 401) {
           this.setState({ loading: false });
         } else {
           const error = new Error(res.error);
@@ -31,7 +31,7 @@ function AuthUser(ComponentToProtect) {
         return null;
       }
       if (redirect) {
-        return <Redirect to="/login" />;
+        return <Redirect to="/403" />;
       }
       return <ComponentToProtect {...this.props} />;
     }

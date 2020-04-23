@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Route, Switch } from "react-router-dom";
-import AuthUser from "./AuthUser";
+import AuthUser from "./auth/AuthUser";
+import NewUser from "./auth/NewUser";
 
 import Home from './components/Home';
 import Login from './components/Login';
@@ -27,10 +28,10 @@ class Routes extends Component {
     return (
       <Switch>
         <Route exact path="/" component={Home} />
-        <Route path="/login" component={Login} />
-        <Route path="/signup" component={SignUp} />
         <Route path="/logout" render={this.logout} />
-        <Route path="/passwordreset" component={PasswordReset} />
+        <Route path="/login" component={NewUser(Login)} />
+        <Route path="/signup" component={NewUser(SignUp)} />
+        <Route path="/passwordreset" component={NewUser(PasswordReset)} />
         <Route path="/settings" component={AuthUser(Settings)} />
         <Route path="/dashboard" component={AuthUser(Dashboard)} />
       </Switch>
