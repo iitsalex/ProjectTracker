@@ -5,6 +5,7 @@ import MainNavbar from './MainNavbar';
 import Home from './Home';
 import Login from './containers/Login'
 import SignUp from './containers/SignUp'
+import PasswordReset from './containers/PasswordReset'
 
 class Routes extends Component {
   constructor(props) {
