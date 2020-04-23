@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Form, Button, FormGroup, FormControl, FormLabel } from "react-bootstrap"
+import { Link } from "react-router-dom";
 import "./Login.css";
 
 class Login extends Component {
@@ -28,7 +29,7 @@ class Login extends Component {
       }
     }).then(res => {
       if (res.status === 200) {
-        window.location.href = '/';
+        window.location.href = 'dashboard';
       } else {
         const error = new Error(res.error);
         throw error;
@@ -70,12 +71,9 @@ class Login extends Component {
           </FormGroup>
 
           <Button type="submit" className="btn-dark btn-block">Submit</Button>
-          <p className="forgot-password">
-            <a href="passwordreset">Forgot password?</a>
-          </p>
-          <p>
-            <a href="signup">Sign Up</a>
-          </p>
+          <Link to="passwordreset" className="forgot-password">Forgot password?</Link>
+          <br/>
+          <Link to="signup">Sign Up</Link>
         </Form>
       </div>
     );

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Form, Button, FormGroup, FormControl, FormLabel } from "react-bootstrap"
+import { Link } from "react-router-dom";
 import "./Login.css";
 
 class SignUp extends Component {
@@ -45,7 +46,7 @@ class SignUp extends Component {
     return (
       <div className="Login">
         <Form onSubmit={this.onSubmit}>
-          <h3>Sign In</h3>
+          <h3>Sign Up</h3>
 
           <FormGroup>
             <FormLabel className="text-muted">First Name</FormLabel>
@@ -96,6 +97,7 @@ class SignUp extends Component {
           </FormGroup>
 
           <Button type="submit" className="btn-dark btn-block">Submit</Button>
+          <Link to="login">Already signed up? Login</Link>
         </Form>
       </div>
     );
