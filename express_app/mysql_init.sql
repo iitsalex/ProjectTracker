@@ -11,7 +11,8 @@ CREATE TABLE users(
     id INT NOT NULL AUTO_INCREMENT,
     email VARCHAR(100) NOT NULL,
     password CHAR(60) NOT NULL,
-    name VARCHAR(100) NOT NULL,
+    fname VARCHAR(50) NOT NULL,
+    lname VARCHAR(50) NOT NULL,
     PRIMARY KEY (id)
 );
 
