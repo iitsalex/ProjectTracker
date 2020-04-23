@@ -42,8 +42,8 @@ class MainNavbar extends Component {
     return (
       <div className="MainNavbar">
         <Navbar variant="dark" bg="dark" expand="lg">
-          <Navbar.Brand href="/home">
-            <Link to="/">Pivot</Link>
+          <Navbar.Brand href="/">
+            Pivot
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
