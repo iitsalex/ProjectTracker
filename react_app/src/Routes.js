@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import { Route, Switch } from "react-router-dom";
 
 import MainNavbar from './MainNavbar';
-import Home from './Home';
-import Login from './containers/Login'
-import SignUp from './containers/SignUp'
-import PasswordReset from './containers/PasswordReset'
+import Home from './components/Home';
+import Login from './components/Login';
+import SignUp from './components/SignUp';
+import PasswordReset from './components/PasswordReset';
+import Settings from './components/Settings';
+import Dashboard from './components/Dashboard';
 
 class Routes extends Component {
   constructor(props) {
@@ -31,6 +33,15 @@ class Routes extends Component {
         </Route>
         <Route exact path="/signup">
           <SignUp />
+        </Route>
+        <Route exact path="/passwordreset">
+          <PasswordReset />
+        </Route>
+        <Route exact path="/settings">
+          <Settings />
+        </Route>
+        <Route exact path="/dashboard">
+          <Dashboard />
         </Route>
       </Switch>
     );
