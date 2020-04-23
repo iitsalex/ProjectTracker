@@ -31,25 +31,40 @@ class MainNavbar extends Component {
     this.setState({ isAuthenticated: val });
   }
 
+  authNav = () => {
+    if (this.state.isAuthenticated) {
+      return (
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="mr-auto">
+            <Nav.Link href="/dashboard">Dashboard</Nav.Link>
+            <Nav.Link href="/teams">Teams</Nav.Link>
+            <NavDropdown title="Projects" id="basic-nav-dropdown">
+              <NavDropdown.Item href="/sprints">Current Sprints</NavDropdown.Item>
+              <NavDropdown.Divider />
+              <NavDropdown.Item href="/backlog">Backlog</NavDropdown.Item>
+            </NavDropdown>
+            <Nav.Link href="/settings">Settings</Nav.Link>
+          </Nav>
+          <Nav.Link style={{color: "white"}} href="/logout">Logout</Nav.Link>
+        </Navbar.Collapse>
+      )
+    } else {
+      return (
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="mr-auto" />
+          <Nav.Link style={{color: "white"}} href="/login">Login</Nav.Link>
+        </Navbar.Collapse>
+      )
+    }
+  }
+
   render() {
     return (
       <div className="MainNavbar">
         <Navbar variant="dark" bg="dark" expand="lg">
           <Navbar.Brand href="/">Pivot</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="mr-auto">
-              <Nav.Link href="/dashboard">Dashboard</Nav.Link>
-              <Nav.Link href="/teams">Teams</Nav.Link>
-              <NavDropdown title="Projects" id="basic-nav-dropdown">
-                <NavDropdown.Item href="/sprints">Current Sprints</NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item href="/backlog">Backlog</NavDropdown.Item>
-              </NavDropdown>
-              <Nav.Link href="/settings">Settings</Nav.Link>
-            </Nav>
-            <Nav.Link href="/login">Login</Nav.Link>
-          </Navbar.Collapse>
+          {this.authNav()}
         </Navbar>
       </div>
     );
