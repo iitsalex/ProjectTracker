@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, FormGroup, FormControl, FormLabel } from "react-bootstrap"
+import { Form, Button, FormGroup, FormControl, FormLabel } from "react-bootstrap"
 import "./Login.css";
 
 class Login extends Component {
@@ -19,7 +19,7 @@ class Login extends Component {
   render() {
     return (
       <div className="Login">
-        <form onSubmit={this.submitLogin}>
+        <Form onSubmit={this.submitLogin}>
           <h3>Sign In</h3>
 
           <FormGroup>
@@ -36,7 +36,7 @@ class Login extends Component {
           <p className="forgot-password text-right">
             <a href="passwordreset">Forgot password?</a>
           </p>
-        </form>
+        </Form>
       </div>
     );
   }
