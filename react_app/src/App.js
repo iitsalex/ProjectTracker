@@ -7,22 +7,27 @@ import Routes from './Routes';
 const Context = React.createContext();
 
 class App extends Component {
-  state = {
-    users: []
+  constructor() {
+    super();
+    //Set default message
+    this.state = {
+      message: 'Loading...'
+    }
   }
+
   componentDidMount() {
-    fetch('http://jsonplaceholder.typicode.com/user')
-    .then(res => res.json())
-    .then((data) => {
-      this.setState({ users: data })
-    })
-    .catch(console.log)
+    fetch('http://localhost:5000/api/test')
+      .then(res => res.text())
+      .then(data => this.setState({message: data}))
+      .catch(console.log)
   }
+
   render () {
     return (
       <div className="App">
         <MainNavbar/>
         <Routes />
+        <p>{this.state.message}</p>
       </div>
     );
   }

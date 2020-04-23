@@ -14,6 +14,14 @@ var Pivot = require('./Pivot');
  * parks calls require park interface
  */
 
+router.get('/testinvalid', function (req, res) {
+  res.status(400).json(err);
+});
+
+router.get('/test', function (req, res) {
+  res.send('Welcome!');
+});
+
 // Users
 router.get('/user/login', function (req, res) {
     Pivot.getuser(req.query.email, function(err, user) {
