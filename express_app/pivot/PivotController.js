@@ -19,28 +19,29 @@ const secret = 'devsecret';
  * parks calls require park interface
  */
 
-router.get('/testauth', withAuth, function (req, res) {
-    res.send('Welcome!');
+router.get('/user/auth', withAuth, function (req, res) {
+    res.sendStatus(200);
 });
 
-router.get('/test', function (req, res) {
-    const test = 'testing payload';
-    const payload = { test };
+router.get('/user/giveToken', function (req, res) {
+    // for dev use only
+    const temp = 'testing';
+    const payload = { temp };
     const token = jwt.sign(payload, secret, { expiresIn: '1h' });
     res.cookie('token', token, { httpOnly: true }).sendStatus(200);
-    res.send('Welcome!');
+    res.sendStatus(200);
 });
 
 // Users
-router.get('/user/login', function (req, res) {
-    Pivot.getuser(req.query.email, function(err, user) {
+router.post('/user/login', function (req, res) {
+    Pivot.getuser(req.body.email, function(err, user) {
         if(err) {
             res.status(400).json(err);
         } else {
             if (user === undefined || user.length === 0) {
                 res.status(401).send('No such user');
             } else {
-                bcrypt.compare(req.query.password, user[0].password, function(err, valid) {
+                bcrypt.compare(req.body.password, user[0].password, function(err, valid) {
                     if (valid) {
                         const email = user[0].email
                         const payload = { email };

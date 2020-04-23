@@ -16,8 +16,17 @@ class App extends Component {
   }
 
   componentDidMount() {
-    fetch('/api/testauth')
-      .then(res => res.text())
+    fetch('/api/user/auth')
+      .then(res => {
+        if (res.status === 200) {
+          // this.props.history.push('/');
+          return('Auth ok');
+        } else {
+          // const error = new Error(res.error);
+          // throw error;
+          return('Auth failed');
+        }
+      })
       .then(data => this.setState({message: data}))
       .catch(console.log)
   }

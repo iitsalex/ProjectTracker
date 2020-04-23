@@ -1,37 +1,102 @@
 import React, { Component } from "react";
+import { Form, Button, FormGroup, FormControl, FormLabel } from "react-bootstrap"
 import "./Login.css";
+
 class SignUp extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      email: '',
+      password: '',
+      fname: '',
+      lname: ''
+    };
+  }
+
+  handleInputChange = (event) => {
+    const { value, name } = event.target;
+    this.setState({
+      [name]: value
+    });
+  }
+
+  onSubmit = (event) => {
+    event.preventDefault();
+    fetch('/api/user/create', {
+      method: 'POST',
+      body: JSON.stringify(this.state),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }).then(res => {
+      if (res.status === 200) {
+        window.location.href = 'login';
+      } else {
+        const error = new Error(res.error);
+        throw error;
+      }
+    }).catch(err => {
+      console.error(err);
+      alert('Error logging in please try again');
+    });
+  }
+
   render() {
     return (
       <div className="Login">
-        <form>
-          <h3>Sign Up</h3>
+        <Form onSubmit={this.onSubmit}>
+          <h3>Sign In</h3>
 
-          <div className="form-group">
-            <label>First name</label>
-            <input type="text" className="form-control" placeholder="First name" />
-          </div>
+          <FormGroup>
+            <FormLabel className="text-muted">First Name</FormLabel>
+            <FormControl
+              type="text"
+              name="fname"
+              placeholder="Enter First Name"
+              value={this.state.fname}
+              onChange={this.handleInputChange}
+              required
+            />
+          </FormGroup>
 
-          <div className="form-group">
-            <label>Last name</label>
-            <input type="text" className="form-control" placeholder="Last name" />
-          </div>
+          <FormGroup>
+            <FormLabel className="text-muted">Last Name</FormLabel>
+            <FormControl
+              type="text"
+              name="lname"
+              placeholder="Enter Last Name"
+              value={this.state.lname}
+              onChange={this.handleInputChange}
+              required
+            />
+          </FormGroup>
 
-          <div className="form-group">
-            <label>Email address</label>
-            <input type="email" className="form-control" placeholder="Enter email" />
-          </div>
+          <FormGroup>
+            <FormLabel className="text-muted">Email address</FormLabel>
+            <FormControl
+              type="email"
+              name="email"
+              placeholder="Enter email"
+              value={this.state.email}
+              onChange={this.handleInputChange}
+              required
+            />
+          </FormGroup>
 
-          <div className="form-group">
-            <label>Password</label>
-            <input type="password" className="form-control" placeholder="Enter password" />
-          </div>
+          <FormGroup>
+            <FormLabel className="text-muted">Password</FormLabel>
+            <FormControl
+              type="password"
+              name="password"
+              placeholder="Enter password"
+              value={this.state.password}
+              onChange={this.handleInputChange}
+              required
+            />
+          </FormGroup>
 
-          <button type="submit" className="btn btn-primary btn-block">Sign Up</button>
-          <p className="forgot-password text-right">
-            Already registered? <a href="/login">sign in?</a>
-          </p>
-        </form>
+          <Button type="submit" className="btn-dark btn-block">Submit</Button>
+        </Form>
       </div>
     );
   }
