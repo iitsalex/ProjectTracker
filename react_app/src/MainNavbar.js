@@ -27,14 +27,8 @@ class MainNavbar extends Component {
     });
   }
 
-  setAuthenticated = (isAuthenticated) => {
-    this.setState({isAuthenticated});
-  }
-
-  logout = () => {
-    // localStorage.clear();
-    console.log('test');
-    // window.location.href = '/';
+  setAuthenticated = (val) => {
+    this.setState({ isAuthenticated: val });
   }
 
   render() {
@@ -55,7 +49,6 @@ class MainNavbar extends Component {
               <Nav.Link href="/settings">Settings</Nav.Link>
             </Nav>
             <Nav.Link href="/login">Login</Nav.Link>
-            <Nav.Link href="#" onClick={this.logout()}>Logout</Nav.Link>
           </Navbar.Collapse>
         </Navbar>
       </div>

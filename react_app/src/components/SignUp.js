@@ -56,6 +56,7 @@ class SignUp extends Component {
               placeholder="Enter First Name"
               value={this.state.fname}
               onChange={this.handleInputChange}
+              autoComplete="given-name"
               required
             />
           </FormGroup>
@@ -68,6 +69,7 @@ class SignUp extends Component {
               placeholder="Enter Last Name"
               value={this.state.lname}
               onChange={this.handleInputChange}
+              autoComplete="family-name"
               required
             />
           </FormGroup>
@@ -80,6 +82,7 @@ class SignUp extends Component {
               placeholder="Enter email"
               value={this.state.email}
               onChange={this.handleInputChange}
+              autoComplete="email"
               required
             />
           </FormGroup>
@@ -92,6 +95,7 @@ class SignUp extends Component {
               placeholder="Enter password"
               value={this.state.password}
               onChange={this.handleInputChange}
+              autoComplete="password"
               required
             />
           </FormGroup>

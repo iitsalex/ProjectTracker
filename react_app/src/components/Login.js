@@ -54,6 +54,7 @@ class Login extends Component {
               placeholder="Enter email"
               value={this.state.email}
               onChange={this.handleInputChange}
+              autoComplete="email"
               required
             />
           </FormGroup>
@@ -66,6 +67,7 @@ class Login extends Component {
               placeholder="Enter password"
               value={this.state.password}
               onChange={this.handleInputChange}
+              autoComplete="password"
               required
             />
           </FormGroup>
