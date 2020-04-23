@@ -16,7 +16,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    fetch('/api/test')
+    fetch('/api/testauth')
       .then(res => res.text())
       .then(data => this.setState({message: data}))
       .catch(console.log)

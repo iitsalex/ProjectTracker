@@ -1,9 +1,14 @@
 var express = require('express');
 var bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 var router = express.Router();
 var bodyParser = require('body-parser');
 router.use(bodyParser.json());
+
 var Pivot = require('./Pivot');
+const withAuth = require('./PivotMiddleware');
+
+const secret = 'devsecret';
 
 /* All calls require respective object
  * interface unless solely param based.
@@ -14,12 +19,16 @@ var Pivot = require('./Pivot');
  * parks calls require park interface
  */
 
-router.get('/testinvalid', function (req, res) {
-  res.status(400).json(err);
+router.get('/testauth', withAuth, function (req, res) {
+    res.send('Welcome!');
 });
 
 router.get('/test', function (req, res) {
-  res.send('Welcome!');
+    const test = 'testing payload';
+    const payload = { test };
+    const token = jwt.sign(payload, secret, { expiresIn: '1h' });
+    res.cookie('token', token, { httpOnly: true }).sendStatus(200);
+    res.send('Welcome!');
 });
 
 // Users
@@ -33,8 +42,10 @@ router.get('/user/login', function (req, res) {
             } else {
                 bcrypt.compare(req.query.password, user[0].password, function(err, valid) {
                     if (valid) {
-                        user[0].password = '';
-                        res.json(user[0]);
+                        const email = user[0].email
+                        const payload = { email };
+                        const token = jwt.sign(payload, secret, { expiresIn: '1h' });
+                        res.cookie('token', token, { httpOnly: true }).sendStatus(200);
                     } else if (!valid) {
                         res.status(401).send('Invalid password');
                     } else {
