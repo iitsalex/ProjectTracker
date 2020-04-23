@@ -1,54 +1,40 @@
-import React, { useState, Component } from "react";
-import { Button, FormGroup, FormControl, FormLabel, FormCheck } from "react-bootstrap"
+import React, { Component } from "react";
+import { Button, FormGroup, FormControl, FormLabel } from "react-bootstrap"
 import "./Login.css";
 
 class Login extends Component {
   constructor(props) {
       super(props);
       this.state = {
-          username: '',
+          email: '',
           password: ''
       }
   }
 
-  // function validateForm() {
-  //     return email.length > 0 && password.length > 0;
-  // }
-  //
-  // function handleSubmit(event) {
-  //   event.preventDefault();
-  // }
-  // function handleClick(e) {
-  //   e.preventDefault();
-  //   console.log('The link was clicked.');
-  // }
+  submitLogin = (event) => {
+    event.preventDefault();
+    alert('Authentication coming soon!');
+  }
 
   render() {
     return (
       <div className="Login">
-        <form>
+        <form onSubmit={this.submitLogin}>
           <h3>Sign In</h3>
 
-          <div className="form-group">
-            <label>Email address</label>
-            <input type="email" className="form-control" placeholder="Enter email" />
-          </div>
+          <FormGroup>
+            <FormLabel>Email address</FormLabel>
+            <FormControl type="email" placeholder="Enter email" />
+          </FormGroup>
 
-          <div className="form-group">
-            <label>Password</label>
-            <input type="password" className="form-control" placeholder="Enter password" />
-          </div>
+          <FormGroup>
+            <FormLabel>Password</FormLabel>
+            <FormControl type="password" placeholder="Enter password" />
+          </FormGroup>
 
-          <div className="form-group">
-            <div className="custom-control custom-checkbox">
-              <input type="checkbox" className="custom-control-input" id="customCheck1" />
-              <label className="custom-control-label" htmlFor="customCheck1">Remember me</label>
-            </div>
-          </div>
-
-          <button type="submit" className="btn btn-primary btn-block">Submit</button>
+          <Button type="submit" className="btn-block">Submit</Button>
           <p className="forgot-password text-right">
-            Forgot <a href="passwordreset">password?</a>
+            <a href="passwordreset">Forgot password?</a>
           </p>
         </form>
       </div>

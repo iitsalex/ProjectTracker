@@ -1,9 +1,6 @@
 import React from 'react';
-import { Navbar, Nav, NavItem, NavDropdown, Form, FormControl, Button } from 'react-bootstrap';
+import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 import { Link } from "react-router-dom";
-import { LinkContainer } from "react-router-bootstrap";
-import Login from './components/Login'
-import SignUp from './components/SignUp'
 import './App.css';
 
 function MainNavbar() {

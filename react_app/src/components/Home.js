@@ -5,7 +5,7 @@ class Home extends Component {
   render() {
     return (
       <div>
-      <img src={ require('../assets/images/Pivot_logo.png') } />
+      <img src={ require('../assets/images/Pivot_logo.png') } alt="fix this one day" />
       <h1>Your Project Tracking Solution</h1>
       <br/>
       <Button bsSize="large" type="submit">

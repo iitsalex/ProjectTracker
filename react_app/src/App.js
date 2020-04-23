@@ -4,7 +4,7 @@ import './App.css';
 import MainNavbar from './MainNavbar';
 import Routes from './Routes';
 
-const Context = React.createContext();
+// const Context = React.createContext();
 
 class App extends Component {
   constructor() {
