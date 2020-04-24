@@ -11,9 +11,9 @@ var Pivot = {
     },
 
     // Projects
-    createproject: function(project, callback) {
-        return db.query('INSERT INTO projects(name, owner_id, created) VALUES(?, ?, ?, ?)',
-        [project.name, project.owner_id, project.created], callback);
+    createproject: function(project, uid, today, callback) {
+        return db.query('INSERT INTO projects(name, description, owner_id, created) VALUES(?, ?, ?, ?)',
+        [project.name, project.description, uid, today], callback);
     },
     getproject: function(project_id, callback) {
         return db.query('SELECT * FROM projects WHERE id=?', project_id, callback);

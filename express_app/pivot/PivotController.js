@@ -39,9 +39,10 @@ router.post('/user/login', function (req, res) {
             } else {
                 bcrypt.compare(req.body.password, user[0].password, function(err, valid) {
                     if (valid) {
-                        const email = user[0].email
-                        const payload = { email };
+                        const id = user[0].id
+                        const payload = { id };
                         const token = jwt.sign(payload, secret, { expiresIn: '1h' });
+                        res.cookie('uid', id, { httpOnly: true });
                         res.cookie('token', token, { httpOnly: true }).sendStatus(200);
                     } else if (!valid) {
                         res.status(401).send('Invalid password');
@@ -68,7 +69,9 @@ router.post('/user/create', function (req, res) {
 
 // Projects
 router.post('/projects', function (req, res) {
-    Pivot.createproject(req.body, function(err, count) {
+    const uid = req.cookies.uid;
+    var today = new Date();
+    Pivot.createproject(req.body, uid, today, function(err, count) {
         if(err) {
             res.status(400).json(err);
         } else {
