@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
-import {Button, Modal} from "react-bootstrap";
-import TasksCreate from "./TasksCreate";
+import {Button, Modal} from "react-bootstrap"
+import ComponentModal from "./ComponentModal";
 
 class Backlog extends Component {
 
   render() {
-    return (<TasksCreate/>);
+    return (<ComponentModal/>);
   }
 }
 
