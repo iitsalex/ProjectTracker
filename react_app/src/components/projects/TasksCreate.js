@@ -29,4 +29,21 @@ function TaskCreateWindow(props) {
   );
 }
 
-export default TaskCreateWindow;
+  function TasksCreate() {
+  const [modalShow, setModalShow] = React.useState(false);
+
+  return (
+    <>
+      <Button variant="primary" onClick={() => setModalShow(true)}>
+        Launch vertically centered modal
+      </Button>
+
+      <TaskCreateWindow
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+      />
+    </>
+  );
+}
+
+export default TasksCreate;
