@@ -4,11 +4,11 @@ import AuthUser from "./auth/AuthUser";
 import NewUser from "./auth/NewUser";
 
 import Home from './components/Home';
-import Login from './components/Login';
-import SignUp from './components/SignUp';
-import PasswordReset from './components/PasswordReset';
-import Settings from './components/Settings';
-import Dashboard from './components/Dashboard';
+import Login from './components/accounts/Login';
+import SignUp from './components/accounts/SignUp';
+import PasswordReset from './components/accounts/PasswordReset';
+import Settings from './components/settings/Settings';
+import Dashboard from './components/projects/Dashboard';
 
 class Routes extends Component {
   logout = () => {
