@@ -44,8 +44,9 @@ class PivotNavbar extends Component {
                 <Nav.Link href="/teams">Teams</Nav.Link>
                 <NavDropdown title="Projects" id="basic-nav-dropdown">
                   <NavDropdown.Item href="/sprints">Current Sprints</NavDropdown.Item>
-                  <NavDropdown.Divider />
                   <NavDropdown.Item href="/backlog">Backlog</NavDropdown.Item>
+                  <NavDropdown.Divider />
+                  <NavDropdown.Item href="/createproject">Create Project</NavDropdown.Item>
                 </NavDropdown>
                 <Nav.Link href="/settings">Settings</Nav.Link>
               </Nav>
