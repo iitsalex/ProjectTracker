@@ -1,13 +1,12 @@
 import React, { Component } from "react";
 import { Form, Button, FormGroup, FormControl, FormLabel } from "react-bootstrap"
-import "./Projects.css";
+import "./Teams.css";
 
-class CreateProject extends Component {
+class CreateTeam extends Component {
   constructor(props) {
     super(props);
     this.state = {
       name: '',
-      description: '',
     };
   }
 
@@ -20,7 +19,7 @@ class CreateProject extends Component {
 
   onSubmit = (event) => {
     event.preventDefault();
-    fetch('/api/projects', {
+    fetch('/api/teams', {
       method: 'POST',
       body: JSON.stringify(this.state),
       headers: {
@@ -28,7 +27,7 @@ class CreateProject extends Component {
       }
     }).then(res => {
       if (res.status === 200) {
-        window.location.href = 'dashboard';
+        window.location.href = 'teams';
       } else {
         const error = new Error(res.error);
         throw error;
@@ -41,33 +40,21 @@ class CreateProject extends Component {
 
   render() {
     return (
-      <div className="CreateProject">
+      <div className="CreateTeam">
         <Form onSubmit={this.onSubmit}>
-          <h3>Create Project</h3>
+          <h3>Create Team</h3>
 
           <FormGroup>
-            <FormLabel className="text-muted">Project Name</FormLabel>
+            <FormLabel className="text-muted">Team Name</FormLabel>
             <FormControl
               type="text"
               name="name"
-              placeholder="Enter Project Name"
+              placeholder="Enter Team Name"
               value={this.state.name}
               onChange={this.handleInputChange}
               maxLength="100"
               autoComplete="off"
               required
-            />
-          </FormGroup>
-
-          <FormGroup>
-            <FormLabel className="text-muted">Project Description</FormLabel>
-            <FormControl
-              type="text"
-              name="description"
-              placeholder="Enter Project Description"
-              value={this.state.description}
-              onChange={this.handleInputChange}
-              autoComplete="off"
             />
           </FormGroup>
 
@@ -78,4 +65,4 @@ class CreateProject extends Component {
   }
 }
 
-export default CreateProject;
+export default CreateTeam;

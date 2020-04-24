@@ -11,10 +11,11 @@ import Settings from './components/settings/Settings';
 import Dashboard from './components/projects/Dashboard';
 import Backlog from './components/projects/Backlog';
 import CreateProject from './components/projects/CreateProject';
+import CreateTeam from './components/teams/CreateTeam';
+import Teams from './components/teams/Teams';
 
 class Routes extends Component {
   logout = () => {
-    console.log('test')
     fetch('/api/user/deauth').then(res => {
       if (res.status !== 200 && res.status !== 401) {
         const error = new Error(res.error);
@@ -36,8 +37,10 @@ class Routes extends Component {
         <Route path="/passwordreset" component={NewUser(PasswordReset)} />
         <Route path="/settings" component={AuthUser(Settings)} />
         <Route path="/dashboard" component={AuthUser(Dashboard)} />
+        <Route path="/teams" component={AuthUser(Teams)} />
         <Route path="/backlog" component={AuthUser(Backlog)} />
         <Route path="/createproject" component={AuthUser(CreateProject)} />
+        <Route path="/createteam" component={AuthUser(CreateTeam)} />
       </Switch>
     );
   }

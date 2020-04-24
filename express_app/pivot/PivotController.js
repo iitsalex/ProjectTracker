@@ -57,11 +57,11 @@ router.post('/user/login', function (req, res) {
 
 router.post('/user/create', function (req, res) {
     bcrypt.hash(req.body.password, 10, function(err, hash) {
-        Pivot.createuser(req.body, hash, function(err) {
+        Pivot.createuser(req.body, hash, function(err, user) {
             if(err) {
                 res.status(400).json(err);
             } else {
-                res.json(req.body);
+                res.status(200).json(req.body.email);
             }
         });
     });
@@ -132,11 +132,19 @@ router.delete('/projects/:project_id', function (req, res) {
 
 // Teams
 router.post('/teams', function (req, res) {
-    Pivot.createteam(req.body, function(err, team) {
+    const uid = req.cookies.uid;
+    Pivot.createteam(req.body.name, uid, function(err, team) {
         if(err) {
             res.status(400).json(err);
         } else {
-            res.json(team.insertId);
+
+            Pivot.jointeam(uid, team.insertId, function(err) {
+              if(err) {
+                res.status(400).json(err);
+              } else {
+                res.status(200).json(req.body.name);
+              }
+            });
         }
     });
 });
@@ -161,8 +169,19 @@ router.get('/teams/user/:user_id', function (req, res) {
     });
 });
 
+router.get('/teams/currentuser', function (req, res) {
+    const uid = req.cookies.uid;
+    Pivot.getteamsbyuser(uid, function(err, rows) {
+        if(err) {
+            res.status(400).json(err);
+        } else {
+            res.status(200).json(rows);
+        }
+    });
+});
+
 router.post('/teams/join', function (req, res) {
-    Pivot.jointeam(req.body, function(err, count) {
+    Pivot.jointeam(req.body.user_id, req.body.team_id, function(err, count) {
         if(err) {
             res.status(400).json(err);
         } else {

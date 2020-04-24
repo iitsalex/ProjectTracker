@@ -35,9 +35,9 @@ var Pivot = {
     },
 
     // Teams
-    createteam: function(team, callback) {
-        return db.query('INSERT INTO teams(name, size, lead_id) VALUES(?, ?)',
-        [team.name, 1, team.lead_id], callback);
+    createteam: function(name, uid, callback) {
+        return db.query('INSERT INTO teams(name, size, lead_id) VALUES(?, ?, ?)',
+        [name, 1, uid], callback);
     },
     getteam: function(team_id, callback) {
         return db.query('SELECT * FROM teams WHERE id=?', team_id, callback);
@@ -47,9 +47,9 @@ var Pivot = {
             '(SELECT team_id FROM user_team WHERE user_id=?)',
             user_id, callback);
     },
-    jointeam: function (data, callback) {
+    jointeam: function (user_id, team_id, callback) {
         return db.query('INSERT INTO user_team(user_id, team_id) VALUES(?, ?)',
-            [data.user_id, data.team_id], callback);
+            [user_id, team_id], callback);
     },
     leaveteam: function (data, callback) {
         return db.query('DELETE FROM user_team WHERE user_id=? AND team_id=?',
