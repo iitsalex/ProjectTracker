@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import './App.css';
 
-import PivotNavbar from './PivotNavbar';
+import PivotNavbar from './components/PivotNavbar';
 import Routes from './Routes';
 
 // const Context = React.createContext();
