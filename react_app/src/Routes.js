@@ -10,6 +10,7 @@ import PasswordReset from './components/accounts/PasswordReset';
 import Settings from './components/settings/Settings';
 import Dashboard from './components/projects/Dashboard';
 import Backlog from './components/projects/Backlog';
+import CreateProject from './components/projects/CreateProject';
 
 class Routes extends Component {
   logout = () => {
@@ -36,6 +37,7 @@ class Routes extends Component {
         <Route path="/settings" component={AuthUser(Settings)} />
         <Route path="/dashboard" component={AuthUser(Dashboard)} />
         <Route path="/Backlog" component={AuthUser(Backlog)} />
+        <Route path="/createproject" component={AuthUser(CreateProject)} />
       </Switch>
     );
   }
