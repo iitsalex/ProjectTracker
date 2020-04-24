@@ -27,14 +27,6 @@ router.get('/user/deauth', withAuth, function (req, res) {
     res.clearCookie('token').sendStatus(200);
 });
 
-router.get('/user/giveToken', function (req, res) {
-    // for dev use only
-    const temp = 'testing';
-    const payload = { temp };
-    const token = jwt.sign(payload, secret, { expiresIn: '1h' });
-    res.cookie('token', token, { httpOnly: true }).sendStatus(200);
-});
-
 // Users
 router.post('/user/login', function (req, res) {
     Pivot.getuser(req.body.email, function(err, user) {
