@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 import './App.css';
 
-class MainNavbar extends Component {
+class PivotNavbar extends Component {
   constructor(props) {
     super(props);
 
@@ -71,4 +71,4 @@ class MainNavbar extends Component {
   }
 }
 
-export default MainNavbar;
+export default PivotNavbar;
