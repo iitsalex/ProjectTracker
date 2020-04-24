@@ -36,7 +36,7 @@ class Routes extends Component {
         <Route path="/passwordreset" component={NewUser(PasswordReset)} />
         <Route path="/settings" component={AuthUser(Settings)} />
         <Route path="/dashboard" component={AuthUser(Dashboard)} />
-        <Route path="/Backlog" component={AuthUser(Backlog)} />
+        <Route path="/backlog" component={AuthUser(Backlog)} />
         <Route path="/createproject" component={AuthUser(CreateProject)} />
       </Switch>
     );
