@@ -31,7 +31,7 @@ class PivotNavbar extends Component {
     this.setState({ isAuthenticated: val });
   }
 
-  authNav = () => {
+  render() {
     if (this.state.isAuthenticated) {
       return (
         <div className="MainNavbar">
@@ -65,10 +65,6 @@ class PivotNavbar extends Component {
         </div>
       )
     }
-  }
-
-  render() {
-    return this.authNav();
   }
 }
 
