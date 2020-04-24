@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import './App.css';
 
-import MainNavbar from './MainNavbar';
+import PivotNavbar from './MainNavbar';
 import Routes from './Routes';
 
 // const Context = React.createContext();
@@ -30,7 +30,7 @@ class App extends Component {
   render () {
     return (
       <div className="App">
-        <MainNavbar/>
+        <PivotNavbar/>
         <Routes />
         <p>{this.state.message}</p>
       </div>
