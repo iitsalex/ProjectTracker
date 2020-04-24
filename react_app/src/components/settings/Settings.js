@@ -8,7 +8,7 @@ class Settings extends Component {
       <br/>
       <h1>Settings</h1>
       <br/>
-      <Button bsSize="large" type="submit">
+      <Button type="submit">
         <Link to="/settings" style={{ color: '#FFF' }}>Temp Button</Link>
       </Button>
       </div>

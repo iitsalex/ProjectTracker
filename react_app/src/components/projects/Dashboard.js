@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
-import { Table, Card } from 'react-bootstrap'
+import { Table } from 'react-bootstrap'
 
 // https://codesandbox.io/s/-w5szl use this link instead???
 // fake data generator

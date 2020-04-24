@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import { Modal, Button } from "react-bootstrap";
+import React from 'react';
+import { Button } from "react-bootstrap";
 import ModalTemplate from "../ModalTemplate";
 import Login from "../accounts/Login";
 
