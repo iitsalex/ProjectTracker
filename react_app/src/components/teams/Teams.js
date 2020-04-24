@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Button, FormGroup, FormControl, FormLabel } from "react-bootstrap"
 import { Link } from "react-router-dom";
-import AuthUser from "../../auth/AuthUser";
 
 class Teams extends Component {
   _isMounted = false;
