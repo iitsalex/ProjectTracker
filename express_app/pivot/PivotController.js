@@ -19,6 +19,7 @@ const secret = 'devsecret';
  * parks calls require park interface
  */
 
+// Authentication
 router.get('/user/auth', withAuth, function (req, res) {
     res.sendStatus(200);
 });
