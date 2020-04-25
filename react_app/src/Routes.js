@@ -13,6 +13,7 @@ import Backlog from './components/projects/Backlog';
 import CreateProject from './components/projects/CreateProject';
 import CreateTeam from './components/teams/CreateTeam';
 import Teams from './components/teams/Teams';
+import InviteMembers from './components/teams/InviteMembers';
 
 class Routes extends Component {
   logout = () => {
@@ -41,6 +42,7 @@ class Routes extends Component {
         <Route path="/backlog" component={AuthUser(Backlog)} />
         <Route path="/createproject" component={AuthUser(CreateProject)} />
         <Route path="/createteam" component={AuthUser(CreateTeam)} />
+        <Route path="/invitemembers" component={AuthUser(InviteMembers)} />
       </Switch>
     );
   }

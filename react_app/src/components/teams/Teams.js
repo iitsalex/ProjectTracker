@@ -44,6 +44,8 @@ class Teams extends Component {
           })}
         </ul>
         <Link to="createteam">Create Team</Link>
+        <br/>
+        <Link to="invitemembers">Invite Team Members</Link>
       </>
     );
   }
