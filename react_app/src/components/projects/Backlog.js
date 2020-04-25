@@ -1,12 +1,21 @@
-import React, {Component} from 'react';
-import CreateTask from "./tasks/CreateTask";
+import React from "react";
+import { Button } from 'react-bootstrap'
+import CreateTaskModal from "./tasks/CreateTaskModal";
 
-class Backlog extends Component {
+function Backlog() {
+  const [modalShow, setModalShow] = React.useState(false);
+  return (
+    <>
+      <Button variant="primary" onClick={() => setModalShow(true)}>
+        Create Task
+      </Button>
 
-  render() {
-    const [modalShow, setModalShow] = React.useState(false);
-    return (<CreateTask/>);
-  }
+      <CreateTaskModal
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+      />
+    </>
+  );
 }
 
 export default Backlog;

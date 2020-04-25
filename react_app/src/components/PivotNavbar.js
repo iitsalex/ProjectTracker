@@ -34,7 +34,7 @@ class PivotNavbar extends Component {
   render() {
     if (this.state.isAuthenticated) {
       return (
-        <div className="MainNavbar">
+        <div className="PivotNavbar">
           <Navbar variant="dark" bg="dark" expand="sm">
             <Navbar.Brand href="/">Pivot</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
