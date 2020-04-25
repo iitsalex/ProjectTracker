@@ -16,3 +16,9 @@ form {
   margin: 0 auto;
   max-width: 320px;
 }
+
+div.card {
+  margin: 0 auto;
+  max-width: 320px;
+  padding: 10px;
+}

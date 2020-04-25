@@ -1,12 +1,5 @@
 import React, {Component} from "react";
-import {
-  Form,
-  Button,
-  FormGroup,
-  FormControl,
-  FormLabel,
-  Dropdown
-} from "react-bootstrap"
+import {Form, Button, FormGroup, FormControl, FormLabel} from "react-bootstrap"
 import "./Teams.css";
 
 class InviteMembers extends Component {
@@ -61,14 +54,19 @@ class InviteMembers extends Component {
       }
     }).then(res => {
       if (res.status === 200) {
-        window.location.href = 'teams';
+        return res.json();
       } else if (res.status === 404) {
         this.setState({message: "No such user"})
       } else if (res.status === 412) {
-        this.setState({message: "Invalid Team"})
+        this.setState({message: "User is already in this team"})
       } else {
         const error = new Error(res.error);
         throw error;
+      }
+    }).then(data => {
+      if (data !== undefined) {
+        alert(data.fname + " " + data.lname + " has been added to the team.");
+        window.location.href = 'teams';
       }
     }).catch(err => {
       console.error(err);

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
+import { Card } from "react-bootstrap"
 
 class Teams extends Component {
   _isMounted = false;
@@ -40,7 +41,10 @@ class Teams extends Component {
         <h2>Team List</h2>
         <ul>
           {this.state.teams.map(team => {
-            return <li key={team.id}>{team.name}</li>
+            return  <Card key={team.id}>
+                      <Card.Title>{team.name}</Card.Title>
+                      <Card.Link href="#"> View Team Members</Card.Link>
+                    </Card>
           })}
         </ul>
         <Link to="createteam">Create Team</Link>
