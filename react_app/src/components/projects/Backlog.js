@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
-import ComponentModal from "./ComponentModal";
+import CreateTask from "./tasks/CreateTask";
 
 class Backlog extends Component {
 
   render() {
-    return (<ComponentModal/>);
+    const [modalShow, setModalShow] = React.useState(false);
+    return (<CreateTask/>);
   }
 }
 
