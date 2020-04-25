@@ -11,7 +11,7 @@ class App extends Component {
     super();
     //Set default message
     this.state = {
-      message: 'Loading...'
+      message: ''
     }
   }
 
