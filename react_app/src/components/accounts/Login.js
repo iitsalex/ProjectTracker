@@ -29,6 +29,7 @@ class Login extends Component {
       }
     }).then(res => {
       if (res.status === 200) {
+        this.props.onHide();
         window.location.href = 'dashboard';
       } else {
         const error = new Error(res.error);
@@ -43,8 +44,6 @@ class Login extends Component {
   render() {
     return (
       <Form onSubmit={this.onSubmit}>
-        <h3>Sign In</h3>
-
         <FormGroup>
           <FormLabel className="text-muted">Email address</FormLabel>
           <FormControl
@@ -72,9 +71,9 @@ class Login extends Component {
         </FormGroup>
 
         <Button type="submit" className="btn-dark btn-block">Submit</Button>
-        <Link to="passwordreset" className="forgot-password">Forgot password?</Link>
+        <Link to="passwordreset" onClick={this.props.onHide} className="forgot-password">Forgot password?</Link>
         <br/>
-        <Link to="signup">Sign Up</Link>
+        <Link to="signup" onClick={this.props.onHide}>Sign Up</Link>
       </Form>
     );
   }

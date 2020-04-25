@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 import './App.css';
+import ModalTemplate from "./ModalTemplate";
+import Login from "./accounts/Login";
 
 class PivotNavbar extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       isAuthenticated: false,
+      showLogin: false
     }
   }
 
@@ -61,7 +63,15 @@ class PivotNavbar extends Component {
           <Navbar variant="dark" bg="dark" expand="sm">
             <Navbar.Brand href="/">Pivot</Navbar.Brand>
             <Nav className="mr-auto" />
-            <Nav.Link style={{color: "white"}} href="/login">Login</Nav.Link>
+            <ModalTemplate
+              show={this.state.showLogin}
+              onHide={() => this.setState({showLogin: false})}
+              title="Sign In"
+              component={Login}
+            />
+            <Nav.Link style={{color: "white"}} onClick={() => this.setState({showLogin: true})}>
+              Login
+            </Nav.Link>
           </Navbar>
         </div>
       )

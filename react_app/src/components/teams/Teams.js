@@ -56,7 +56,7 @@ class Teams extends Component {
           show={this.state.show_create}
           onHide={() => this.setState({show_create: false})}
           title="Create Team"
-          component={<CreateTeam/>}
+          component={CreateTeam}
         />
         <Button onClick={() => this.setState({show_create: true})}>Create Team</Button>
         <br/>
@@ -64,7 +64,8 @@ class Teams extends Component {
           show={this.state.show_invite}
           onHide={() => this.setState({show_invite: false})}
           title="Invite Members"
-          component={<InviteMembers teams={this.state.teams}/>}
+          component={InviteMembers}
+          teams={this.state.teams}
         />
         <Button onClick={() => this.setState({show_invite: true})}>Invite Team Members</Button>
       </>

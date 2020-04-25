@@ -27,7 +27,7 @@ class CreateTeam extends Component {
       }
     }).then(res => {
       if (res.status === 200) {
-        window.location.href = 'teams';
+        this.props.onHide();
       } else {
         const error = new Error(res.error);
         throw error;
