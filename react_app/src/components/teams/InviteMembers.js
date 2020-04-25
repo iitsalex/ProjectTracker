@@ -1,14 +1,42 @@
 import React, { Component } from "react";
-import { Form, Button, FormGroup, FormControl, FormLabel } from "react-bootstrap"
+import { Form, Button, FormGroup, FormControl, FormLabel, Dropdown } from "react-bootstrap"
 import "./Teams.css";
 
 class InviteMembers extends Component {
+  _isMounted = false;
+
   constructor(props) {
     super(props);
     this.state = {
-      name: '',
+      teams: [],
+      email: '',
+      team_id: ''
     };
   }
+
+  componentDidMount() {
+    this._isMounted = true;
+    fetch('/api/teams/currentuser').then(res => {
+      if (res.status === 200) {
+        return res.json();
+      } else {
+        const error = new Error(res.error);
+        throw error;
+      }
+    }).then(data => {
+      if (this._isMounted) {
+        this.setState({ teams: data });
+      }
+    }).catch(err => {
+      console.error(err);
+      alert('Error logging in please try again');
+    });
+  }
+
+  componentWillUnmount() {
+    this._isMounted = false;
+  }
+
 
   handleInputChange = (event) => {
     const { value, name } = event.target;
@@ -19,7 +47,7 @@ class InviteMembers extends Component {
 
   onSubmit = (event) => {
     event.preventDefault();
-    fetch('/api/teams', {
+    fetch('api/teams/currentuser', {
       method: 'POST',
       body: JSON.stringify(this.state),
       headers: {
@@ -42,14 +70,20 @@ class InviteMembers extends Component {
     return (
       <div className="InviteMembers">
         <Form onSubmit={this.onSubmit}>
-          <h3>Create Team</h3>
+          <h3>Invite Team Members</h3>
+
+            <select class="form-control">
+              {this.state.teams.map(team => {
+              return <option key={team.id}>{team.name}</option>
+              })}
+            </select>
 
           <FormGroup>
-            <FormLabel className="text-muted">Team Name</FormLabel>
+            <FormLabel className="text-muted">Team Member's Email</FormLabel>
             <FormControl
               type="text"
               name="name"
-              placeholder="Enter Team Name"
+              placeholder="Enter Team Member's Email"
               value={this.state.name}
               onChange={this.handleInputChange}
               maxLength="100"
