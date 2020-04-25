@@ -22,7 +22,7 @@ class Backlog extends React.Component {
           show={this.state.modalShow}
           onHide={() => this.setState({modalShow: false})}
           title="Create Task"
-          component={<CreateTask/>}
+          component={CreateTask}
         />
       </>
     );
