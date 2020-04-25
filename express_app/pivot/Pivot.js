@@ -37,10 +37,14 @@ var Pivot = {
     // Teams
     createteam: function(name, uid, callback) {
         return db.query('INSERT INTO teams(name, size, lead_id) VALUES(?, ?, ?)',
-        [name, 1, uid], callback);
+            [name, 1, uid], callback);
     },
     getteam: function(team_id, callback) {
         return db.query('SELECT * FROM teams WHERE id=?', team_id, callback);
+    },
+    getteamanduser: function(user_id, team_id, callback) {
+        return db.query('SELECT * FROM user_team WHERE user_id=? AND team_id=?',
+            [user_id, team_id], callback);
     },
     getteamsbyuser: function(user_id, callback) {
         return db.query('SELECT * FROM teams WHERE id IN ' +
