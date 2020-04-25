@@ -190,7 +190,6 @@ router.post('/teams/join', function (req, res) {
             } else {
                 const user_id = 1;
                 Pivot.getteamanduser(user_id, req.body.team_id, function(err, match) {
-                    console.log(match);
                     if (match !== undefined && match.length !== 0) {
                         res.status(412).send('Already in this team or invalid team');
                     } else {
