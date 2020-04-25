@@ -3,7 +3,7 @@ var db = require('../db');
 var Pivot = {
     // Users
     getuser: function(email, callback) {
-        return db.query('SELECT id, fname, lname, email FROM users WHERE email=?', email, callback);
+        return db.query('SELECT * FROM users WHERE email=?', email, callback);
     },
     createuser: function(user, hash, callback) {
         return db.query('INSERT INTO users(email, password, fname, lname) VALUES(?, ?, ?, ?)',

@@ -202,6 +202,7 @@ router.post('/teams/join', function (req, res) {
                                         res.status(400).json(err);
                                     }
                                 });
+                                delete user[0].password;
                                 res.status(200).json(user[0]);
                             }
                         });
