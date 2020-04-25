@@ -3,22 +3,30 @@ import { Button } from 'react-bootstrap'
 import ModalTemplate from "../ModalTemplate";
 import CreateTask from "./tasks/CreateTask";
 
-function Backlog() {
-  const [modalShow, setModalShow] = React.useState(false);
-  return (
-    <>
-      <Button variant="primary" onClick={() => setModalShow(true)}>
-        Create Task
-      </Button>
+class Backlog extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      modalShow: false
+    };
+  }
 
-      <ModalTemplate
-        show={modalShow}
-        onHide={() => setModalShow(false)}
-        title="Create Task"
-        component={<CreateTask/>}
-      />
-    </>
-  );
+  render() {
+    return (
+      <>
+        <Button variant="primary" onClick={() => this.setState({modalShow: true})}>
+          Create Task
+        </Button>
+
+        <ModalTemplate
+          show={this.state.modalShow}
+          onHide={() => this.setState({modalShow: false})}
+          title="Create Task"
+          component={<CreateTask/>}
+        />
+      </>
+    );
+  }
 }
 
 export default Backlog;
