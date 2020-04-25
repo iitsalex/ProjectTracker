@@ -47,7 +47,7 @@ class CreateTask extends Component {
           <FormControl
             type="text"
             name="name"
-            placeholder="Enter Project Name"
+            placeholder="Enter Task Name"
             value={this.state.name}
             onChange={this.handleInputChange}
             maxLength="100"
@@ -61,7 +61,7 @@ class CreateTask extends Component {
           <FormControl
             type="text"
             name="description"
-            placeholder="Enter Project Description"
+            placeholder="Enter Task Description"
             value={this.state.description}
             onChange={this.handleInputChange}
             autoComplete="off"
