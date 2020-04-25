@@ -60,7 +60,9 @@ class Teams extends Component {
           title="Create Team"
           component={CreateTeam}
         />
+      <br/>
       <Button variant="secondary" onClick={() => this.setState({show_create: true})}>Create Team</Button>
+        <br/>
         <br/>
         <ModalTemplate
           show={this.state.show_invite}
