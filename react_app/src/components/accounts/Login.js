@@ -42,42 +42,40 @@ class Login extends Component {
 
   render() {
     return (
-      <div className="Login">
-        <Form onSubmit={this.onSubmit}>
-          <h3>Sign In</h3>
+      <Form onSubmit={this.onSubmit}>
+        <h3>Sign In</h3>
 
-          <FormGroup>
-            <FormLabel className="text-muted">Email address</FormLabel>
-            <FormControl
-              type="email"
-              name="email"
-              placeholder="Enter email"
-              value={this.state.email}
-              onChange={this.handleInputChange}
-              autoComplete="email"
-              required
-            />
-          </FormGroup>
+        <FormGroup>
+          <FormLabel className="text-muted">Email address</FormLabel>
+          <FormControl
+            type="email"
+            name="email"
+            placeholder="Enter email"
+            value={this.state.email}
+            onChange={this.handleInputChange}
+            autoComplete="email"
+            required
+          />
+        </FormGroup>
 
-          <FormGroup>
-            <FormLabel className="text-muted">Password</FormLabel>
-            <FormControl
-              type="password"
-              name="password"
-              placeholder="Enter password"
-              value={this.state.password}
-              onChange={this.handleInputChange}
-              autoComplete="password"
-              required
-            />
-          </FormGroup>
+        <FormGroup>
+          <FormLabel className="text-muted">Password</FormLabel>
+          <FormControl
+            type="password"
+            name="password"
+            placeholder="Enter password"
+            value={this.state.password}
+            onChange={this.handleInputChange}
+            autoComplete="password"
+            required
+          />
+        </FormGroup>
 
-          <Button type="submit" className="btn-dark btn-block">Submit</Button>
-          <Link to="passwordreset" className="forgot-password">Forgot password?</Link>
-          <br/>
-          <Link to="signup">Sign Up</Link>
-        </Form>
-      </div>
+        <Button type="submit" className="btn-dark btn-block">Submit</Button>
+        <Link to="passwordreset" className="forgot-password">Forgot password?</Link>
+        <br/>
+        <Link to="signup">Sign Up</Link>
+      </Form>
     );
   }
 }

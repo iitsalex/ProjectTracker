@@ -2,9 +2,4 @@
   .CreateProject {
     padding: 60px 0;
   }
-
-  .CreateProject form {
-    margin: 0 auto;
-    max-width: 320px;
-  }
 }

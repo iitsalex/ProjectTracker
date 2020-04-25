@@ -44,66 +44,64 @@ class SignUp extends Component {
 
   render() {
     return (
-      <div className="Login">
-        <Form onSubmit={this.onSubmit}>
-          <h3>Sign Up</h3>
+      <Form onSubmit={this.onSubmit}>
+        <h3>Sign Up</h3>
 
-          <FormGroup>
-            <FormLabel className="text-muted">First Name</FormLabel>
-            <FormControl
-              type="text"
-              name="fname"
-              placeholder="Enter First Name"
-              value={this.state.fname}
-              onChange={this.handleInputChange}
-              autoComplete="given-name"
-              required
-            />
-          </FormGroup>
+        <FormGroup>
+          <FormLabel className="text-muted">First Name</FormLabel>
+          <FormControl
+            type="text"
+            name="fname"
+            placeholder="Enter First Name"
+            value={this.state.fname}
+            onChange={this.handleInputChange}
+            autoComplete="given-name"
+            required
+          />
+        </FormGroup>
 
-          <FormGroup>
-            <FormLabel className="text-muted">Last Name</FormLabel>
-            <FormControl
-              type="text"
-              name="lname"
-              placeholder="Enter Last Name"
-              value={this.state.lname}
-              onChange={this.handleInputChange}
-              autoComplete="family-name"
-              required
-            />
-          </FormGroup>
+        <FormGroup>
+          <FormLabel className="text-muted">Last Name</FormLabel>
+          <FormControl
+            type="text"
+            name="lname"
+            placeholder="Enter Last Name"
+            value={this.state.lname}
+            onChange={this.handleInputChange}
+            autoComplete="family-name"
+            required
+          />
+        </FormGroup>
 
-          <FormGroup>
-            <FormLabel className="text-muted">Email address</FormLabel>
-            <FormControl
-              type="email"
-              name="email"
-              placeholder="Enter email"
-              value={this.state.email}
-              onChange={this.handleInputChange}
-              autoComplete="email"
-              required
-            />
-          </FormGroup>
+        <FormGroup>
+          <FormLabel className="text-muted">Email address</FormLabel>
+          <FormControl
+            type="email"
+            name="email"
+            placeholder="Enter email"
+            value={this.state.email}
+            onChange={this.handleInputChange}
+            autoComplete="email"
+            required
+          />
+        </FormGroup>
 
-          <FormGroup>
-            <FormLabel className="text-muted">Password</FormLabel>
-            <FormControl
-              type="password"
-              name="password"
-              placeholder="Enter password"
-              value={this.state.password}
-              onChange={this.handleInputChange}
-              autoComplete="password"
-              required
-            />
-          </FormGroup>
+        <FormGroup>
+          <FormLabel className="text-muted">Password</FormLabel>
+          <FormControl
+            type="password"
+            name="password"
+            placeholder="Enter password"
+            value={this.state.password}
+            onChange={this.handleInputChange}
+            autoComplete="password"
+            required
+          />
+        </FormGroup>
 
-          <Button type="submit" className="btn-dark btn-block">Submit</Button>
-          <Link to="login">Already signed up? Login</Link>
-        </Form>
-      </div>
+        <Button type="submit" className="btn-dark btn-block">Submit</Button>
+        <Link to="login">Already signed up? Login</Link>
+      </Form>
     );
   }
 }

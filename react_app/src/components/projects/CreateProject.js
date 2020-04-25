@@ -41,39 +41,37 @@ class CreateProject extends Component {
 
   render() {
     return (
-      <div className="CreateProject">
-        <Form onSubmit={this.onSubmit}>
-          <h3>Create Project</h3>
+      <Form onSubmit={this.onSubmit}>
+        <h3>Create Project</h3>
 
-          <FormGroup>
-            <FormLabel className="text-muted">Project Name</FormLabel>
-            <FormControl
-              type="text"
-              name="name"
-              placeholder="Enter Project Name"
-              value={this.state.name}
-              onChange={this.handleInputChange}
-              maxLength="100"
-              autoComplete="off"
-              required
-            />
-          </FormGroup>
+        <FormGroup>
+          <FormLabel className="text-muted">Project Name</FormLabel>
+          <FormControl
+            type="text"
+            name="name"
+            placeholder="Enter Project Name"
+            value={this.state.name}
+            onChange={this.handleInputChange}
+            maxLength="100"
+            autoComplete="off"
+            required
+          />
+        </FormGroup>
 
-          <FormGroup>
-            <FormLabel className="text-muted">Project Description</FormLabel>
-            <FormControl
-              type="text"
-              name="description"
-              placeholder="Enter Project Description"
-              value={this.state.description}
-              onChange={this.handleInputChange}
-              autoComplete="off"
-            />
-          </FormGroup>
+        <FormGroup>
+          <FormLabel className="text-muted">Project Description</FormLabel>
+          <FormControl
+            type="text"
+            name="description"
+            placeholder="Enter Project Description"
+            value={this.state.description}
+            onChange={this.handleInputChange}
+            autoComplete="off"
+          />
+        </FormGroup>
 
-          <Button type="submit" className="btn-dark btn-block">Submit</Button>
-        </Form>
-      </div>
+        <Button type="submit" className="btn-dark btn-block">Submit</Button>
+      </Form>
     );
   }
 }

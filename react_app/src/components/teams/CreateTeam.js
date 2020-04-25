@@ -40,27 +40,25 @@ class CreateTeam extends Component {
 
   render() {
     return (
-      <div className="CreateTeam">
-        <Form onSubmit={this.onSubmit}>
-          <h3>Create Team</h3>
+      <Form onSubmit={this.onSubmit}>
+        <h3>Create Team</h3>
 
-          <FormGroup>
-            <FormLabel className="text-muted">Team Name</FormLabel>
-            <FormControl
-              type="text"
-              name="name"
-              placeholder="Enter Team Name"
-              value={this.state.name}
-              onChange={this.handleInputChange}
-              maxLength="100"
-              autoComplete="off"
-              required
-            />
-          </FormGroup>
+        <FormGroup>
+          <FormLabel className="text-muted">Team Name</FormLabel>
+          <FormControl
+            type="text"
+            name="name"
+            placeholder="Enter Team Name"
+            value={this.state.name}
+            onChange={this.handleInputChange}
+            maxLength="100"
+            autoComplete="off"
+            required
+          />
+        </FormGroup>
 
-          <Button type="submit" className="btn-dark btn-block">Submit</Button>
-        </Form>
-      </div>
+        <Button type="submit" className="btn-dark btn-block">Submit</Button>
+      </Form>
     );
   }
 }
