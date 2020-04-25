@@ -45,10 +45,11 @@ class Teams extends Component {
     return (
       <>
         <h2>Team List</h2>
-        <ListGroup horizontal="lg">
+        <ListGroup horizontal='lg'>
           {this.state.teams.map(team => {
             return  <ListGroup.Item key={team.id}>
                         {team.name}
+                        <br/>
                         <Button>View Team Members</Button>
                     </ListGroup.Item>
           })}
