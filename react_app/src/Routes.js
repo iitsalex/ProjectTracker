@@ -22,7 +22,7 @@ class Routes extends Component {
         const error = new Error(res.error);
         throw error;
       }
-      window.location.href = 'login';
+      window.location.href = '/';
     }).catch(err => {
       console.error(err);
     });

@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
-import { Card, Button } from "react-bootstrap";
+import { ListGroup, Card, Button, Spinner } from "react-bootstrap";
 import ModalTemplate from "../ModalTemplate";
 import CreateTeam from "./CreateTeam";
 import InviteMembers from "./InviteMembers";
+import "./Teams.css";
 
 class Teams extends Component {
   _isMounted = false;
@@ -44,21 +45,21 @@ class Teams extends Component {
     return (
       <>
         <h2>Team List</h2>
-        <ul>
+        <ListGroup horizontal="lg">
           {this.state.teams.map(team => {
-            return  <Card key={team.id}>
-                      <Card.Title>{team.name}</Card.Title>
-                      <Card.Link href="#"> View Team Members</Card.Link>
-                    </Card>
+            return  <ListGroup.Item key={team.id}>
+                        {team.name}
+                        <Button>View Team Members</Button>
+                    </ListGroup.Item>
           })}
-        </ul>
+        </ListGroup>
         <ModalTemplate
           show={this.state.show_create}
           onHide={() => this.setState({show_create: false})}
           title="Create Team"
           component={CreateTeam}
         />
-        <Button onClick={() => this.setState({show_create: true})}>Create Team</Button>
+      <Button variant="secondary" onClick={() => this.setState({show_create: true})}>Create Team</Button>
         <br/>
         <ModalTemplate
           show={this.state.show_invite}
@@ -67,7 +68,7 @@ class Teams extends Component {
           component={InviteMembers}
           teams={this.state.teams}
         />
-        <Button onClick={() => this.setState({show_invite: true})}>Invite Team Members</Button>
+        <Button variant="secondary" onClick={() => this.setState({show_invite: true})}>Invite Team Members</Button>
       </>
     );
   }
