@@ -41,8 +41,6 @@ class CreateTeam extends Component {
   render() {
     return (
       <Form onSubmit={this.onSubmit}>
-        <h3>Create Team</h3>
-
         <FormGroup>
           <FormLabel className="text-muted">Team Name</FormLabel>
           <FormControl
@@ -56,7 +54,6 @@ class CreateTeam extends Component {
             required
           />
         </FormGroup>
-
         <Button type="submit" className="btn-dark btn-block">Submit</Button>
       </Form>
     );

@@ -3,40 +3,13 @@ import {Form, Button, FormGroup, FormControl, FormLabel} from "react-bootstrap"
 import "./Teams.css";
 
 class InviteMembers extends Component {
-  _isMounted = false;
-
   constructor(props) {
     super(props);
     this.state = {
-      teams: [],
       email: '',
-      team_id: '',
+      team_id: props.teams[0].id,
       message: ''
     };
-  }
-
-  componentDidMount() {
-    this._isMounted = true;
-    fetch('/api/teams/currentuser').then(res => {
-      if (res.status === 200) {
-        return res.json();
-      } else {
-        const error = new Error(res.error);
-        throw error;
-      }
-    }).then(data => {
-      if (this._isMounted) {
-        this.setState({teams: data});
-        this.setState({team_id: data[0].id})
-      }
-    }).catch(err => {
-      console.error(err);
-      alert('Error logging in please try again');
-    });
-  }
-
-  componentWillUnmount() {
-    this._isMounted = false;
   }
 
   handleInputChange = (event) => {
@@ -77,14 +50,11 @@ class InviteMembers extends Component {
   render() {
     return (<div className="InviteMembers">
       <Form onSubmit={this.onSubmit}>
-        <h3>Invite Team Members</h3>
-        <br/>
-
-        <br/>
         <FormGroup>
+          <FormLabel className="text-muted">Team Select</FormLabel>
           <FormControl as="select" name="team_id" placeholder="Enter Team Member's Email" value={this.state.team_id} onChange={this.handleInputChange} maxLength="100" autoComplete="off" required="required">
             {
-              this.state.teams.map(team => {
+              this.props.teams.map(team => {
                 return <option key={team.id} value={team.id}>{team.name}</option>
               })
             }

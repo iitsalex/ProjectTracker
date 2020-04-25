@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
-import { Card, Button } from "react-bootstrap"
+import { Card, Button } from "react-bootstrap";
+import ModalTemplate from "../ModalTemplate";
+import CreateTeam from "./CreateTeam";
+import InviteMembers from "./InviteMembers";
 
 class Teams extends Component {
   _isMounted = false;
@@ -9,6 +12,8 @@ class Teams extends Component {
     super(props);
     this.state = {
       teams: [],
+      show_create: false,
+      show_invite: false
     };
   }
 
@@ -47,9 +52,21 @@ class Teams extends Component {
                     </Card>
           })}
         </ul>
-        <Link to="createteam">Create Team</Link>
+        <ModalTemplate
+          show={this.state.show_create}
+          onHide={() => this.setState({show_create: false})}
+          title="Create Team"
+          component={<CreateTeam/>}
+        />
+        <Button onClick={() => this.setState({show_create: true})}>Create Team</Button>
         <br/>
-        <Link to="invitemembers">Invite Team Members</Link>
+        <ModalTemplate
+          show={this.state.show_invite}
+          onHide={() => this.setState({show_invite: false})}
+          title="Invite Members"
+          component={<InviteMembers teams={this.state.teams}/>}
+        />
+        <Button onClick={() => this.setState({show_invite: true})}>Invite Team Members</Button>
       </>
     );
   }
