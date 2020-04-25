@@ -1,6 +1,7 @@
 import React from "react";
 import { Button } from 'react-bootstrap'
-import CreateTaskModal from "./tasks/CreateTaskModal";
+import ModalTemplate from "../ModalTemplate";
+import CreateTask from "./tasks/CreateTask";
 
 function Backlog() {
   const [modalShow, setModalShow] = React.useState(false);
@@ -10,9 +11,11 @@ function Backlog() {
         Create Task
       </Button>
 
-      <CreateTaskModal
+      <ModalTemplate
         show={modalShow}
         onHide={() => setModalShow(false)}
+        title="Create Task"
+        component={<CreateTask/>}
       />
     </>
   );
