@@ -181,16 +181,33 @@ router.get('/teams/currentuser', function (req, res) {
 });
 
 router.post('/teams/join', function (req, res) {
-    Pivot.jointeam(req.body.user_id, req.body.team_id, function(err, count) {
+    Pivot.getuser(req.body.email, function(err, user) {
         if(err) {
             res.status(400).json(err);
         } else {
-            Pivot.teamaddusers(req.body.team_id, 1, function(err, count) {
-                if(err) {
-                    res.status(400).json(err);
-                }
-            });
-            res.json(req.body);
+            if (user === undefined || user.length === 0) {
+                res.status(404).send('No such user');
+            } else {
+                const user_id = 1;
+                Pivot.getteamanduser(user_id, req.body.team_id, function(err, match) {
+                    if (match !== undefined && match.length !== 0) {
+                        res.status(412).send('Already in this team or invalid team');
+                    } else {
+                        Pivot.jointeam(user_id, req.body.team_id, function(err, count) {
+                            if(err) {
+                                res.status(400).json(err);
+                            } else {
+                                Pivot.teamaddusers(req.body.team_id, 1, function(err, count) {
+                                    if(err) {
+                                        res.status(400).json(err);
+                                    }
+                                });
+                                res.status(200).json(req.body);
+                            }
+                        });
+                    }
+                });
+            }
         }
     });
 });
