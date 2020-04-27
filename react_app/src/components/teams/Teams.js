@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from "react-router-dom";
-import { ListGroup, Card, Button, Spinner } from "react-bootstrap";
+import { ListGroup, Button } from "react-bootstrap";
 import ModalTemplate from "../ModalTemplate";
 import CreateTeam from "./CreateTeam";
 import InviteMembers from "./InviteMembers";

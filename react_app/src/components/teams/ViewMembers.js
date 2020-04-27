@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {Form, Button, FormGroup, FormControl, FormLabel, ListGroup} from "react-bootstrap";
+import {ListGroup} from "react-bootstrap";
 import "./Teams.css";
 
 class ViewMembers extends Component {
@@ -23,7 +23,7 @@ class ViewMembers extends Component {
       }
     }).then(data => {
       if (this._isMounted) {
-        this.setState({ members: data });
+        this.setState({members: data});
       }
     }).catch(err => {
       console.error(err);
@@ -32,18 +32,18 @@ class ViewMembers extends Component {
   }
 
   componentWillUnmount() {
-   this._isMounted = false;
- }
+    this._isMounted = false;
+  }
 
   render() {
     return (<div className="ViewMembers">
-            <ListGroup>
-                {
-                  this.state.members.map(member => {
-                    return <ListGroup.Item key={member.id} value={member.id}>{member.fname + " " + member.lname}</ListGroup.Item>
-                  })
-                }
-            </ListGroup>
+      <ListGroup>
+        {
+          this.state.members.map(member => {
+            return <ListGroup.Item key={member.id} value={member.id}>{member.fname + " " + member.lname}</ListGroup.Item>
+          })
+        }
+      </ListGroup>
     </div>);
   }
 }
