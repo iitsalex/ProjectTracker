@@ -52,7 +52,7 @@ class CreateProject extends Component {
       }
     }).then(data => {
       if (this._isMounted) {
-        this.setState({ teams: data });
+        this.setState({ teams: data, team_id: data[0].id });
       }
     }).catch(err => {
       console.error(err);
