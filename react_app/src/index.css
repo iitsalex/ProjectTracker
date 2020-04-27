@@ -24,5 +24,7 @@ div.card {
 }
 
 button {
+  margin: auto !important;
   margin-bottom: 10px !important;
+  max-width: 320px;
 }
