@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Form, Button, FormGroup, FormControl, FormLabel } from "react-bootstrap"
+import { Form, Button, FormGroup, FormControl, FormLabel, Col } from "react-bootstrap"
 import "../Projects.css";
 
 class CreateTask extends Component {
@@ -8,11 +8,8 @@ class CreateTask extends Component {
     this.state = {
       name: '',
       description: '',
-      teams: [],
-      projects: [],
-      team_id: '',
-      project_id: '',
-      projects_enabled: false
+      project_id: props.data.project_id,
+      status: ''
     };
   }
 
@@ -62,37 +59,36 @@ class CreateTask extends Component {
   render() {
     return (
       <Form onSubmit={this.onSubmit}>
-        <FormGroup>
-          <FormControl as="select" name="team_id" value={this.state.team_id} onChange={this.handleInputChange} maxLength="100" autoComplete="off" required="required">
-            {
-              this.state.projects.map(project => {
-                return <option key={project.id} value={project.id}>{project.name}</option>
-              })
-            }
-          </FormControl>
-        </FormGroup>
-        <FormGroup>
-          <FormControl as="select" name="team_id" placeholder="Enter Team Member's Email" value={this.state.team_id} onChange={this.handleInputChange} maxLength="100" autoComplete="off" required="required">
-            {
-              this.state.teams.map(team => {
-                return <option key={team.id} value={team.id}>{team.name}</option>
-              })
-            }
-          </FormControl>
-        </FormGroup>
-        <FormGroup>
-          <FormLabel className="text-muted">Task Name</FormLabel>
-          <FormControl
-            type="text"
-            name="name"
-            placeholder="Enter Task Name"
-            value={this.state.name}
-            onChange={this.handleInputChange}
-            maxLength="100"
-            autoComplete="off"
-            required
-          />
-        </FormGroup>
+        <Form.Row>
+          <FormGroup as={Col}>
+            <FormLabel className="text-muted">Task Name</FormLabel>
+            <FormControl
+              type="text"
+              name="name"
+              placeholder="Enter Task Name"
+              value={this.state.name}
+              onChange={this.handleInputChange}
+              maxLength="100"
+              autoComplete="off"
+              required
+            />
+          </FormGroup>
+          <FormGroup as={Col}>
+            <FormLabel className="text-muted">Status</FormLabel>
+            <FormControl
+              as="select"
+              name="status"
+              placeholder="Status Selection"
+              value={this.state.status}
+              autoComplete="off"
+              required
+            >
+              <option>{"New"}</option>
+              <option>{"In Progress"}</option>
+              <option>{"Done"}</option>
+            </FormControl>
+          </FormGroup>
+        </Form.Row>
 
         <FormGroup>
           <FormLabel className="text-muted">Task Description</FormLabel>
