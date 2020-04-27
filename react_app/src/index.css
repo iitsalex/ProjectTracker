@@ -15,9 +15,9 @@ form {
   max-width: 320px;
 }
 
-form.wide-form {
+textarea.wide-form {
   margin: 0 auto;
-  max-width: 500px;
+  max-width: 500px !important;
 }
 
 div.card {
