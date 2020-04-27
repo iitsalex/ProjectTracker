@@ -58,11 +58,9 @@ class CreateProject extends Component {
               autoComplete="off"
               required="required"
             >
-              {
-                this.props.teams.map(team => {
-                  return <option key={team.id} value={team.id}>{team.name}</option>
-                })
-              }
+              {this.props.teams.map(team =>
+                <option key={team.id} value={team.id}>{team.name}</option>
+              )}
             </FormControl>
         </FormGroup>
 

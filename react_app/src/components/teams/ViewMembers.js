@@ -38,11 +38,11 @@ class ViewMembers extends Component {
   render() {
     return (<div className="ViewMembers">
       <ListGroup>
-        {
-          this.state.members.map(member => {
-            return <ListGroup.Item key={member.id} value={member.id}>{member.fname + " " + member.lname}</ListGroup.Item>
-          })
-        }
+        {this.state.members.map(member =>
+          <ListGroup.Item key={member.id} value={member.id}>
+            {member.fname + " " + member.lname}
+          </ListGroup.Item>
+        )}
       </ListGroup>
     </div>);
   }

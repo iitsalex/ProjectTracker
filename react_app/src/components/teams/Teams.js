@@ -28,13 +28,13 @@ class Teams extends Component {
             component={ViewMembers}
             team_id={this.state.show_id}
           />
-          {this.props.data.teams.map(team => {
-            return  <Card key={team.id} onClick={() => this.setState({ show_id: team.id, show_team: true})}>
-                        {team.name}
-                        <br/>
-                        <p className='unpadded text-muted'>Click to view team details</p>
-                    </Card>
-          })}
+          {this.props.data.teams.map(team =>
+            <Card key={team.id} onClick={() => this.setState({ show_id: team.id, show_team: true})}>
+              {team.name}
+              <br/>
+              <p className='unpadded text-muted'>Click to view team details</p>
+            </Card>
+          )}
         </ListGroup>
         <ModalTemplate
           show={this.state.show_create}
