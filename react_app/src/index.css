@@ -35,6 +35,11 @@ button {
   max-width: 320px;
 }
 
+button.wide-button {
+  margin-bottom: 10px !important;
+  max-width: 500px !important;
+}
+
 button.btn-center {
   margin-left: auto !important;
   margin-right: auto !important;
