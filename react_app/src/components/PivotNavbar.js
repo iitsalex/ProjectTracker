@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { FormControl, Navbar, Nav, NavDropdown } from 'react-bootstrap';
+import { Link } from "react-router-dom";
 import ModalTemplate from "./ModalTemplate";
 import Login from "./accounts/Login";
 
@@ -8,7 +9,7 @@ class PivotNavbar extends Component {
     super(props);
     this.state = {
       isAuthenticated: false,
-      showLogin: false
+      showLogin: false,
     }
   }
 
@@ -17,19 +18,19 @@ class PivotNavbar extends Component {
       return (
         <div className="PivotNavbar">
           <Navbar variant="dark" bg="dark" expand="sm">
-            <Navbar.Brand href="/">Pivot</Navbar.Brand>
+            <Navbar.Brand as={Link} to="/">Pivot</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="mr-auto">
-                <Nav.Link href="/dashboard">Dashboard</Nav.Link>
-                <Nav.Link href="/teams">Teams</Nav.Link>
+                <Nav.Link as={Link} to="/dashboard">Dashboard</Nav.Link>
+                <Nav.Link as={Link} to="/teams">Teams</Nav.Link>
                 <NavDropdown title="Projects" id="basic-nav-dropdown">
-                  <NavDropdown.Item href="/sprints">Current Sprints</NavDropdown.Item>
-                  <NavDropdown.Item href="/backlog">Backlog</NavDropdown.Item>
+                  <NavDropdown.Item as={Link} to="/sprints">Current Sprints</NavDropdown.Item>
+                  <NavDropdown.Item as={Link} to="/backlog">Backlog</NavDropdown.Item>
                   <NavDropdown.Divider />
-                  <NavDropdown.Item href="/createproject">Create Project</NavDropdown.Item>
+                  <NavDropdown.Item as={Link} to="/createproject">Create Project</NavDropdown.Item>
                 </NavDropdown>
-                <Nav.Link href="/settings">Settings</Nav.Link>
+                <Nav.Link as={Link} to="/settings">Settings</Nav.Link>
               </Nav>
               <FormControl
                 as="select"
@@ -50,8 +51,8 @@ class PivotNavbar extends Component {
                 onChange={this.props.handleDataChange}
               >
                 {
-                  this.props.data.teams.map(team => {
-                    return <option key={team.id} value={team.id}>{team.name}</option>
+                  this.props.data.projects.map(project => {
+                    return <option key={project.id} value={project.id}>{project.name}</option>
                   })
                 }
               </FormControl>
