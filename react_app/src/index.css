@@ -15,7 +15,7 @@ form {
   max-width: 320px;
 }
 
-textarea.wide-form {
+form.wide-form {
   margin: 0 auto;
   max-width: 500px !important;
 }
