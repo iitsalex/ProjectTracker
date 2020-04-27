@@ -47,6 +47,10 @@ class ViewTask extends Component {
     this.setState({[name]: value});
   }
 
+// 1. get api call for the task info
+// 2. display in editable fields
+// 3. post api call for task update on submit
+
   render() {
     return (
       <Form onSubmit={this.onSubmit}>
