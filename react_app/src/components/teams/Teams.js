@@ -29,10 +29,8 @@ class Teams extends Component {
             team_id={this.state.show_id}
           />
           {this.props.data.teams.map(team => {
-            return  <ListGroup.Item key={team.id}>
+            return  <ListGroup.Item key={team.id} onClick={() => this.setState({ show_id: team.id, show_team: true})}>
                         {team.name}
-                        <br/>
-                        <Button onClick={() => this.setState({ show_id: team.id, show_team: true})}>View Team Members</Button>
                     </ListGroup.Item>
           })}
         </ListGroup>
