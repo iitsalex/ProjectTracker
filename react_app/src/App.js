@@ -39,11 +39,11 @@ class App extends Component {
         throw error;
       }
     }).then(data => {
-      this.setState({ teams: data });
-    }).catch(err => {
-      console.error(err);
-      alert('Error logging in please try again');
-    });
+      this.setState({
+        teams: data,
+        team_id: data[0].id
+      });
+    }).catch(console.error);
   }
 
   handleDataChange = (event) => {

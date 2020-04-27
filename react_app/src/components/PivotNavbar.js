@@ -34,8 +34,19 @@ class PivotNavbar extends Component {
               <FormControl
                 as="select"
                 name="team_id"
-                placeholder="Enter email"
                 value={this.props.data.team_id}
+                onChange={this.props.handleDataChange}
+              >
+                {
+                  this.props.data.teams.map(team => {
+                    return <option key={team.id} value={team.id}>{team.name}</option>
+                  })
+                }
+              </FormControl>
+              <FormControl
+                as="select"
+                name="project_id"
+                value={this.props.data.project_id}
                 onChange={this.props.handleDataChange}
               >
                 {
