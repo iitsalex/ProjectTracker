@@ -8,9 +8,7 @@ class CreateProject extends Component {
     super(props);
     this.state = {
       name: '',
-      description: '',
-      teams: [],
-      team_id: ''
+      description: ''
     };
   }
 
@@ -41,25 +39,6 @@ class CreateProject extends Component {
     });
   }
 
-  componentDidMount() {
-    this._isMounted = true;
-    fetch('/api/teams/currentuser').then(res => {
-      if (res.status === 200) {
-        return res.json();
-      } else {
-        const error = new Error(res.error);
-        throw error;
-      }
-    }).then(data => {
-      if (this._isMounted) {
-        this.setState({ teams: data, team_id: data[0].id });
-      }
-    }).catch(err => {
-      console.error(err);
-      alert('Error logging in please try again');
-    });
-  }
-
   componentWillUnmount() {
     this._isMounted = false;
   }
@@ -79,7 +58,7 @@ class CreateProject extends Component {
               required="required"
             >
               {
-                this.state.teams.map(team => {
+                this.props.teams.map(team => {
                   return <option key={team.id} value={team.id}>{team.name}</option>
                 })
               }
