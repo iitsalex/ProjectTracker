@@ -8,7 +8,8 @@ class CreateProject extends Component {
     super(props);
     this.state = {
       name: '',
-      description: ''
+      description: '',
+      team_id: props.data.team_id
     };
   }
 
