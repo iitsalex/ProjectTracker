@@ -117,13 +117,38 @@ class App extends Component {
         throw error;
       }
     }).then(data => {
-      if (this._isMounted) {
-        this.setState({
-          tasks: data,
-          loading: false
-        });
-      }
+      this.distributeTasks(data);
     }).catch(console.error);
+  }
+
+  distributeTasks = (data) => {
+    let taskDist = [
+      {name: 'New', container: []},
+      {name: 'In Progress', container: []},
+      {name: 'Done', container: []}
+    ]
+    data.forEach((task) => {
+      switch (task.status) {
+        case 'New':
+          taskDist[0].container.push(task);
+          break;
+        case 'In Progress':
+          taskDist[1].container.push(task);
+          break;
+        case 'Done':
+          taskDist[2].container.push(task);
+          break;
+        default:
+          const error = new Error('Unknown task status: ' + task.status);
+          throw error;
+      }
+    });
+    if (this._isMounted) {
+      this.setState({
+        tasks: taskDist,
+        loading: false
+      });
+    }
   }
 
   render () {
