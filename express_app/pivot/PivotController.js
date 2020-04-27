@@ -56,14 +56,24 @@ router.post('/user/login', function (req, res) {
 });
 
 router.post('/user/create', function (req, res) {
-    bcrypt.hash(req.body.password, 10, function(err, hash) {
-        Pivot.createuser(req.body, hash, function(err, user) {
-            if(err) {
-                res.status(400).json(err);
+    Pivot.getuser(req.body.email, function(err, user) {
+        if(err) {
+            res.status(400).json(err);
+        } else {
+            if (user !== undefined && user.length !== 0) {
+                res.status(403).send('User exists');
             } else {
-                res.status(200).json(req.body.email);
+                bcrypt.hash(req.body.password, 10, function(err, hash) {
+                    Pivot.createuser(req.body, hash, function(err, user) {
+                        if(err) {
+                            res.status(400).json(err);
+                        } else {
+                            res.status(200).json(req.body.email);
+                        }
+                    });
+                });
             }
-        });
+        }
     });
 });
 

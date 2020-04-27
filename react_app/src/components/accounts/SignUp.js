@@ -10,7 +10,8 @@ class SignUp extends Component {
       email: '',
       password: '',
       fname: '',
-      lname: ''
+      lname: '',
+      message: ''
     };
   }
 
@@ -32,6 +33,8 @@ class SignUp extends Component {
     }).then(res => {
       if (res.status === 200) {
         window.location.href = 'login';
+      } else if (res.status === 403) {
+        this.setState({message: 'Email already in use'})
       } else {
         const error = new Error(res.error);
         throw error;
@@ -101,6 +104,7 @@ class SignUp extends Component {
 
         <Button type="submit" className="btn-block">Submit</Button>
         <Link to="login">Already signed up? Login</Link>
+        <p>{this.state.message}</p>
       </Form>
     );
   }

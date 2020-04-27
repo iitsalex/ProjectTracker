@@ -61,7 +61,7 @@ class Teams extends Component {
           component={CreateTeam}
         />
       <br/>
-      <Button variant="secondary" className="btn-block" onClick={() => this.setState({show_create: true})}>
+      <Button variant="secondary" className="btn-block btn-center" onClick={() => this.setState({show_create: true})}>
         Create Team
       </Button>
       <ModalTemplate
@@ -71,7 +71,7 @@ class Teams extends Component {
         component={InviteMembers}
         teams={this.state.teams}
       />
-      <Button variant="secondary" className="btn-block" onClick={() => this.setState({show_invite: true})}>
+      <Button variant="secondary" className="btn-block btn-center" onClick={() => this.setState({show_invite: true})}>
         Invite Team Members
       </Button>
       </>

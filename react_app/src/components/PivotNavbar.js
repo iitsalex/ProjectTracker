@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
-import './App.css';
 import ModalTemplate from "./ModalTemplate";
 import Login from "./accounts/Login";
 
