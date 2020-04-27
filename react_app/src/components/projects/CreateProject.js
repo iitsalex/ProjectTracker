@@ -9,7 +9,7 @@ class CreateProject extends Component {
     this.state = {
       name: '',
       description: '',
-      team_id: props.data.team_id
+      team_id: props.team_id
     };
   }
 
