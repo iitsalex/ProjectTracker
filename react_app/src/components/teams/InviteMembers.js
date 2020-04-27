@@ -52,7 +52,7 @@ class InviteMembers extends Component {
       <Form onSubmit={this.onSubmit}>
         <FormGroup>
           <FormLabel className="text-muted">Team Select</FormLabel>
-          <FormControl as="select" name="team_id" placeholder="Enter Team Member's Email" value={this.state.team_id} onChange={this.handleInputChange} maxLength="100" autoComplete="off" required="required">
+          <FormControl as="select" name="team_id" value={this.state.team_id} onChange={this.handleInputChange} maxLength="100" autoComplete="off" required="required">
             {
               this.props.teams.map(team => {
                 return <option key={team.id} value={team.id}>{team.name}</option>

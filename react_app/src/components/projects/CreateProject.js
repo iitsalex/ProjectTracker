@@ -3,19 +3,21 @@ import { Form, Button, FormGroup, FormControl, FormLabel } from "react-bootstrap
 import "./Projects.css";
 
 class CreateProject extends Component {
+  _isMounted = false;
+
   constructor(props) {
     super(props);
     this.state = {
       name: '',
       description: '',
+      teams: [],
+      team_id: ''
     };
   }
 
   handleInputChange = (event) => {
-    const { value, name } = event.target;
-    this.setState({
-      [name]: value
-    });
+    const {value, name} = event.target;
+    this.setState({[name]: value});
   }
 
   onSubmit = (event) => {
@@ -39,11 +41,44 @@ class CreateProject extends Component {
     });
   }
 
+  componentDidMount() {
+    this._isMounted = true;
+    fetch('/api/teams/currentuser').then(res => {
+      if (res.status === 200) {
+        return res.json();
+      } else {
+        const error = new Error(res.error);
+        throw error;
+      }
+    }).then(data => {
+      if (this._isMounted) {
+        this.setState({ teams: data });
+      }
+    }).catch(err => {
+      console.error(err);
+      alert('Error logging in please try again');
+    });
+  }
+
+  componentWillUnmount() {
+    this._isMounted = false;
+  }
+
   render() {
     return (
       <Form onSubmit={this.onSubmit}>
         <h3>Create Project</h3>
 
+          <FormGroup>
+            <FormLabel className="text-muted">Select a Team</FormLabel>
+              <FormControl as="select" name="team_id" value={this.state.team_id} onChange={this.handleInputChange} maxLength="100" autoComplete="off" required="required">
+                {
+                  this.props.teams.map(team => {
+                    return <option key={team.id} value={team.id}>{team.name}</option>
+                  })
+                }
+              </FormControl>
+          </FormGroup>
         <FormGroup>
           <FormLabel className="text-muted">Project Name</FormLabel>
           <FormControl
