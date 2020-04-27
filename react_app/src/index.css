@@ -15,6 +15,11 @@ form {
   max-width: 320px;
 }
 
+form.wide-form {
+  margin: 0 auto;
+  max-width: 500px;
+}
+
 div.card {
   margin: 0 auto;
   max-width: 320px;
