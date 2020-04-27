@@ -40,7 +40,7 @@ class Routes extends Component {
         <Route path="/dashboard" component={AuthUser(Dashboard, this.props.data)} />
         <Route path="/teams" component={AuthUser(Teams, {...this.props.data, updateTeams: this.props.updateTeams})} />
         <Route path="/backlog" component={AuthUser(Backlog, this.props.data)} />
-        <Route path="/createproject" component={AuthUser(CreateProject, this.props.data)} />
+        <Route path="/createproject" component={AuthUser(CreateProject, {...this.props.data, updateProjects: this.props.updateProjects})} />
         <Route path="/createteam" component={AuthUser(CreateTeam, this.props.data)} />
         <Route path="/invitemembers" component={AuthUser(InviteMembers, this.props.data)} />
         <p>{this.props.updateTeams}</p>

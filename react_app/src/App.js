@@ -99,7 +99,7 @@ class App extends Component {
     return (
       <div className="App">
         <PivotNavbar data={this.state} handleDataChange={this.handleDataChange}/>
-        <Routes data={this.state} updateTeams={this.updateTeams}/>
+        <Routes data={this.state} updateTeams={this.updateTeams} updateProjects={this.updateProjects}/>
       </div>
     );
   }
