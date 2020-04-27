@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { Link } from "react-router-dom";
-import { ListGroup, Card, Button, Spinner } from "react-bootstrap";
+import { ListGroup, Button } from "react-bootstrap";
 import ModalTemplate from "../ModalTemplate";
 import CreateTeam from "./CreateTeam";
 import InviteMembers from "./InviteMembers";
+import ViewMembers from "./ViewMembers";
 import "./Teams.css";
 
 class Teams extends Component {
@@ -11,7 +11,8 @@ class Teams extends Component {
     super(props);
     this.state = {
       show_create: false,
-      show_invite: false
+      show_invite: false,
+      show_team: false
     };
   }
 
@@ -20,11 +21,18 @@ class Teams extends Component {
       <>
         <h2>Team List</h2>
         <ListGroup horizontal='lg'>
+          <ModalTemplate
+            show={this.state.show_team}
+            onHide={() => this.setState({show_team: false})}
+            title="Members List"
+            component={ViewMembers}
+            team_id={this.state.show_id}
+          />
           {this.props.data.teams.map(team => {
             return  <ListGroup.Item key={team.id}>
                         {team.name}
                         <br/>
-                        <Button>View Team Members</Button>
+                        <Button onClick={() => this.setState({ show_id: team.id, show_team: true})}>View Team Members</Button>
                     </ListGroup.Item>
           })}
         </ListGroup>
