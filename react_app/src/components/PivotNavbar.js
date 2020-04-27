@@ -27,16 +27,18 @@ class PivotNavbar extends Component {
                   <Nav.Link as={Link} to="/dashboard">Dashboard</Nav.Link>
                 : ''}
                 <Nav.Link as={Link} to="/teams">Teams</Nav.Link>
-                <NavDropdown title="Projects" id="basic-nav-dropdown">
-                  {this.props.data.projects.length > 0 ?
-                    <>
-                      <NavDropdown.Item as={Link} to="/sprints">Current Sprints</NavDropdown.Item>
-                      <NavDropdown.Item as={Link} to="/backlog">Backlog</NavDropdown.Item>
-                      <NavDropdown.Divider />
-                    </>
-                  : ''}
-                  <NavDropdown.Item as={Link} to="/createproject">Create Project</NavDropdown.Item>
-                </NavDropdown>
+                {this.props.data.teams.length > 0 ?
+                  <NavDropdown title="Projects" id="basic-nav-dropdown">
+                    {this.props.data.projects.length > 0 ?
+                      <>
+                        <NavDropdown.Item as={Link} to="/sprints">Current Sprints</NavDropdown.Item>
+                        <NavDropdown.Item as={Link} to="/backlog">Backlog</NavDropdown.Item>
+                        <NavDropdown.Divider />
+                      </>
+                    : ''}
+                    <NavDropdown.Item as={Link} to="/createproject">Create Project</NavDropdown.Item>
+                  </NavDropdown>
+                : ''}
                 <Nav.Link as={Link} to="/settings">Settings</Nav.Link>
               </Nav>
               {this.props.data.projects.length > 0 ?
@@ -57,20 +59,24 @@ class PivotNavbar extends Component {
                   </FormControl>
                 </>
               : ''}
-              <NavItem>Team Select</NavItem>
-              <FormControl
-                as="select"
-                name="team_id"
-                value={this.props.data.team_id}
-                onChange={this.props.handleDataChange}
-                className="select-nav"
-              >
-                {
-                  this.props.data.teams.map(team => {
-                    return <option key={team.id} value={team.id}>{team.name}</option>
-                  })
-                }
-              </FormControl>
+              {this.props.data.teams.length > 0 ?
+                <>
+                  <NavItem>Team Select</NavItem>
+                  <FormControl
+                    as="select"
+                    name="team_id"
+                    value={this.props.data.team_id}
+                    onChange={this.props.handleDataChange}
+                    className="select-nav"
+                  >
+                    {
+                      this.props.data.teams.map(team => {
+                        return <option key={team.id} value={team.id}>{team.name}</option>
+                      })
+                    }
+                  </FormControl>
+                </>
+              : ''}
               <Nav.Link style={{color: "white"}} href="/logout">Logout</Nav.Link>
             </Navbar.Collapse>
           </Navbar>
