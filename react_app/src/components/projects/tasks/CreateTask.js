@@ -48,7 +48,7 @@ class CreateTask extends Component {
 
   render() {
     return (
-      <Form onSubmit={this.onSubmit}>
+      <Form onSubmit={this.onSubmit} className="wide-form">
         <Form.Row>
           <FormGroup as={Col}>
             <FormLabel className="text-muted">Task Name</FormLabel>
@@ -84,17 +84,17 @@ class CreateTask extends Component {
         <FormGroup>
           <FormLabel className="text-muted">Task Description</FormLabel>
           <FormControl
+            as="textarea"
             type="text"
             name="description"
             placeholder="Enter Task Description"
             value={this.state.description}
             onChange={this.handleInputChange}
-            style={{padding: "10px"}}
             autoComplete="off"
           />
         </FormGroup>
 
-        <Button type="submit" className="btn-block">Submit</Button>
+        <Button type="submit" className="btn-block wide-button">Submit</Button>
       </Form>
     );
   }
