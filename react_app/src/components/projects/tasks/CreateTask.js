@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Form, Button, FormGroup, FormControl, FormLabel } from "react-bootstrap"
+import { Form, Button, FormGroup, FormControl, FormLabel, Col } from "react-bootstrap"
 
 class CreateTask extends Component {
   constructor(props) {
@@ -7,8 +7,8 @@ class CreateTask extends Component {
     this.state = {
       name: '',
       description: '',
-      project_id: props.data.project_id,
-      status: ''
+      project_id: this.props.project_id,
+      status: 'New'
     };
   }
 
@@ -79,6 +79,7 @@ class CreateTask extends Component {
               name="status"
               placeholder="Status Selection"
               value={this.state.status}
+              onChange={this.handleInputChange}
               autoComplete="off"
               required
             >

@@ -293,9 +293,11 @@ router.delete('/teams/:team_id', function (req, res) {
 router.post('/tasks', function (req, res) {
     const uid = req.cookies.uid;
     var today = new Date();
+    console.log(req.body);
     Pivot.createtask(req.body, uid, today, function(err, task) {
         if(err) {
             res.status(400).json(err);
+            console.log(err);
         } else {
             res.json(task.insertId);
         }

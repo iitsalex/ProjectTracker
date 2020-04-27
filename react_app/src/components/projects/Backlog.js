@@ -23,6 +23,7 @@ class Backlog extends React.Component {
           onHide={() => this.setState({modalShow: false})}
           title="Create Task"
           component={CreateTask}
+          project_id={this.props.data.project_id}
         />
       </>
     );
