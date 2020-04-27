@@ -1,14 +1,12 @@
 import React, { Component } from "react";
-import { CardColumns, Card, Col } from "react-bootstrap";
+import { Container, CardColumns, Card, Col, Row } from "react-bootstrap";
 
 class Dashboard extends Component {
   _isMounted = false;
 
-  constructor() {
-    super();
-    //Set default message
+  constructor(props) {
+    super(props);
     this.state = {
-      tasks: [],
       newTasks: [],
       ipTasks: [],
       doneTasks: []
@@ -25,9 +23,7 @@ class Dashboard extends Component {
         throw error;
       }
     }).then(data => {
-      if (this._isMounted) {
-        this.setState({ tasks: data }, this.distributeTasks());
-      }
+      this.distributeTasks(data);
     }).catch(console.error);
   }
 
@@ -35,65 +31,79 @@ class Dashboard extends Component {
     this._isMounted = false;
   }
 
-  distributeTasks = () => {
-    for (const task in this.tasks) {
+  distributeTasks = (data) => {
+    let newArr = [];
+    let ipArr = [];
+    let doneArr = [];
+    data.forEach((task, i) => {
       switch (task.status) {
         case 'New':
-          this.newTasks.push(task);
+          newArr.push(task);
           break;
         case 'In Progess':
-          this.ipTasks.push(task);
+          ipArr.push(task);
           break;
         case 'Done':
-          this.doneTasks.push(task);
+          doneArr.push(task);
           break;
       }
+    });
+    if (this._isMounted) {
+      this.setState({
+        newTasks: newArr,
+        ipTasks: ipArr,
+        doneTasks: doneArr
+      });
     }
   }
 
   render() {
     return (
-      <>
-        <CardColumns>
-          {this.state.newTasks.map(task => {
-            return  <Card>
-                      <Card.Body>
-                        <Card.Title>{task.name}</Card.Title>
-                        <Card.Text>
-                          {task.description}
-                        </Card.Text>
-                      </Card.Body>
-                    </Card>
-          })}
-        </CardColumns>
-        <CardColumns>
-          {this.state.ipTasks.map(task => {
-            return  <Card>
-                      <Card.Body>
-                        <Card.Title>{task.name}</Card.Title>
-                        <Card.Text>
-                          {task.description}
-                        </Card.Text>
-                      </Card.Body>
-                    </Card>
-          })}
-        </CardColumns>
-        <CardColumns>
-          {this.state.doneTasks.map(task => {
-            return  <Card>
-                      <Card.Body>
-                        <Card.Title>{task.name}</Card.Title>
-                        <Card.Text>
-                          {task.description}
-                        </Card.Text>
-                      </Card.Body>
-                    </Card>
-          })}
-        </CardColumns>
-      </>
+      <Container>
+        <Row>
+          <Col lg>
+            <h3>New</h3>
+              {this.state.newTasks.map(task => {
+                return  <Card key={task.id}>
+                          <Card.Body>
+                            <Card.Title>{task.name}</Card.Title>
+                            <Card.Text>
+                              {task.description}
+                            </Card.Text>
+                          </Card.Body>
+                        </Card>
+              })}
+          </Col>
+          <Col lg>
+            <h3>In Progress</h3>
+              {this.state.ipTasks.map(task => {
+                return  <Card key={task.id}>
+                          <Card.Body>
+                            <Card.Title>{task.name}</Card.Title>
+                            <Card.Text>
+                              {task.description}
+                            </Card.Text>
+                          </Card.Body>
+                        </Card>
+              })}
+          </Col>
+          <Col lg>
+            <h3>Done</h3>
+              {this.state.doneTasks.map(task => {
+                return  <Card key={task.id}>
+                          <Card.Body>
+                            <Card.Title>{task.name}</Card.Title>
+                            <Card.Text>
+                              {task.description}
+                            </Card.Text>
+                          </Card.Body>
+                        </Card>
+              })}
+          </Col>
+        </Row>
+      </Container>
     );
   }
 }
 
-// Put the thing into the DOM!
 export default Dashboard

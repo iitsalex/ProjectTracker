@@ -9,9 +9,8 @@ import Routes from './Routes';
 class App extends Component {
   _isMounted = false;
 
-  constructor() {
-    super();
-    //Set default message
+  constructor(props) {
+    super(props);
     this.state = {
       is_auth: false,
       teams: [],
