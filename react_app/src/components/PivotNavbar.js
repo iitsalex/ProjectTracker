@@ -23,7 +23,9 @@ class PivotNavbar extends Component {
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="mr-auto">
-                <Nav.Link as={Link} to="/dashboard">Dashboard</Nav.Link>
+                {this.props.data.projects.length > 0 ?
+                  <Nav.Link as={Link} to="/dashboard">Dashboard</Nav.Link>
+                : ''}
                 <Nav.Link as={Link} to="/teams">Teams</Nav.Link>
                 <NavDropdown title="Projects" id="basic-nav-dropdown">
                   {this.props.data.projects.length > 0 ?
@@ -31,11 +33,9 @@ class PivotNavbar extends Component {
                       <NavDropdown.Item as={Link} to="/sprints">Current Sprints</NavDropdown.Item>
                       <NavDropdown.Item as={Link} to="/backlog">Backlog</NavDropdown.Item>
                       <NavDropdown.Divider />
-                      <NavDropdown.Item as={Link} to="/createproject">Create Project</NavDropdown.Item>
                     </>
-                  :
-                    <NavDropdown.Item as={Link} to="/createproject">Create Project</NavDropdown.Item>
-                  }
+                  : ''}
+                  <NavDropdown.Item as={Link} to="/createproject">Create Project</NavDropdown.Item>
                 </NavDropdown>
                 <Nav.Link as={Link} to="/settings">Settings</Nav.Link>
               </Nav>
