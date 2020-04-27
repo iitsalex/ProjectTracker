@@ -46,11 +46,20 @@ class App extends Component {
     });
   }
 
+  handleDataChange = (event) => {
+    const { value, name } = event.target;
+    this.setState({
+      [name]: value
+    });
+  }
+
   render () {
     return (
       <div className="App">
-        <PivotNavbar data={this.state} />
+        <PivotNavbar data={this.state} handleDataChange={this.handleDataChange}/>
         <Routes data={this.state} />
+        <p>team id: {this.state.team_id}</p>
+        <p>project id: {this.state.project_id}</p>
         <p>Auth: {this.state.is_auth ? 'ok' : 'failed'}</p>
       </div>
     );

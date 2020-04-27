@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
+import { FormControl, Navbar, Nav, NavDropdown } from 'react-bootstrap';
 import ModalTemplate from "./ModalTemplate";
 import Login from "./accounts/Login";
 
@@ -31,6 +31,19 @@ class PivotNavbar extends Component {
                 </NavDropdown>
                 <Nav.Link href="/settings">Settings</Nav.Link>
               </Nav>
+              <FormControl
+                as="select"
+                name="team_id"
+                placeholder="Enter email"
+                value={this.props.data.team_id}
+                onChange={this.props.handleDataChange}
+              >
+                {
+                  this.props.data.teams.map(team => {
+                    return <option key={team.id} value={team.id}>{team.name}</option>
+                  })
+                }
+              </FormControl>
               <Nav.Link style={{color: "white"}} href="/logout">Logout</Nav.Link>
             </Navbar.Collapse>
           </Navbar>
