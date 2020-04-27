@@ -29,7 +29,8 @@ class CreateProject extends Component {
       }
     }).then(res => {
       if (res.status === 200) {
-        window.location.href = 'dashboard';
+        this.props.updateProjects();
+        this.props.onHide();
       } else {
         const error = new Error(res.error);
         throw error;
@@ -66,26 +67,25 @@ class CreateProject extends Component {
   render() {
     return (
       <Form onSubmit={this.onSubmit}>
-        <h3>Create Project</h3>
+        <FormGroup>
+          <FormLabel className="text-muted">Select a Team</FormLabel>
+            <FormControl
+              as="select"
+              name="team_id"
+              value={this.state.team_id}
+              onChange={this.handleInputChange}
+              maxLength="100"
+              autoComplete="off"
+              required="required"
+            >
+              {
+                this.state.teams.map(team => {
+                  return <option key={team.id} value={team.id}>{team.name}</option>
+                })
+              }
+            </FormControl>
+        </FormGroup>
 
-          <FormGroup>
-            <FormLabel className="text-muted">Select a Team</FormLabel>
-              <FormControl
-                as="select"
-                name="team_id"
-                value={this.state.team_id}
-                onChange={this.handleInputChange}
-                maxLength="100"
-                autoComplete="off"
-                required="required"
-              >
-                {
-                  this.state.teams.map(team => {
-                    return <option key={team.id} value={team.id}>{team.name}</option>
-                  })
-                }
-              </FormControl>
-          </FormGroup>
         <FormGroup>
           <FormLabel className="text-muted">Project Name</FormLabel>
           <FormControl

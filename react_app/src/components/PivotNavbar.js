@@ -3,6 +3,7 @@ import { FormControl, Navbar, Nav, NavItem, NavDropdown } from 'react-bootstrap'
 import { Link } from "react-router-dom";
 import ModalTemplate from "./ModalTemplate";
 import Login from "./accounts/Login";
+import CreateProject from "./projects/CreateProject";
 import "./PivotNavbar.css";
 
 class PivotNavbar extends Component {
@@ -11,6 +12,7 @@ class PivotNavbar extends Component {
     this.state = {
       isAuthenticated: false,
       showLogin: false,
+      showCreateProject: false
     }
   }
 
@@ -36,7 +38,16 @@ class PivotNavbar extends Component {
                         <NavDropdown.Divider />
                       </>
                     : ''}
-                    <NavDropdown.Item as={Link} to="/createproject">Create Project</NavDropdown.Item>
+                  <ModalTemplate
+                    show={this.state.showCreateProject}
+                    onHide={() => this.setState({showCreateProject: false})}
+                    title="Create Project"
+                    component={CreateProject}
+                    teams={this.props.data.teams}
+                  />
+                  <NavDropdown.Item onClick={() => this.setState({showCreateProject: true})}>
+                    Create Project
+                  </NavDropdown.Item>
                   </NavDropdown>
                 : ''}
                 <Nav.Link as={Link} to="/settings">Settings</Nav.Link>
