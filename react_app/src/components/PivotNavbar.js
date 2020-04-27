@@ -12,28 +12,8 @@ class PivotNavbar extends Component {
     }
   }
 
-  componentDidMount() {
-    fetch('/api/user/auth').then(res => {
-      if (res.status === 200) {
-        this.setAuthenticated(true);
-      } else if (res.status === 401) {
-        this.setAuthenticated(false);
-      } else {
-        const error = new Error(res.error);
-        throw error;
-      }
-    }).catch(err => {
-      console.error(err);
-      this.setAuthenticated(false);
-    });
-  }
-
-  setAuthenticated = (val) => {
-    this.setState({ isAuthenticated: val });
-  }
-
   render() {
-    if (this.state.isAuthenticated) {
+    if (this.props.data.is_auth) {
       return (
         <div className="PivotNavbar">
           <Navbar variant="dark" bg="dark" expand="sm">

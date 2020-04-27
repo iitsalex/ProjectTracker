@@ -53,10 +53,10 @@ class CreateTask extends Component {
       } else if (res.status === 401) {
         return('Auth failed');
       }
-    }).then(data => this.setState(
-      { projects: data,
-        projects_enabled: true})
-    ).catch(console.error);
+    }).then(data => this.setState({
+      projects: data,
+      projects_enabled: true
+    })).catch(console.error);
   }
 
   render() {
