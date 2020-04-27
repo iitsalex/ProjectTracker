@@ -61,5 +61,15 @@ label.form-label {
 }
 
 div.card {
-  margin: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+div.task-cards {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+p.unpadded {
+  margin: 0px !important;
 }

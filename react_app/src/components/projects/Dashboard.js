@@ -63,6 +63,7 @@ class Dashboard extends Component {
         <Row>
           <Col lg>
             <h3>New</h3>
+            <div class="task-cards">
               {this.state.newTasks.map(task => {
                 return  <Card key={task.id}>
                           <Card.Body>
@@ -74,9 +75,11 @@ class Dashboard extends Component {
                           </Card.Body>
                         </Card>
               })}
+            </div>
           </Col>
           <Col lg>
             <h3>In Progress</h3>
+            <div class="task-cards">
               {this.state.ipTasks.map(task => {
                 return  <Card key={task.id}>
                           <Card.Body>
@@ -87,9 +90,11 @@ class Dashboard extends Component {
                           </Card.Body>
                         </Card>
               })}
+            </div>
           </Col>
           <Col lg>
             <h3>Done</h3>
+            <div class="task-cards">
               {this.state.doneTasks.map(task => {
                 return  <Card key={task.id}>
                           <Card.Body>
@@ -100,6 +105,7 @@ class Dashboard extends Component {
                           </Card.Body>
                         </Card>
               })}
+            </div>
           </Col>
         </Row>
       </Container>

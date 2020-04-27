@@ -32,7 +32,7 @@ class Teams extends Component {
             return  <Card key={team.id} onClick={() => this.setState({ show_id: team.id, show_team: true})}>
                         {team.name}
                         <br/>
-                        <p class='text-muted'>Click to view team details</p>
+                        <p class='unpadded text-muted'>Click to view team details</p>
                     </Card>
           })}
         </ListGroup>
