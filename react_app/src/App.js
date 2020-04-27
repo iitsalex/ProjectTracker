@@ -33,7 +33,7 @@ class App extends Component {
         }
       } else if (res.status === 401) {
         if (this._isMounted) {
-          this.setState({ is_auth: false });
+          this.setState({ is_auth: false, loading: false });
         }
       } else {
         const error = new Error(res.error);
