@@ -24,6 +24,7 @@ class Backlog extends React.Component {
           title="Create Task"
           component={CreateTask}
           project_id={this.props.data.project_id}
+          updateTasks={this.props.updateTasks}
         />
       </>
     );

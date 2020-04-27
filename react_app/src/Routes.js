@@ -57,7 +57,7 @@ class Routes extends Component {
         }/>
         <Route path="/backlog" render={ () =>
           this.props.data.is_auth ?
-          <Backlog data={this.props.data} /> :
+          <Backlog data={this.props.data} updateTasks={this.props.updateTasks}/> :
           <Redirect to="/401" />
         }/>
       </Switch>

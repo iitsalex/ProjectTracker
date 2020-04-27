@@ -29,7 +29,8 @@ class CreateTask extends Component {
       }
     }).then(res => {
       if (res.status === 200) {
-        window.location.href = 'backlog';
+        this.props.updateTasks();
+        this.props.onHide();
       } else {
         const error = new Error(res.error);
         throw error;
