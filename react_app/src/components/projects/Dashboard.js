@@ -2,10 +2,6 @@ import React, { Component } from "react";
 import { Container, Card, Col, Row } from "react-bootstrap";
 
 class Dashboard extends Component {
-  constructor(props) {
-    super(props);
-    console.log(props.data.tasks)
-  }
   render() {
     return (
       <Container>
