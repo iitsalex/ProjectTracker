@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 import AuthUser from "./auth/AuthUser";
 import NewUser from "./auth/NewUser";
 
@@ -22,6 +22,7 @@ class Routes extends Component {
         const error = new Error(res.error);
         throw error;
       }
+      this.props.logout();
       window.location.href = '/';
     }).catch(err => {
       console.error(err);
@@ -36,14 +37,32 @@ class Routes extends Component {
         <Route path="/login" component={NewUser(Login)} />
         <Route path="/signup" component={NewUser(SignUp)} />
         <Route path="/passwordreset" component={NewUser(PasswordReset)} />
-        <Route path="/settings" component={AuthUser(Settings, this.props.data)} />
-        <Route path="/dashboard" component={AuthUser(Dashboard, this.props.data)} />
-        <Route path="/teams" component={AuthUser(Teams, {...this.props.data, updateTeams: this.props.updateTeams})} />
-        <Route path="/backlog" component={AuthUser(Backlog, this.props.data)} />
-        <Route path="/createproject" component={AuthUser(CreateProject, {...this.props.data, updateProjects: this.props.updateProjects})} />
-        <Route path="/createteam" component={AuthUser(CreateTeam, this.props.data)} />
-        <Route path="/invitemembers" component={AuthUser(InviteMembers, this.props.data)} />
-        <p>{this.props.updateTeams}</p>
+
+        <Route path="/settings" render={ () =>
+          this.props.data.is_auth ?
+          <Settings data={this.props.data} /> :
+          <Home />
+        }/>
+        <Route path="/dashboard" render={ () =>
+          this.props.data.is_auth ?
+          <Dashboard data={this.props.data} /> :
+          <Home />
+        }/>
+        <Route path="/teams" render={ () =>
+          this.props.data.is_auth ?
+          <Teams data={this.props.data} updateTeams={this.props.updateTeams} /> :
+          <Home />
+        }/>
+        <Route path="/backlog" render={ () =>
+          this.props.data.is_auth ?
+          <Backlog data={this.props.data} /> :
+          <Home />
+        }/>
+        <Route path="/createproject" render={ () =>
+          this.props.data.is_auth ?
+          <CreateProject data={this.props.data} updateProjects={this.props.updateProjects} /> :
+          <Home />
+        }/>
       </Switch>
     );
   }

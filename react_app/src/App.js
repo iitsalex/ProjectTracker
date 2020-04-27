@@ -16,7 +16,8 @@ class App extends Component {
       teams: [],
       team_id: -1,
       projects: [],
-      project_id: -1
+      project_id: -1,
+      tasks: []
     }
   }
 
@@ -25,7 +26,9 @@ class App extends Component {
     fetch('/api/user/auth').then(res => {
       if (res.status === 200) {
         if (this._isMounted) {
-          this.setState({ is_auth: true });
+          this.setState({ is_auth: true }, () =>
+            this.updateTeams()
+          );
         }
       } else if (res.status === 401) {
         if (this._isMounted) {
@@ -36,8 +39,6 @@ class App extends Component {
         throw error;
       }
     }).catch(console.error);
-
-    this.updateTeams();
   }
 
   componentWillUnmount() {
@@ -46,12 +47,13 @@ class App extends Component {
 
   handleDataChange = (event) => {
     const { value, name } = event.target;
-    this.setState({
-      [name]: value
+    this.setState({ [name]: value }, () => {
+      if (name === 'team_id') {
+        this.updateProjects();
+      } else if (name === 'project_id') {
+        this.updateTasks();
+      }
     });
-    if (name === 'team_id') {
-      this.updateProjects(value);
-    }
   }
 
   updateTeams = () => {
@@ -66,15 +68,20 @@ class App extends Component {
       if (this._isMounted) {
         this.setState({
           teams: data,
-          team_id: data[0].id
+          projects: [],
+          tasks: []
         });
-        this.updateProjects(data[0].id)
+        if (data[0] !== undefined) {
+          this.setState({
+            team_id: data[0].id
+          }, () => this.updateProjects());
+        }
       }
     }).catch(console.error);
   }
 
-  updateProjects = (t_id) => {
-    fetch('/api/projects/team/' + t_id).then(res => {
+  updateProjects = () => {
+    fetch('/api/projects/team/' + this.state.team_id).then(res => {
       if (res.status === 200) {
         return res.json();
       } else {
@@ -85,12 +92,31 @@ class App extends Component {
       if (this._isMounted) {
         this.setState({
           projects: data,
+          tasks: []
         });
         if (data[0] !== undefined) {
           this.setState({
             project_id: data[0].id
-          });
+          }, () => this.updateTasks());
         }
+      }
+    }).catch(console.error);
+  }
+
+  updateTasks = (p_id) => {
+    console.log('tasks')
+    fetch('/api/tasks/project/' + this.state.project_id).then(res => {
+      if (res.status === 200) {
+        return res.json();
+      } else {
+        const error = new Error(res.error);
+        throw error;
+      }
+    }).then(data => {
+      if (this._isMounted) {
+        this.setState({
+          tasks: data,
+        });
       }
     }).catch(console.error);
   }
@@ -99,7 +125,13 @@ class App extends Component {
     return (
       <div className="App">
         <PivotNavbar data={this.state} handleDataChange={this.handleDataChange}/>
-        <Routes data={this.state} updateTeams={this.updateTeams} updateProjects={this.updateProjects}/>
+        <Routes
+          data={this.state}
+          updateTeams={this.updateTeams}
+          updateProjects={this.updateProjects}
+          updateTasks={this.updateTasks}
+          logout={() => this.setState({teams: [], projects: [], tasks: []})}
+        />
       </div>
     );
   }
