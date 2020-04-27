@@ -61,52 +61,28 @@ class Dashboard extends Component {
     return (
       <Container>
         <Row>
-          <Col lg>
-            <h3>New</h3>
-            <div class="task-cards">
-              {this.state.newTasks.map(task => {
-                return  <Card key={task.id}>
-                          <Card.Body>
-                            <Card.Title>{task.name}</Card.Title>
-                            <Card.Text>
-                              {task.description.substring(0,50)}
-                              {task.description.length > 50 ? '...' : ''}
-                            </Card.Text>
-                          </Card.Body>
-                        </Card>
-              })}
-            </div>
-          </Col>
-          <Col lg>
-            <h3>In Progress</h3>
-            <div class="task-cards">
-              {this.state.ipTasks.map(task => {
-                return  <Card key={task.id}>
-                          <Card.Body>
-                            <Card.Title>{task.name}</Card.Title>
-                            <Card.Text>
-                              {task.description}
-                            </Card.Text>
-                          </Card.Body>
-                        </Card>
-              })}
-            </div>
-          </Col>
-          <Col lg>
-            <h3>Done</h3>
-            <div class="task-cards">
-              {this.state.doneTasks.map(task => {
-                return  <Card key={task.id}>
-                          <Card.Body>
-                            <Card.Title>{task.name}</Card.Title>
-                            <Card.Text>
-                              {task.description}
-                            </Card.Text>
-                          </Card.Body>
-                        </Card>
-              })}
-            </div>
-          </Col>
+          {[
+            {name: 'New', container: this.state.newTasks},
+            {name: 'In Progress', container: this.state.ipTasks},
+            {name: 'Done', container: this.state.doneTasks}
+          ].map(taskType => {
+            return  <Col lg>
+                      <h3>{taskType.name}</h3>
+                      <div class="task-cards">
+                        {taskType.container.map(task => {
+                          return  <Card key={task.id}>
+                                    <Card.Body>
+                                      <Card.Title>{task.name}</Card.Title>
+                                      <Card.Text>
+                                        {task.description.substring(0,50)}
+                                        {task.description.length > 50 ? '...' : ''}
+                                      </Card.Text>
+                                    </Card.Body>
+                                  </Card>
+                        })}
+                      </div>
+                    </Col>
+          })}
         </Row>
       </Container>
     );
