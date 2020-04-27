@@ -41,7 +41,7 @@ class Teams extends Component {
           onHide={() => this.setState({show_create: false})}
           title="Create Team"
           component={CreateTeam}
-          updateTeams={this.props.data.updateTeams}
+          updateTeams={this.props.updateTeams}
         />
       <br/>
       <Button variant="secondary" className="btn-block btn-center" onClick={() => this.setState({show_create: true})}>
