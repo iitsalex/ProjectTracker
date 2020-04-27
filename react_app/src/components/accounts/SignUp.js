@@ -31,7 +31,7 @@ class SignUp extends Component {
       }
     }).then(res => {
       if (res.status === 200) {
-        window.location.href = 'login';
+        window.location.href = '/';
       } else if (res.status === 403) {
         this.setState({message: 'Email already in use'})
       } else {
