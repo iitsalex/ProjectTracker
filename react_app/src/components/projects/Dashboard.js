@@ -68,7 +68,8 @@ class Dashboard extends Component {
                           <Card.Body>
                             <Card.Title>{task.name}</Card.Title>
                             <Card.Text>
-                              {task.description}
+                              {task.description.substring(0,50)}
+                              {task.description.length > 50 ? '...' : ''}
                             </Card.Text>
                           </Card.Body>
                         </Card>

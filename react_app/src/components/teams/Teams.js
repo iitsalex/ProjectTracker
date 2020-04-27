@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ListGroup, Button } from "react-bootstrap";
+import { ListGroup, Button, Card } from "react-bootstrap";
 import ModalTemplate from "../ModalTemplate";
 import CreateTeam from "./CreateTeam";
 import InviteMembers from "./InviteMembers";
@@ -29,9 +29,11 @@ class Teams extends Component {
             team_id={this.state.show_id}
           />
           {this.props.data.teams.map(team => {
-            return  <ListGroup.Item key={team.id} onClick={() => this.setState({ show_id: team.id, show_team: true})}>
+            return  <Card key={team.id} onClick={() => this.setState({ show_id: team.id, show_team: true})}>
                         {team.name}
-                    </ListGroup.Item>
+                        <br/>
+                        <p class='text-muted'>Click to view team details</p>
+                    </Card>
           })}
         </ListGroup>
         <ModalTemplate
