@@ -76,7 +76,6 @@ class App extends Component {
   }
 
   updateProjects = (t_id) => {
-    console.log(t_id);
     fetch('/api/projects/team/' + t_id).then(res => {
       if (res.status === 200) {
         return res.json();
@@ -85,7 +84,6 @@ class App extends Component {
         throw error;
       }
     }).then(data => {
-      console.log(data);
       if (this._isMounted) {
         this.setState({
           projects: data,
