@@ -22,3 +22,9 @@ div.card {
   max-width: 320px;
   padding: 10px;
 }
+
+button {
+  margin: auto !important;
+  margin-bottom: 10px !important;
+  max-width: 320px;
+}
