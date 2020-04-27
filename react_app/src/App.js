@@ -11,7 +11,11 @@ class App extends Component {
     super();
     //Set default message
     this.state = {
-      message: ''
+      message: '',
+      teams: [],
+      team_id: -1,
+      projects: [],
+      team_id: -1
     }
   }
 
@@ -25,13 +29,27 @@ class App extends Component {
     }).then(data => this.setState(
       { message: data })
     ).catch(console.error);
+
+    fetch('/api/teams/currentuser').then(res => {
+      if (res.status === 200) {
+        return res.json();
+      } else {
+        const error = new Error(res.error);
+        throw error;
+      }
+    }).then(data => {
+      this.setState({ teams: data });
+    }).catch(err => {
+      console.error(err);
+      alert('Error logging in please try again');
+    });
   }
 
   render () {
     return (
       <div className="App">
-        <PivotNavbar/>
-        <Routes />
+        <PivotNavbar />
+        <Routes data={this.state}/>
         <p>{this.state.message}</p>
       </div>
     );

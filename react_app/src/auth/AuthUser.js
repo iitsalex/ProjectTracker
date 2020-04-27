@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 
-function AuthUser(ComponentToProtect) {
+function AuthUser(ComponentToProtect, passedProps) {
   return class extends Component {
     constructor() {
       super();
       this.state = {
         loading: true,
         redirect: false,
+        data: passedProps
       };
     }
 
@@ -33,7 +34,7 @@ function AuthUser(ComponentToProtect) {
       if (redirect) {
         return <Redirect to="/401" />;
       }
-      return <ComponentToProtect {...this.props} />;
+      return <ComponentToProtect data={this.state.data} {...this.props} />;
     }
   }
 }
