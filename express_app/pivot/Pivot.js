@@ -10,7 +10,7 @@ var Pivot = {
             [user.email, hash, user.fname, user.lname], callback);
     },
     getusersbyteam: function(team_id, callback) {
-        return db.query('SELECT id, fname, lname, username FROM user WHERE id IN ' +
+        return db.query('SELECT id, fname, lname, email FROM users WHERE id IN ' +
             '(SELECT user_id FROM user_team WHERE team_id=?)',
             team_id, callback);
     },
