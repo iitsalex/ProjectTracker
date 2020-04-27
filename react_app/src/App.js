@@ -129,7 +129,11 @@ class App extends Component {
   render () {
     return (
       <div className="App">
-        <PivotNavbar data={this.state} handleDataChange={this.handleDataChange}/>
+        <PivotNavbar
+          data={this.state}
+          handleDataChange={this.handleDataChange}
+          updateProjects={this.updateProjects}
+        />
         { this.state.loading ? 'loading...' :
           <Routes
             data={this.state}

@@ -44,6 +44,7 @@ class PivotNavbar extends Component {
                     title="Create Project"
                     component={CreateProject}
                     teams={this.props.data.teams}
+                    updateProjects={this.props.updateProjects}
                   />
                   <NavDropdown.Item onClick={() => this.setState({showCreateProject: true})}>
                     Create Project

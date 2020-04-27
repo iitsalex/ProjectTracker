@@ -39,11 +39,6 @@ class Routes extends Component {
           <Redirect to="/403" /> :
           <PasswordReset data={this.props.data} />
         }/>
-        <Route path="/settings" render={ () =>
-          this.props.data.is_auth ?
-          <Redirect to="/403" /> :
-          <Settings data={this.props.data} />
-        }/>
 
         <Route path="/settings" render={ () =>
           this.props.data.is_auth ?
