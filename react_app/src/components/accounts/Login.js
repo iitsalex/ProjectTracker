@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Form, Button, FormGroup, FormControl, FormLabel } from "react-bootstrap"
 import { Link } from "react-router-dom";
-import "./Accounts.css";
 
 class Login extends Component {
   constructor(props) {

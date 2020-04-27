@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import "./Accounts.css";
 
 class PasswordReset extends Component {
   render() {
