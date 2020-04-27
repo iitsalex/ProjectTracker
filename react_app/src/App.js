@@ -11,7 +11,7 @@ class App extends Component {
     super();
     //Set default message
     this.state = {
-      message: '',
+      is_auth: false,
       teams: [],
       team_id: -1,
       projects: [],
@@ -22,13 +22,14 @@ class App extends Component {
   componentDidMount() {
     fetch('/api/user/auth').then(res => {
       if (res.status === 200) {
-        return('Auth ok');
+        this.setState({ is_auth: true });
       } else if (res.status === 401) {
-        return('Auth failed');
+        this.setState({ is_auth: false });
+      } else {
+        const error = new Error(res.error);
+        throw error;
       }
-    }).then(data => this.setState(
-      { message: data })
-    ).catch(console.error);
+    }).catch(console.error);
 
     fetch('/api/teams/currentuser').then(res => {
       if (res.status === 200) {
@@ -48,9 +49,9 @@ class App extends Component {
   render () {
     return (
       <div className="App">
-        <PivotNavbar />
-        <Routes data={this.state}/>
-        <p>{this.state.message}</p>
+        <PivotNavbar data={this.state} />
+        <Routes data={this.state} />
+        <p>Auth: {this.state.is_auth ? 'ok' : 'failed'}</p>
       </div>
     );
   }
