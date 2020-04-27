@@ -90,8 +90,7 @@ var Pivot = {
         return db.query('SELECT * FROM tasks WHERE id=?', task_id, callback);
     },
     gettasksbyproject: function(project_id, callback) {
-        return db.query('SELECT * from tasks WHERE id IN ' +
-            '(SELECT task_id FROM project_task WHERE project_id=?)',
+        return db.query('SELECT * from tasks WHERE project_id=?',
             project_id, callback);
     },
     addtask: function(data, callback) {
