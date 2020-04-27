@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Form, Button, FormGroup, FormControl, FormLabel, Col } from "react-bootstrap"
 
-class CreateTask extends Component {
+class ViewTask extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -19,6 +19,8 @@ class CreateTask extends Component {
     });
   }
 
+// may need to use an onsubmit for the modal itself
+// if we decide to make it edit and submittable
   onSubmit = (event) => {
     event.preventDefault();
     fetch('/api/tasks', {
@@ -29,7 +31,7 @@ class CreateTask extends Component {
       }
     }).then(res => {
       if (res.status === 200) {
-        window.location.href = 'backlog';
+        window.location.href = 'dashboard';
       } else {
         const error = new Error(res.error);
         throw error;
@@ -88,7 +90,6 @@ class CreateTask extends Component {
             placeholder="Enter Task Description"
             value={this.state.description}
             onChange={this.handleInputChange}
-            style={{padding: "10px"}}
             autoComplete="off"
           />
         </FormGroup>
@@ -99,4 +100,4 @@ class CreateTask extends Component {
   }
 }
 
-export default CreateTask;
+export default ViewTask;
