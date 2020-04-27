@@ -7,6 +7,8 @@ import Routes from './Routes';
 // const Context = React.createContext();
 
 class App extends Component {
+  _isMounted = false;
+
   constructor() {
     super();
     //Set default message
@@ -15,22 +17,49 @@ class App extends Component {
       teams: [],
       team_id: -1,
       projects: [],
-      team_id: -1
+      project_id: -1
     }
   }
 
   componentDidMount() {
+    this._isMounted = true;
     fetch('/api/user/auth').then(res => {
       if (res.status === 200) {
-        this.setState({ is_auth: true });
+        if (this._isMounted) {
+          this.setState({ is_auth: true });
+        }
       } else if (res.status === 401) {
-        this.setState({ is_auth: false });
+        if (this._isMounted) {
+          this.setState({ is_auth: false });
+        }
       } else {
         const error = new Error(res.error);
         throw error;
       }
     }).catch(console.error);
 
+    this.updateTeams();
+  }
+
+  componentWillUnmount() {
+    this._isMounted = false;
+  }
+
+  handleDataChange = (event) => {
+    const { value, name } = event.target;
+    console.log(name);
+    if (name === 'team_id') {
+      this.setState({
+        [name]: value
+      }, this.updateProjects());
+    } else {
+      this.setState({
+        [name]: value
+      });
+    }
+  }
+
+  updateTeams = () => {
     fetch('/api/teams/currentuser').then(res => {
       if (res.status === 200) {
         return res.json();
@@ -39,18 +68,37 @@ class App extends Component {
         throw error;
       }
     }).then(data => {
-      this.setState({
-        teams: data,
-        team_id: data[0].id
-      });
+      if (this._isMounted) {
+        this.setState({
+          teams: data,
+          team_id: data[0].id
+        }, this.updateProjects());
+      }
     }).catch(console.error);
   }
 
-  handleDataChange = (event) => {
-    const { value, name } = event.target;
-    this.setState({
-      [name]: value
-    });
+  updateProjects = () => {
+    console.log(this.state.team_id);
+    fetch('/api/projects/team/' + this.state.team_id).then(res => {
+      if (res.status === 200) {
+        return res.json();
+      } else {
+        const error = new Error(res.error);
+        throw error;
+      }
+    }).then(data => {
+      console.log(data);
+      if (this._isMounted) {
+        this.setState({
+          projects: data,
+        });
+        if (data[0] !== undefined) {
+          this.setState({
+            project_id: data[0].id
+          });
+        }
+      }
+    }).catch(console.error);
   }
 
   render () {
