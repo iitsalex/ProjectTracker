@@ -39,6 +39,24 @@ class PivotNavbar extends Component {
                 </NavDropdown>
                 <Nav.Link as={Link} to="/settings">Settings</Nav.Link>
               </Nav>
+              {this.props.data.projects.length > 0 ?
+                <>
+                  <NavItem>Project Select</NavItem>
+                  <FormControl
+                    as="select"
+                    name="project_id"
+                    value={this.props.data.project_id}
+                    onChange={this.props.handleDataChange}
+                    className="select-nav"
+                  >
+                    {
+                      this.props.data.projects.map(project => {
+                        return <option key={project.id} value={project.id}>{project.name}</option>
+                      })
+                    }
+                  </FormControl>
+                </>
+              : ''}
               <NavItem>Team Select</NavItem>
               <FormControl
                 as="select"
@@ -50,20 +68,6 @@ class PivotNavbar extends Component {
                 {
                   this.props.data.teams.map(team => {
                     return <option key={team.id} value={team.id}>{team.name}</option>
-                  })
-                }
-              </FormControl>
-              <NavItem>Project Select</NavItem>
-              <FormControl
-                as="select"
-                name="project_id"
-                value={this.props.data.project_id}
-                onChange={this.props.handleDataChange}
-                className="select-nav"
-              >
-                {
-                  this.props.data.projects.map(project => {
-                    return <option key={project.id} value={project.id}>{project.name}</option>
                   })
                 }
               </FormControl>
