@@ -19,7 +19,7 @@ class Teams extends Component {
   render() {
     return (
       <>
-        <h2>Team List</h2>
+        <h3>Team List</h3>
         <ListGroup horizontal='lg'>
           <ModalTemplate
             show={this.state.show_team}

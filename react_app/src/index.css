@@ -23,6 +23,10 @@ div.card {
   padding: 10px;
 }
 
+div.PivotNavbar {
+  margin-bottom: 1em;
+}
+
 button {
   margin-bottom: 10px !important;
   max-width: 320px;

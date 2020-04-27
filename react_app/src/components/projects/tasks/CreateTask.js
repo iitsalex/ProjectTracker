@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import { Form, Button, FormGroup, FormControl, FormLabel, Col } from "react-bootstrap"
-import "../Projects.css";
+import { Form, Button, FormGroup, FormControl, FormLabel } from "react-bootstrap"
 
 class CreateTask extends Component {
   constructor(props) {

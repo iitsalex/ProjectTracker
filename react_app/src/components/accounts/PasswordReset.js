@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import "./Accounts.css";
 
 class PasswordReset extends Component {
   render() {
@@ -7,7 +6,6 @@ class PasswordReset extends Component {
       <div className="Login">
         <form>
           <h3>Password Reset</h3>
-          <br/>
 
           <div className="form-group">
             <label>Enter your email address</label>

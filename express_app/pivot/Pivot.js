@@ -81,9 +81,10 @@ var Pivot = {
     },
 
     // Tasks
-    createtask: function(data, callback) {
-        return db.query('INSERT INTO tasks (owner_id, project_id, name, created) VALUES(?, ?, ?, ?)',
-        [data.owner_id, data.project_id, data.name, data.created], callback);
+    createtask: function(data, uid, today, callback) {
+        return db.query('INSERT INTO tasks (owner_id, project_id, name, description, status, created) ' +
+          'VALUES(?, ?, ?, ?, ?)',
+        [uid, data.project_id, data.name, data.description, data.status, today], callback);
     },
     gettask: function(task_id, callback) {
         return db.query('SELECT * FROM tasks WHERE id=?', task_id, callback);
