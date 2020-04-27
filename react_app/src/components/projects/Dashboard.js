@@ -7,6 +7,7 @@ class Dashboard extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      tasks: props.data.tasks,
       newTasks: [],
       ipTasks: [],
       doneTasks: []
@@ -15,16 +16,7 @@ class Dashboard extends Component {
 
   componentDidMount() {
     this._isMounted = true;
-    fetch('/api/tasks/project/' + this.props.data.project_id).then(res => {
-      if (res.status === 200) {
-        return res.json();
-      } else {
-        const error = new Error(res.error);
-        throw error;
-      }
-    }).then(data => {
-      this.distributeTasks(data);
-    }).catch(console.error);
+    this.distributeTasks(this.props.data.tasks);
   }
 
   componentWillUnmount() {
