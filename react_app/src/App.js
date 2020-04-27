@@ -48,14 +48,11 @@ class App extends Component {
   handleDataChange = (event) => {
     const { value, name } = event.target;
     console.log(name);
+    this.setState({
+      [name]: value
+    });
     if (name === 'team_id') {
-      this.setState({
-        [name]: value
-      }, this.updateProjects());
-    } else {
-      this.setState({
-        [name]: value
-      });
+      this.updateProjects(value);
     }
   }
 
@@ -72,14 +69,15 @@ class App extends Component {
         this.setState({
           teams: data,
           team_id: data[0].id
-        }, this.updateProjects());
+        });
+        this.updateProjects(data[0].id)
       }
     }).catch(console.error);
   }
 
-  updateProjects = () => {
-    console.log(this.state.team_id);
-    fetch('/api/projects/team/' + this.state.team_id).then(res => {
+  updateProjects = (t_id) => {
+    console.log(t_id);
+    fetch('/api/projects/team/' + t_id).then(res => {
       if (res.status === 200) {
         return res.json();
       } else {
