@@ -77,6 +77,16 @@ router.post('/user/create', function (req, res) {
     });
 });
 
+router.get('/user/team/:team_id', function (req, res) {
+    Pivot.getusersbyteam(req.params.team_id, function(err, rows) {
+        if(err) {
+            res.status(400).json(err);
+        } else {
+            res.json(rows);
+        }
+    });
+});
+
 // Projects
 router.post('/projects', function (req, res) {
     const uid = req.cookies.uid;

@@ -9,6 +9,11 @@ var Pivot = {
         return db.query('INSERT INTO users(email, password, fname, lname) VALUES(?, ?, ?, ?)',
             [user.email, hash, user.fname, user.lname], callback);
     },
+    getusersbyteam: function(team_id, callback) {
+        return db.query('SELECT * FROM user WHERE id IN ' +
+            '(SELECT user_id FROM user_team WHERE team_id=?)',
+            team_id, callback);
+    },
 
     // Projects
     createproject: function(project, uid, today, callback) {
