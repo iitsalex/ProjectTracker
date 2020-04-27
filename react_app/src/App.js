@@ -109,7 +109,6 @@ class App extends Component {
   }
 
   updateTasks = (p_id) => {
-    console.log('tasks')
     fetch('/api/tasks/project/' + this.state.project_id).then(res => {
       if (res.status === 200) {
         return res.json();
