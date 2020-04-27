@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Container, CardColumns, Card, Col, Row } from "react-bootstrap";
+import { Container, Card, Col, Row } from "react-bootstrap";
 
 class Dashboard extends Component {
   _isMounted = false;
@@ -45,6 +45,8 @@ class Dashboard extends Component {
           break;
         case 'Done':
           doneArr.push(task);
+          break;
+        default:
           break;
       }
     });
