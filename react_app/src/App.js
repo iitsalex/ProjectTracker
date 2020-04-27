@@ -12,6 +12,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      loading: true,
       is_auth: false,
       teams: [],
       team_id: -1,
@@ -75,6 +76,8 @@ class App extends Component {
           this.setState({
             team_id: data[0].id
           }, () => this.updateProjects());
+        } else {
+          this.setState({ loading: false })
         }
       }
     }).catch(console.error);
@@ -98,6 +101,8 @@ class App extends Component {
           this.setState({
             project_id: data[0].id
           }, () => this.updateTasks());
+        } else {
+          this.setState({ loading: false })
         }
       }
     }).catch(console.error);
@@ -116,6 +121,7 @@ class App extends Component {
       if (this._isMounted) {
         this.setState({
           tasks: data,
+          loading: false
         });
       }
     }).catch(console.error);
@@ -125,13 +131,17 @@ class App extends Component {
     return (
       <div className="App">
         <PivotNavbar data={this.state} handleDataChange={this.handleDataChange}/>
-        <Routes
-          data={this.state}
-          updateTeams={this.updateTeams}
-          updateProjects={this.updateProjects}
-          updateTasks={this.updateTasks}
-          logout={() => this.setState({teams: [], projects: [], tasks: []})}
-        />
+        { this.state.loading ? 'loading...' :
+          <Routes
+            data={this.state}
+            updateTeams={this.updateTeams}
+            updateProjects={this.updateProjects}
+            updateTasks={this.updateTasks}
+            logout={() => this.setState({teams: [], projects: [], tasks: []})}
+          />
+        }
+
+
       </div>
     );
   }
