@@ -1,17 +1,9 @@
-option {
-  background-color: #303030;
-  color: #DDD;
+div.nav-item {
+  color: #888;
 }
 
-select {
-  background-color: #303030 !important;
-  color: #DDD !important;
+select.select-nav {
   max-width: 200px;
   margin-left: 10px !important;
   margin-right: 10px !important;
-  border-color: #DDD !important;
-}
-
-div.nav-item {
-  color: #888;
 }

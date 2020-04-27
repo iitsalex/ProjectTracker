@@ -32,3 +32,22 @@ button.btn-center {
   margin-left: auto !important;
   margin-right: auto !important;
 }
+
+option {
+  background-color: #303030;
+  color: #DDD;
+}
+
+input {
+  background-color: #303030 !important;
+  color: #DDD !important;
+  max-width: 320px;
+  border-color: #888 !important;
+}
+
+select {
+  background-color: #303030 !important;
+  color: #DDD !important;
+  max-width: 320px;
+  border-color: #888 !important;
+}
