@@ -27,6 +27,7 @@ class CreateTeam extends Component {
       }
     }).then(res => {
       if (res.status === 200) {
+        this.props.updateTeams();
         this.props.onHide();
       } else {
         const error = new Error(res.error);

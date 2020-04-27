@@ -32,7 +32,7 @@ class Teams extends Component {
             return  <Card key={team.id} onClick={() => this.setState({ show_id: team.id, show_team: true})}>
                         {team.name}
                         <br/>
-                        <p class='unpadded text-muted'>Click to view team details</p>
+                        <p className='unpadded text-muted'>Click to view team details</p>
                     </Card>
           })}
         </ListGroup>
@@ -41,6 +41,7 @@ class Teams extends Component {
           onHide={() => this.setState({show_create: false})}
           title="Create Team"
           component={CreateTeam}
+          updateTeams={this.props.data.updateTeams}
         />
       <br/>
       <Button variant="secondary" className="btn-block btn-center" onClick={() => this.setState({show_create: true})}>
