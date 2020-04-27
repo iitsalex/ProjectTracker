@@ -71,9 +71,17 @@ class CreateProject extends Component {
 
           <FormGroup>
             <FormLabel className="text-muted">Select a Team</FormLabel>
-              <FormControl as="select" name="team_id" value={this.state.team_id} onChange={this.handleInputChange} maxLength="100" autoComplete="off" required="required">
+              <FormControl
+                as="select"
+                name="team_id"
+                value={this.state.team_id}
+                onChange={this.handleInputChange}
+                maxLength="100"
+                autoComplete="off"
+                required="required"
+              >
                 {
-                  this.props.teams.map(team => {
+                  this.state.teams.map(team => {
                     return <option key={team.id} value={team.id}>{team.name}</option>
                   })
                 }
