@@ -1,6 +1,5 @@
 import React from 'react'
-import { Modal } from 'react-bootstrap'
-import { Button } from '@material-ui/core';
+import { Modal, Button } from 'react-bootstrap'
 
 function ModalTemplate(props) {
   // overflow all other props to component, including onHide for hiding modal
