@@ -36,13 +36,13 @@ class Routes extends Component {
         <Route path="/login" component={NewUser(Login)} />
         <Route path="/signup" component={NewUser(SignUp)} />
         <Route path="/passwordreset" component={NewUser(PasswordReset)} />
-        <Route path="/settings" component={AuthUser(Settings)} />
-        <Route path="/dashboard" component={AuthUser(Dashboard)} />
-        <Route path="/teams" component={AuthUser(Teams)} />
-        <Route path="/backlog" component={AuthUser(Backlog)} />
-        <Route path="/createproject" component={AuthUser(CreateProject)} />
-        <Route path="/createteam" component={AuthUser(CreateTeam)} />
-        <Route path="/invitemembers" component={AuthUser(InviteMembers)} />
+        <Route path="/settings" component={AuthUser(Settings, this.props.data)} />
+        <Route path="/dashboard" component={AuthUser(Dashboard, this.props.data)} />
+        <Route path="/teams" component={AuthUser(Teams, this.props.data)} />
+        <Route path="/backlog" component={AuthUser(Backlog, this.props.data)} />
+        <Route path="/createproject" component={AuthUser(CreateProject, this.props.data)} />
+        <Route path="/createteam" component={AuthUser(CreateTeam, this.props.data)} />
+        <Route path="/invitemembers" component={AuthUser(InviteMembers, this.props.data)} />
       </Switch>
     );
   }

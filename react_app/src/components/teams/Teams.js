@@ -7,38 +7,12 @@ import InviteMembers from "./InviteMembers";
 import "./Teams.css";
 
 class Teams extends Component {
-  _isMounted = false;
-
   constructor(props) {
     super(props);
     this.state = {
-      teams: [],
       show_create: false,
       show_invite: false
     };
-  }
-
-  componentDidMount() {
-    this._isMounted = true;
-    fetch('/api/teams/currentuser').then(res => {
-      if (res.status === 200) {
-        return res.json();
-      } else {
-        const error = new Error(res.error);
-        throw error;
-      }
-    }).then(data => {
-      if (this._isMounted) {
-        this.setState({ teams: data });
-      }
-    }).catch(err => {
-      console.error(err);
-      alert('Error logging in please try again');
-    });
-  }
-
-  componentWillUnmount() {
-    this._isMounted = false;
   }
 
   render() {
@@ -46,7 +20,7 @@ class Teams extends Component {
       <>
         <h2>Team List</h2>
         <ListGroup horizontal='lg'>
-          {this.state.teams.map(team => {
+          {this.props.data.teams.map(team => {
             return  <ListGroup.Item key={team.id}>
                         {team.name}
                         <br/>
