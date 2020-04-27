@@ -66,9 +66,9 @@ class Dashboard extends Component {
             {name: 'In Progress', container: this.state.ipTasks},
             {name: 'Done', container: this.state.doneTasks}
           ].map(taskType => {
-            return  <Col lg>
+            return  <Col lg key={taskType.name}>
                       <h3>{taskType.name}</h3>
-                      <div class="task-cards">
+                      <div className="task-cards">
                         {taskType.container.map(task => {
                           return  <Card key={task.id}>
                                     <Card.Body>
