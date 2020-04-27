@@ -29,7 +29,7 @@ class Login extends Component {
     }).then(res => {
       if (res.status === 200) {
         this.props.onHide();
-        window.location.href = 'dashboard';
+        window.location.href = 'teams';
       } else {
         const error = new Error(res.error);
         throw error;
