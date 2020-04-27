@@ -4,6 +4,7 @@ import { ListGroup, Card, Button, Spinner } from "react-bootstrap";
 import ModalTemplate from "../ModalTemplate";
 import CreateTeam from "./CreateTeam";
 import InviteMembers from "./InviteMembers";
+import ViewMembers from "./ViewMembers";
 import "./Teams.css";
 
 class Teams extends Component {
@@ -14,7 +15,8 @@ class Teams extends Component {
     this.state = {
       teams: [],
       show_create: false,
-      show_invite: false
+      show_invite: false,
+      show_team: false
     };
   }
 
@@ -50,7 +52,14 @@ class Teams extends Component {
             return  <ListGroup.Item key={team.id}>
                         {team.name}
                         <br/>
-                        <Button>View Team Members</Button>
+                          <ModalTemplate
+                            show={this.state.show_team}
+                            onHide={() => this.setState({show_team: false})}
+                            title="Members List"
+                            component={ViewMembers}
+                            team_id={team.id}
+                          />
+                        <Button onClick={() => this.setState({show_team: true})}>View Team Members</Button>
                     </ListGroup.Item>
           })}
         </ListGroup>
