@@ -43,7 +43,7 @@ class Teams extends Component {
         onHide={() => this.setState({show_invite: false})}
         title="Invite Members"
         component={InviteMembers}
-        teams={this.state.teams}
+        teams={this.props.data.teams}
       />
       <Button variant="secondary" className="btn-block btn-center" onClick={() => this.setState({show_invite: true})}>
         Invite Team Members
