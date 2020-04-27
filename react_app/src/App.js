@@ -101,9 +101,6 @@ class App extends Component {
       <div className="App">
         <PivotNavbar data={this.state} handleDataChange={this.handleDataChange}/>
         <Routes data={this.state} />
-        <p>team id: {this.state.team_id}</p>
-        <p>project id: {this.state.project_id}</p>
-        <p>Auth: {this.state.is_auth ? 'ok' : 'failed'}</p>
       </div>
     );
   }
