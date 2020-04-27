@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { FormControl, Navbar, Nav, NavDropdown } from 'react-bootstrap';
+import { FormControl, Navbar, Nav, NavItem, NavDropdown } from 'react-bootstrap';
 import { Link } from "react-router-dom";
 import ModalTemplate from "./ModalTemplate";
 import Login from "./accounts/Login";
+import "./PivotNavbar.css";
 
 class PivotNavbar extends Component {
   constructor(props) {
@@ -32,6 +33,7 @@ class PivotNavbar extends Component {
                 </NavDropdown>
                 <Nav.Link as={Link} to="/settings">Settings</Nav.Link>
               </Nav>
+              <NavItem>Team Select</NavItem>
               <FormControl
                 as="select"
                 name="team_id"
@@ -44,6 +46,7 @@ class PivotNavbar extends Component {
                   })
                 }
               </FormControl>
+              <NavItem>Project Select</NavItem>
               <FormControl
                 as="select"
                 name="project_id"
