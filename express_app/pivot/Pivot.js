@@ -28,7 +28,7 @@ var Pivot = {
     },
     addproject: function(team_id, project_id, callback) {
         return db.query('INSERT INTO team_project (team_id, project_id) VALUES(?, ?)',
-            [data.team_id, data.project_id], callback);
+            [team_id, project_id], callback);
     },
     updateproject: function(project, callback) {
         return db.query('UPDATE projects SET name=?, owner_id=? WHERE id=?',
