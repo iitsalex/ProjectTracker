@@ -99,7 +99,7 @@ class SignUp extends Component {
           />
         </FormGroup>
 
-        <Button type="submit" className="btn-dark btn-block">Submit</Button>
+        <Button type="submit" className="btn-block">Submit</Button>
         <Link to="login">Already signed up? Login</Link>
       </Form>
     );

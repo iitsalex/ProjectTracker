@@ -70,7 +70,7 @@ class Login extends Component {
           />
         </FormGroup>
 
-        <Button type="submit" className="btn-dark btn-block">Submit</Button>
+        <Button type="submit" className="btn-block">Submit</Button>
         <Link to="passwordreset" onClick={this.props.onHide} className="forgot-password">Forgot password?</Link>
         <br/>
         <Link to="signup" onClick={this.props.onHide}>Sign Up</Link>
