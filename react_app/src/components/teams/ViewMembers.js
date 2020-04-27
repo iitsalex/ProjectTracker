@@ -3,6 +3,8 @@ import {Form, Button, FormGroup, FormControl, FormLabel, ListGroup} from "react-
 import "./Teams.css";
 
 class ViewMembers extends Component {
+  _isMounted = false;
+
   constructor(props) {
     super(props);
     this.state = {
@@ -29,16 +31,18 @@ class ViewMembers extends Component {
     });
   }
 
+  componentWillUnmount() {
+   this._isMounted = false;
+ }
+
   render() {
     return (<div className="ViewMembers">
             <ListGroup>
-              <ListGroup.Item>
                 {
                   this.state.members.map(member => {
-                    return <ListGroup.Item key={member.id} value={member.id}>{member.name}</ListGroup.Item>
+                    return <ListGroup.Item key={member.id} value={member.id}>{member.fname + " " + member.lname}</ListGroup.Item>
                   })
                 }
-              </ListGroup.Item>
             </ListGroup>
     </div>);
   }

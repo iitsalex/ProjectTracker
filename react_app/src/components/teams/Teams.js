@@ -22,18 +22,18 @@ class Teams extends Component {
       <>
         <h2>Team List</h2>
         <ListGroup horizontal='lg'>
+          <ModalTemplate
+            show={this.state.show_team}
+            onHide={() => this.setState({show_team: false})}
+            title="Members List"
+            component={ViewMembers}
+            team_id={this.state.show_id}
+          />
           {this.props.data.teams.map(team => {
             return  <ListGroup.Item key={team.id}>
                         {team.name}
                         <br/>
-                          <ModalTemplate
-                            show={this.state.show_team}
-                            onHide={() => this.setState({show_team: false})}
-                            title="Members List"
-                            component={ViewMembers}
-                            team_id={team.id}
-                          />
-                        <Button onClick={() => this.setState({show_team: true})}>View Team Members</Button>
+                        <Button onClick={() => this.setState({ show_id: team.id, show_team: true})}>View Team Members</Button>
                     </ListGroup.Item>
           })}
         </ListGroup>
