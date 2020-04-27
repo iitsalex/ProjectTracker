@@ -71,11 +71,17 @@ router.post('/user/create', function (req, res) {
 router.post('/projects', function (req, res) {
     const uid = req.cookies.uid;
     var today = new Date();
-    Pivot.createproject(req.body, uid, today, function(err, count) {
+    Pivot.createproject(req.body, uid, today, function(err, project) {
         if(err) {
             res.status(400).json(err);
         } else {
-            res.json(req.body);
+            Pivot.addproject(req.body.team_id, project.insertId, function(err) {
+                if(err) {
+                    res.status(400).json(err);
+                } else {
+                    res.status(200);
+                }
+            });
         }
     });
 });
@@ -137,7 +143,6 @@ router.post('/teams', function (req, res) {
         if(err) {
             res.status(400).json(err);
         } else {
-
             Pivot.jointeam(uid, team.insertId, function(err) {
               if(err) {
                 res.status(400).json(err);
