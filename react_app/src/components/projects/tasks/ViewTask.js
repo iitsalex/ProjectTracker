@@ -5,11 +5,13 @@ class ViewTask extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: '',
-      description: '',
-      project_id: this.props.project_id,
-      status: 'New'
+      id: this.props.task.id,
+      name: this.props.task.name,
+      description: this.props.task.description,
+      status: this.props.task.status,
+      project_id: this.props.project_id
     };
+    console.log(this.state)
   }
 
   handleInputChange = (event) => {
@@ -19,19 +21,18 @@ class ViewTask extends Component {
     });
   }
 
-// may need to use an onsubmit for the modal itself
-// if we decide to make it edit and submittable
   onSubmit = (event) => {
     event.preventDefault();
     fetch('/api/tasks', {
-      method: 'POST',
+      method: 'PUT',
       body: JSON.stringify(this.state),
       headers: {
         'Content-Type': 'application/json'
       }
     }).then(res => {
       if (res.status === 200) {
-        window.location.href = 'dashboard';
+        this.props.updateTasks();
+        this.props.onHide();
       } else {
         const error = new Error(res.error);
         throw error;
@@ -47,13 +48,9 @@ class ViewTask extends Component {
     this.setState({[name]: value});
   }
 
-// 1. get api call for the task info
-// 2. display in editable fields
-// 3. post api call for task update on submit
-
   render() {
     return (
-      <Form onSubmit={this.onSubmit}>
+      <Form onSubmit={this.onSubmit} className="form-wide">
         <Form.Row>
           <FormGroup as={Col}>
             <FormLabel className="text-muted">Task Name</FormLabel>
@@ -89,16 +86,18 @@ class ViewTask extends Component {
         <FormGroup>
           <FormLabel className="text-muted">Task Description</FormLabel>
           <FormControl
+            as="textarea"
             type="text"
             name="description"
             placeholder="Enter Task Description"
             value={this.state.description}
             onChange={this.handleInputChange}
             autoComplete="off"
+            rows="5"
           />
         </FormGroup>
 
-        <Button type="submit" className="btn-block">Submit</Button>
+        <Button type="submit" className="btn-block btn-wide">Update</Button>
       </Form>
     );
   }

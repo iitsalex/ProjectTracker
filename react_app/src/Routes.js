@@ -47,7 +47,7 @@ class Routes extends Component {
         }/>
         <Route path="/dashboard" render={ () =>
           this.props.data.is_auth ?
-          <Dashboard data={this.props.data} /> :
+          <Dashboard data={this.props.data} updateTasks={this.props.updateTasks} /> :
           <Redirect to="/401" />
         }/>
         <Route path="/teams" render={ () =>
@@ -57,7 +57,7 @@ class Routes extends Component {
         }/>
         <Route path="/backlog" render={ () =>
           this.props.data.is_auth ?
-          <Backlog data={this.props.data} updateTasks={this.props.updateTasks}/> :
+          <Backlog data={this.props.data} updateTasks={this.props.updateTasks} /> :
           <Redirect to="/401" />
         }/>
       </Switch>

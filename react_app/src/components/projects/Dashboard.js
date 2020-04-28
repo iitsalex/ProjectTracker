@@ -1,17 +1,38 @@
 import React, { Component } from "react";
 import { Container, Card, Col, Row } from "react-bootstrap";
+import ModalTemplate from "../ModalTemplate";
+import ViewTask from "./tasks/ViewTask";
 
 class Dashboard extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      task: '',
+      show_task: false
+    }
+  }
   render() {
     return (
       <Container>
+        <ModalTemplate
+          show={this.state.show_task}
+          onHide={() => this.setState({show_task: false})}
+          title={this.state.task.name}
+          component={ViewTask}
+          task={this.state.task}
+          project_id={this.props.data.project_id}
+          updateTasks={this.props.updateTasks}
+        />
         <Row>
           {this.props.data.tasks.map(taskType =>
             <Col lg key={taskType.name}>
               <h3>{taskType.name}</h3>
               <div className="task-cards">
                 {taskType.container.map(task =>
-                  <Card key={task.id}>
+                  <Card key={task.id} onClick={() => this.setState({
+                      task: task,
+                      show_task: true
+                    })}>
                     <Card.Body>
                       <Card.Title>{task.name}</Card.Title>
                       <Card.Text>
