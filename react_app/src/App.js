@@ -18,7 +18,8 @@ class App extends Component {
       team_id: -1,
       projects: [],
       project_id: -1,
-      tasks: []
+      tasks: [],
+      all_tasks: []
     }
   }
 
@@ -145,6 +146,7 @@ class App extends Component {
     });
     if (this._isMounted) {
       this.setState({
+        all_tasks: data,
         tasks: taskDist,
         loading: false
       });
