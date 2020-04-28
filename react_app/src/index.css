@@ -84,6 +84,10 @@ div.task-cards {
   margin-bottom: 20px;
 }
 
-p.unpadded {
+.unpadded {
   margin: 0px !important;
+}
+
+.slight-muted {
+  color: #DDD !important;
 }
