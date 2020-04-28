@@ -20,7 +20,7 @@ class PivotNavbar extends Component {
   render() {
     return this.props.data.is_auth ?
       <div className="PivotNavbar">
-      (  <Navbar variant="dark" bg="dark" expand="sm">
+        <Navbar variant="dark" bg="dark" expand="sm">
           <FadeIn>
             <Navbar.Brand as={Link} to="/">Pivot</Navbar.Brand>
           </FadeIn>
@@ -91,7 +91,7 @@ class PivotNavbar extends Component {
             <Nav.Link style={{color: "white"}} href="/logout">Logout</Nav.Link>
           </Navbar.Collapse>
         </Navbar>
-      </div>)
+      </div>
     :
       <div className="MainNavbar">
         <Navbar variant="dark" bg="dark" expand="sm">
