@@ -1,8 +1,9 @@
 import React, { Component } from "react";
-import { Container, Card, Col, Row } from "react-bootstrap";
+import { Container, Card, Col, Row, Button } from "react-bootstrap";
 import FadeIn from 'react-fade-in';
 import ModalTemplate from "../ModalTemplate";
 import ViewTask from "./tasks/ViewTask";
+import CreateTask from "./tasks/CreateTask";
 
 class Dashboard extends Component {
   constructor(props) {
@@ -15,6 +16,17 @@ class Dashboard extends Component {
   render() {
     return (
       <FadeIn>
+        <Button variant="primary" onClick={() => this.setState({modalCreate: true})}>
+          Create Task
+        </Button>
+        <ModalTemplate
+          show={this.state.modalCreate}
+          onHide={() => this.setState({modalCreate: false})}
+          title="Create Task"
+          component={CreateTask}
+          project_id={this.props.data.project_id}
+          updateTasks={this.props.updateTasks}
+        />
         <Container>
           <ModalTemplate
             show={this.state.show_task}

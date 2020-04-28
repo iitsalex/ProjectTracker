@@ -94,7 +94,6 @@ class CreateTask extends Component {
             rows="5"
           />
         </FormGroup>
-
         <Button type="submit" className="btn-block btn-wide">Submit</Button>
       </Form>
     );
