@@ -5,6 +5,9 @@ var Pivot = {
     getuser: function(email, callback) {
         return db.query('SELECT * FROM users WHERE email=?', email, callback);
     },
+    getuserbyid: function(id, callback) {
+        return db.query('SELECT fname, lname, email FROM users WHERE id=?', id, callback);
+    },
     createuser: function(user, hash, callback) {
         return db.query('INSERT INTO users(email, password, fname, lname) VALUES(?, ?, ?, ?)',
             [user.email, hash, user.fname, user.lname], callback);

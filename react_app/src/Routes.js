@@ -29,7 +29,7 @@ class Routes extends Component {
         <Route path="/logout" render={this.logout} />
 
         <Route exact path="/" render={ () =>
-          <Home is_auth={this.props.data.is_auth} />
+          <Home is_auth={this.props.data.is_auth} user={this.props.data.user}/>
         }/>
 
         <Route path="/signup" render={ () =>

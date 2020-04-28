@@ -21,7 +21,14 @@ const secret = 'devsecret';
 
 // Authentication
 router.get('/user/auth', withAuth, function (req, res) {
-    res.sendStatus(200);
+    const uid = req.cookies.uid;
+    Pivot.getuserbyid(uid, function(err, user) {
+      if(err) {
+          res.status(400).json(err);
+      } else {
+          res.status(200).send(user[0]);
+      }
+    });
 });
 
 router.get('/user/deauth', withAuth, function (req, res) {
@@ -42,8 +49,10 @@ router.post('/user/login', function (req, res) {
                         const id = user[0].id
                         const payload = { id };
                         const token = jwt.sign(payload, secret, { expiresIn: '1h' });
+                        user[0].password = '';
                         res.cookie('uid', id, { httpOnly: true });
-                        res.cookie('token', token, { httpOnly: true }).sendStatus(200);
+                        res.cookie('token', token, { httpOnly: true });
+                        res.status(200).json(user[0]);
                     } else if (!valid) {
                         res.status(401).send('Invalid password');
                     } else {

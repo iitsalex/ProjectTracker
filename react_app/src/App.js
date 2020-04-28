@@ -15,6 +15,7 @@ class App extends Component {
     this.state = {
       loading: true,
       is_auth: false,
+      user: null,
       teams: [],
       team_id: -1,
       projects: [],
@@ -29,9 +30,7 @@ class App extends Component {
     fetch('/api/user/auth').then(res => {
       if (res.status === 200) {
         if (this._isMounted) {
-          this.setState({
-            is_auth: true
-          }, () => this.updateTeams());
+          return res.json();
         }
       } else if (res.status === 401) {
         if (this._isMounted) {
@@ -43,6 +42,13 @@ class App extends Component {
       } else {
         const error = new Error(res.error);
         throw error;
+      }
+    }).then(data => {
+      if (data && this._isMounted) {
+        this.setState({
+          is_auth: true,
+          user: data
+        }, () => this.updateTeams());
       }
     }).catch(console.error);
   }
@@ -63,6 +69,7 @@ class App extends Component {
   }
 
   updateTeams = () => {
+    console.log(this.state.user)
     fetch('/api/teams/currentuser').then(res => {
       if (res.status === 200) {
         return res.json();
@@ -160,7 +167,6 @@ class App extends Component {
   render () {
     return (
       <div className="App">
-
         { this.state.loading ?
           <FadeIn transitionDuration='5000'><h1>Loading...</h1></FadeIn> :
           <Fragment>
