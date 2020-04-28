@@ -40,7 +40,7 @@ class ViewMembers extends Component {
       <ListGroup>
         {this.state.members.map(member =>
           <ListGroup.Item key={member.id} value={member.id}>
-            {member.fname + " " + member.lname}
+            {member.lname + ", " + member.fname}
           </ListGroup.Item>
         )}
       </ListGroup>

@@ -74,7 +74,7 @@ class Backlog extends React.Component {
             <Col lg>
               <FadeIn>
               {this.props.data.all_tasks.map(task =>
-                task.status === 'Done' ? '' :
+                (task.status === 'Done' || task.assignee_id !== null) ? '' :
                   <Card
                     key={task.id}
                     bg={task.assignee_id === this.props.data.user.id ? 'primary' : 'secondary'}

@@ -8,7 +8,7 @@ class CreateTask extends Component {
       name: '',
       description: '',
       status: 'New',
-      assignee_id: this.props.user_id,
+      assignee_id: null,
       project_id: this.props.project_id,
       priority: ''
     };
@@ -108,6 +108,7 @@ class CreateTask extends Component {
               onChange={this.handleInputChange}
               autoComplete="off"
             >
+            <option key={-1} value={null}>Unassigned</option>
               {this.props.team_members.map(user =>
                 <option key={user.id} value={user.id}>{user.lname + ', ' + user.fname}</option>
               )}
