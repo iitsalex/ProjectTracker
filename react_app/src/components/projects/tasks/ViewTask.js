@@ -8,6 +8,8 @@ class ViewTask extends Component {
       id: this.props.task.id,
       name: this.props.task.name,
       description: this.props.task.description,
+      assignee_id: "",
+      priority: "",
       status: this.props.task.status,
       assignee_id: this.props.task.assignee_id,
       project_id: this.props.project_id
