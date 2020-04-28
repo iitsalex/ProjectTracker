@@ -28,7 +28,7 @@ class Routes extends Component {
       <Switch>
         <Route path="/logout" render={this.logout} />
 
-        <Route path="/" render={ () =>
+        <Route exact path="/" render={ () =>
           <Home is_auth={this.props.data.is_auth} />
         }/>
 
