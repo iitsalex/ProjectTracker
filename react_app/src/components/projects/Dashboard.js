@@ -35,10 +35,11 @@ class Dashboard extends Component {
                     })}>
                     <Card.Body>
                       <Card.Title>{task.name}</Card.Title>
-                      <Card.Text>
-                        {task.description.substring(0,50)}
-                        {task.description.length > 50 ? '...' : ''}
-                      </Card.Text>
+                        <Card.Subtitle className="text-muted">Date Created: {task.created.substring(0,10)}</Card.Subtitle>
+                        <Card.Text className="text-muted">
+                          {task.description.substring(0,50)}
+                          {task.description.length > 50 ? '...' : ''}
+                        </Card.Text>
                     </Card.Body>
                   </Card>
                 )}

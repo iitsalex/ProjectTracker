@@ -37,8 +37,8 @@ class Backlog extends React.Component {
                 <Card key={task.id}>
                   <Card.Body>
                     <Card.Title><b>{task.name}</b></Card.Title>
-                    <Card.Subtitle>Task Number: {task.id}</Card.Subtitle>
-                    <Card.Text>
+                    <Card.Subtitle className="text-muted">Date Created: {task.created.substring(0,10)}</Card.Subtitle>
+                    <Card.Text className="text-muted">
                       {task.description.substring(0,50)}
                       {task.description.length > 50 ? '...' : ''}
                     </Card.Text>
