@@ -23,8 +23,8 @@ const secret = 'devsecret';
 router.get('/user/auth', withAuth, function (req, res) {
     const uid = req.cookies.uid;
     Pivot.getuserbyid(uid, function(err, user) {
-      if(err) {
-          res.status(400).json(err);
+      if (user === undefined || user.length === 0) {
+          res.status(401).send('Invalid cookie');
       } else {
           res.status(200).send(user[0]);
       }
