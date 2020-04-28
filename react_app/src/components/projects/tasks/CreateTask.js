@@ -122,6 +122,7 @@ class CreateTask extends Component {
             />
           </FormGroup>
         </Form.Row>
+        <Button className="btn-block btn-wide">Template</Button>
         <Button type="submit" className="btn-block btn-wide">Submit</Button>
       </Form>
     );

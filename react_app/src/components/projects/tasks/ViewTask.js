@@ -8,6 +8,8 @@ class ViewTask extends Component {
       id: this.props.task.id,
       name: this.props.task.name,
       description: this.props.task.description,
+      assignee_id: "",
+      priority: "",
       status: this.props.task.status,
       project_id: this.props.project_id
     };
@@ -95,7 +97,32 @@ class ViewTask extends Component {
             rows="5"
           />
         </FormGroup>
-
+        <Form.Row>
+          <FormGroup as={Col}>
+            <FormLabel className="text-muted">Assignee</FormLabel>
+            <FormControl
+              as="select"
+              type="text"
+              name="description"
+              placeholder="Choose Assignee"
+              value={this.state.assignee}
+              onChange={this.handleInputChange}
+              autoComplete="off"
+            />
+          </FormGroup>
+          <FormGroup as={Col}>
+            <FormLabel className="text-muted">Priority</FormLabel>
+            <FormControl
+              as="select"
+              type="text"
+              name="description"
+              placeholder="Select Priority Level"
+              value={this.state.priority}
+              onChange={this.handleInputChange}
+              autoComplete="off"
+            />
+          </FormGroup>
+        </Form.Row>
         <Button type="submit" className="btn-block btn-wide">Update</Button>
       </Form>
     );
