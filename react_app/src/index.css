@@ -92,6 +92,10 @@ div.task-cards {
   margin: 1em !important;
 }
 
+.pad-em-bottom {
+  margin-bottom: 0.5em !important;
+}
+
 .slight-muted {
   color: #DDD !important;
 }
