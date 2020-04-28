@@ -63,7 +63,7 @@ class PivotNavbar extends Component {
               name="project_id"
               value={this.props.data.project_id}
               onChange={this.props.handleDataChange}
-              className="select-nav"
+              className="select-nav centered"
             >
               {this.props.data.projects.map(project =>
                 <option key={project.id} value={project.id}>{project.name}</option>
@@ -79,7 +79,7 @@ class PivotNavbar extends Component {
               name="team_id"
               value={this.props.data.team_id}
               onChange={this.props.handleDataChange}
-              className="select-nav"
+              className="select-nav centered"
             >
               {this.props.data.teams.map(team =>
                 <option key={team.id} value={team.id}>{team.name}</option>

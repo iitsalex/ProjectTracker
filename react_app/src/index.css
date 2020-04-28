@@ -100,3 +100,8 @@ div.task-cards {
 .slight-muted {
   color: #DDD !important;
 }
+
+.centered {
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
