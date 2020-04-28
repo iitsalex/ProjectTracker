@@ -30,7 +30,10 @@ class Teams extends Component {
         />
         <ListGroup horizontal='lg'>
           {this.props.data.teams.map(team =>
-            <Card key={team.id} onClick={() => this.setState({ show_id: team.id, show_team: true})}>
+            <Card
+              key={team.id}
+              bg={team.lead_id === this.props.data.user.id ? 'primary' : 'secondary'}
+              onClick={() => this.setState({ show_id: team.id, show_team: true})}>
               {team.name}
               <br/>
               <p className='unpadded text-muted'>Click to view team details</p>
