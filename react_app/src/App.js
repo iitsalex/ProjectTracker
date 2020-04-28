@@ -146,7 +146,7 @@ class App extends Component {
     });
     if (this._isMounted) {
       this.setState({
-        all_tasks: data,
+        all_tasks: data.reverse(),
         tasks: taskDist,
         loading: false
       });

@@ -11,7 +11,6 @@ class ViewTask extends Component {
       status: this.props.task.status,
       project_id: this.props.project_id
     };
-    console.log(this.state)
   }
 
   handleInputChange = (event) => {

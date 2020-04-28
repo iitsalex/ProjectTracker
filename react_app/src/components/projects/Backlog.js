@@ -11,8 +11,7 @@ class Backlog extends React.Component {
     this.state = {
       modalCreate: false,
       modalView: false,
-      task: '',
-      tasks: this.props.data.all_tasks.reverse()
+      task: ''
     };
   }
 // this.props.data.tasks
@@ -46,7 +45,7 @@ class Backlog extends React.Component {
         />
         <Row>
           <Col lg>
-            {this.state.tasks.map(task =>
+            {this.props.data.all_tasks.map(task =>
               task.status === 'Done' ? '' :
                 <Card key={task.id} onClick={() => this.setState({
                     task: task,
