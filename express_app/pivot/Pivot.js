@@ -102,8 +102,8 @@ var Pivot = {
             [data.user_id, data.task_id], callback);
     },
     updatetask: function(task, callback) {
-    	return db.query('UPDATE tasks SET name=?, owner_id=? WHERE id=?',
-            [task.name, task.lead_id, task.id], callback);
+    	return db.query('UPDATE tasks SET name=?, description=?, status=? WHERE id=?',
+            [task.name, task.description, task.status, task.id], callback);
     },
     deletetask: function(task_id, callback) {
     	return db.query('DELETE FROM tasks WHERE id=?', task_id, callback);
