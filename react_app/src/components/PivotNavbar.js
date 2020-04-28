@@ -93,7 +93,7 @@ class PivotNavbar extends Component {
         </Navbar>
       </div>
     :
-      <div className="MainNavbar">
+      <div className="PivotNavbar">
         <Navbar variant="dark" bg="dark" expand="sm">
           <FadeIn>
             <Navbar.Brand as={Link} to="/">Pivot</Navbar.Brand>
