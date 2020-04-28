@@ -302,6 +302,9 @@ router.delete('/teams/:team_id', function (req, res) {
 router.post('/tasks', function (req, res) {
     const uid = req.cookies.uid;
     var today = new Date();
+    if (req.body.assignee_id === -1) {
+      req.body.assignee_id = null;
+    }
     Pivot.createtask(req.body, uid, today, function(err, task) {
         if(err) {
             res.status(400).json(err);
@@ -331,16 +334,6 @@ router.get('/tasks/project/:project_id', function(req, res) {
     });
 });
 
-router.post('/tasks', function(req, res) {
-    Pivot.addtask(req.body, function(err, tasks) {
-        if(err) {
-            res.status(400).json(err);
-        } else {
-            res.json(req.body);
-        }
-    });
-});
-
 router.post('/tasks/assign', function(req, res) {
     Pivot.assigntask(req.body, function(err, tasks) {
         if(err) {
@@ -352,6 +345,9 @@ router.post('/tasks/assign', function(req, res) {
 });
 
 router.put('/tasks', function (req, res) {
+    if (req.body.assignee_id === -1) {
+      req.body.assignee_id = null;
+    }
     Pivot.updatetask(req.body, function(err, count) {
         if(err) {
             res.status(400).json(err);

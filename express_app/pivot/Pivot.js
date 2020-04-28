@@ -98,10 +98,6 @@ var Pivot = {
         return db.query('SELECT * from tasks WHERE project_id=?',
             project_id, callback);
     },
-    addtask: function(data, callback) {
-        return db.query('INSERT INTO project_task (project_id, task_id) VALUES(?, ?)',
-            [data.project_id, data.task_id], callback);
-    },
     // assigntask: function(data, callback) {
     //     return db.query('INSERT INTO user_task (user_id, task_id) VALUES(?, ?)',
     //         [data.user_id, data.task_id], callback);
