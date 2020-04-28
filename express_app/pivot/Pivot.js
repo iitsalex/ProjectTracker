@@ -82,9 +82,9 @@ var Pivot = {
 
     // Tasks
     createtask: function(data, uid, today, callback) {
-        return db.query('INSERT INTO tasks (owner_id, project_id, name, description, status, created) ' +
-          'VALUES(?, ?, ?, ?, ?, ?)',
-        [uid, data.project_id, data.name, data.description, data.status, today], callback);
+        return db.query('INSERT INTO tasks (owner_id, assignee_id, project_id, name, description, status, created) ' +
+          'VALUES(?, ?, ?, ?, ?, ?, ?)',
+        [uid, data.assignee_id, data.project_id, data.name, data.description, data.status, today], callback);
     },
     gettask: function(task_id, callback) {
         return db.query('SELECT * FROM tasks WHERE id=?', task_id, callback);
@@ -97,13 +97,13 @@ var Pivot = {
         return db.query('INSERT INTO project_task (project_id, task_id) VALUES(?, ?)',
             [data.project_id, data.task_id], callback);
     },
-    assigntask: function(data, callback) {
-        return db.query('INSERT INTO user_task (user_id, task_id) VALUES(?, ?)',
-            [data.user_id, data.task_id], callback);
-    },
+    // assigntask: function(data, callback) {
+    //     return db.query('INSERT INTO user_task (user_id, task_id) VALUES(?, ?)',
+    //         [data.user_id, data.task_id], callback);
+    // },
     updatetask: function(task, callback) {
-    	return db.query('UPDATE tasks SET name=?, description=?, status=? WHERE id=?',
-            [task.name, task.description, task.status, task.id], callback);
+    	return db.query('UPDATE tasks SET assignee_id=?, name=?, description=?, status=? WHERE id=?',
+            [task.assignee_id, task.name, task.description, task.status, task.id], callback);
     },
     deletetask: function(task_id, callback) {
     	return db.query('DELETE FROM tasks WHERE id=?', task_id, callback);

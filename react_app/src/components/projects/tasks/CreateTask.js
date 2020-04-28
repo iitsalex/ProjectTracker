@@ -7,7 +7,7 @@ class CreateTask extends Component {
     this.state = {
       name: '',
       description: '',
-      assignee: '',
+      assignee_id: '',
       project_id: this.props.project_id,
       status: 'New',
       priority: ''
@@ -102,12 +102,16 @@ class CreateTask extends Component {
             <FormControl
               as="select"
               type="text"
-              name="description"
+              name="assignee_id"
               placeholder="Choose Assignee"
-              value={this.state.assignee}
+              value={this.state.assignee_id}
               onChange={this.handleInputChange}
               autoComplete="off"
-            />
+            >
+              {this.props.team_members.map(user =>
+                <option key={user.id} value={user.id}>{user.lname + ', ' + user.fname}</option>
+              )}
+            </FormControl>
           </FormGroup>
           <FormGroup as={Col}>
             <FormLabel className="text-muted">Priority</FormLabel>

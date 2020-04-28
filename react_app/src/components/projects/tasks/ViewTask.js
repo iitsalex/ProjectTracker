@@ -9,6 +9,7 @@ class ViewTask extends Component {
       name: this.props.task.name,
       description: this.props.task.description,
       status: this.props.task.status,
+      assignee_id: this.props.task.assignee_id,
       project_id: this.props.project_id
     };
   }
@@ -95,6 +96,37 @@ class ViewTask extends Component {
             rows="5"
           />
         </FormGroup>
+
+        <Form.Row>
+          <FormGroup as={Col}>
+            <FormLabel className="text-muted">Assignee</FormLabel>
+            <FormControl
+              as="select"
+              type="text"
+              name="assignee_id"
+              placeholder="Choose Assignee"
+              value={this.state.assignee_id}
+              onChange={this.handleInputChange}
+              autoComplete="off"
+            >
+              {this.props.team_members.map(user =>
+                <option key={user.id} value={user.id}>{user.lname + ', ' + user.fname}</option>
+              )}
+            </FormControl>
+          </FormGroup>
+          <FormGroup as={Col}>
+            <FormLabel className="text-muted">Priority</FormLabel>
+            <FormControl
+              as="select"
+              type="text"
+              name="description"
+              placeholder="Select Priority Level"
+              value={this.state.priority}
+              onChange={this.handleInputChange}
+              autoComplete="off"
+            />
+          </FormGroup>
+        </Form.Row>
 
         <Button type="submit" className="btn-block btn-wide">Update</Button>
       </Form>

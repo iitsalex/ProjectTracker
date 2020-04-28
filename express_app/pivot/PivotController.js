@@ -327,7 +327,7 @@ router.post('/tasks', function(req, res) {
         if(err) {
             res.status(400).json(err);
         } else {
-            res.json(tasks);
+            res.json(req.body);
         }
     });
 });
@@ -337,7 +337,7 @@ router.post('/tasks/assign', function(req, res) {
         if(err) {
             res.status(400).json(err);
         } else {
-            res.json(tasks);
+            res.json(req.body);
         }
     });
 });
