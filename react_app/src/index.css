@@ -30,6 +30,7 @@ div.card {
   margin: 0 auto;
   max-width: 320px;
   padding: 10px;
+  cursor: pointer;
 }
 
 div.PivotNavbar {
