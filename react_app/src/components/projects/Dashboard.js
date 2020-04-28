@@ -73,7 +73,10 @@ class Dashboard extends Component {
                 <div className="task-cards">
                   <FadeIn>
                     {taskType.container.map(task =>
-                      <Card key={task.id} onClick={() => this.setState({
+                      <Card
+                        key={task.id}
+                        bg={task.assignee_id === this.props.data.user.id ? 'primary' : 'secondary'}
+                        onClick={() => this.setState({
                           task: task,
                           show_task: true
                         })}>

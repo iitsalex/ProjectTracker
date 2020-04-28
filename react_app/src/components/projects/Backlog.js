@@ -74,7 +74,10 @@ class Backlog extends React.Component {
               <FadeIn>
               {this.props.data.all_tasks.map(task =>
                 task.status === 'Done' ? '' :
-                  <Card key={task.id} onClick={() => this.setState({
+                  <Card
+                    key={task.id}
+                    bg={task.assignee_id === this.props.data.user.id ? 'primary' : 'secondary'}
+                    onClick={() => this.setState({
                       task: task,
                       modalView: true
                     })}>
