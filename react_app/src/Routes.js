@@ -26,8 +26,11 @@ class Routes extends Component {
   render () {
     return (
       <Switch>
-        <Route exact path="/" component={Home} />
         <Route path="/logout" render={this.logout} />
+
+        <Route path="/" render={ () =>
+          <Home is_auth={this.props.data.is_auth} />
+        }/>
 
         <Route path="/signup" render={ () =>
           this.props.data.is_auth ?
