@@ -48,7 +48,7 @@ class CreateTask extends Component {
 
   render() {
     return (
-      <Form onSubmit={this.onSubmit} className="wide-form">
+      <Form onSubmit={this.onSubmit} className="form-wide">
         <Form.Row>
           <FormGroup as={Col}>
             <FormLabel className="text-muted">Task Name</FormLabel>
@@ -91,10 +91,11 @@ class CreateTask extends Component {
             value={this.state.description}
             onChange={this.handleInputChange}
             autoComplete="off"
+            rows="5"
           />
         </FormGroup>
 
-        <Button type="submit" className="btn-block wide-button">Submit</Button>
+        <Button type="submit" className="btn-block btn-wide">Submit</Button>
       </Form>
     );
   }

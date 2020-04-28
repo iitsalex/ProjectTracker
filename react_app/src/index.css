@@ -15,9 +15,15 @@ form {
   max-width: 320px;
 }
 
-form.wide-form {
+form.form-wide {
   margin: 0 auto;
   max-width: 500px !important;
+}
+
+textarea {
+  background-color: #303030 !important;
+  color: #DDD !important;
+  border-color: #888 !important;
 }
 
 div.card {
@@ -35,7 +41,7 @@ button {
   max-width: 320px;
 }
 
-button.wide-button {
+button.btn-wide {
   margin-bottom: 10px !important;
   max-width: 500px !important;
 }
