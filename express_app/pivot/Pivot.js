@@ -14,8 +14,8 @@ var Pivot = {
     },
     getusersbyteam: function(team_id, callback) {
         return db.query('SELECT id, fname, lname, email FROM users WHERE id IN ' +
-            '(SELECT user_id FROM user_team WHERE team_id=?)' +
-            'ORDER BY lname ASC',
+            '(SELECT user_id FROM user_team WHERE team_id=?) ' +
+            'ORDER BY lname',
             team_id, callback);
     },
 
@@ -28,11 +28,12 @@ var Pivot = {
         return db.query('SELECT * FROM projects WHERE id=?', project_id, callback);
     },
     getprojectsbyowner: function(user_id, callback) {
-        return db.query('SELECT * FROM projects WHERE owner_id=?', user_id, callback);
+        return db.query('SELECT * FROM projects WHERE owner_id=? ORDER BY name', user_id, callback);
     },
     getprojectsbyteam: function (team_id, callback) {
         return db.query('SELECT * FROM projects WHERE id IN ' +
-            '(SELECT project_id FROM team_project WHERE team_id=?)',
+            '(SELECT project_id FROM team_project WHERE team_id=?) ' +
+            'ORDER BY name',
             team_id, callback);
     },
     addproject: function(team_id, project_id, callback) {

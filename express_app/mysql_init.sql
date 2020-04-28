@@ -37,7 +37,7 @@ CREATE TABLE teams(
 CREATE TABLE tasks(
     id INT NOT NULL AUTO_INCREMENT,
     owner_id INT NOT NULL,
-    assignee_id INT NOT NULL,
+    assignee_id INT,
     project_id INT NOT NULL,
     name VARCHAR(100) NOT NULL,
     description TEXT,
