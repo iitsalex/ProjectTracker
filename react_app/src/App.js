@@ -69,7 +69,6 @@ class App extends Component {
   }
 
   updateTeams = () => {
-    console.log(this.state.user)
     fetch('/api/teams/currentuser').then(res => {
       if (res.status === 200) {
         return res.json();

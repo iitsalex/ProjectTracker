@@ -51,6 +51,7 @@ class Dashboard extends Component {
           onHide={() => this.setState({modalCreate: false})}
           title="Create Task"
           component={CreateTask}
+          user_id={this.props.data.user_id}
           project_id={this.props.data.project_id}
           team_members={this.state.team_members}
           updateTasks={this.props.updateTasks}
