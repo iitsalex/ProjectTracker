@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component, Fragment } from 'react';
 import FadeIn from 'react-fade-in';
 import './App.css';
 
@@ -160,20 +160,23 @@ class App extends Component {
   render () {
     return (
       <div className="App">
-        <PivotNavbar
-          data={this.state}
-          handleDataChange={this.handleDataChange}
-          updateProjects={this.updateProjects}
-        />
+
         { this.state.loading ?
           <FadeIn transitionDuration='5000'><h1>Loading...</h1></FadeIn> :
-          <Routes
-            data={this.state}
-            updateTeams={this.updateTeams}
-            updateProjects={this.updateProjects}
-            updateTasks={this.updateTasks}
-            logout={() => this.setState({teams: [], projects: [], tasks: []})}
-          />
+          <Fragment>
+            <PivotNavbar
+              data={this.state}
+              handleDataChange={this.handleDataChange}
+              updateProjects={this.updateProjects}
+            />
+            <Routes
+              data={this.state}
+              updateTeams={this.updateTeams}
+              updateProjects={this.updateProjects}
+              updateTasks={this.updateTasks}
+              logout={() => this.setState({teams: [], projects: [], tasks: []})}
+            />
+          </Fragment>
         }
       </div>
 
