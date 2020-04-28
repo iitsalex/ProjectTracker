@@ -7,8 +7,10 @@ class CreateTask extends Component {
     this.state = {
       name: '',
       description: '',
+      assignee: '',
       project_id: this.props.project_id,
-      status: 'New'
+      status: 'New',
+      priority: ''
     };
   }
 
@@ -94,6 +96,32 @@ class CreateTask extends Component {
             rows="5"
           />
         </FormGroup>
+        <Form.Row>
+          <FormGroup as={Col}>
+            <FormLabel className="text-muted">Assignee</FormLabel>
+            <FormControl
+              as="select"
+              type="text"
+              name="description"
+              placeholder="Choose Assignee"
+              value={this.state.assignee}
+              onChange={this.handleInputChange}
+              autoComplete="off"
+            />
+          </FormGroup>
+          <FormGroup as={Col}>
+            <FormLabel className="text-muted">Priority</FormLabel>
+            <FormControl
+              as="select"
+              type="text"
+              name="description"
+              placeholder="Select Priority Level"
+              value={this.state.priority}
+              onChange={this.handleInputChange}
+              autoComplete="off"
+            />
+          </FormGroup>
+        </Form.Row>
         <Button type="submit" className="btn-block btn-wide">Submit</Button>
       </Form>
     );
