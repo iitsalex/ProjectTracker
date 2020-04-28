@@ -76,7 +76,10 @@ class Dashboard extends Component {
                     {taskType.container.map(task =>
                       <Card
                         key={task.id}
-                        bg={task.assignee_id === this.props.data.user.id ? 'primary' : 'secondary'}
+                        bg={task.assignee_id === this.props.data.user.id ?
+                              'success' : task.assignee_id === null ?
+                              'secondary' :
+                              'primary'}
                         onClick={() => this.setState({
                           task: task,
                           show_task: true

@@ -77,7 +77,6 @@ class Backlog extends React.Component {
                 (task.status === 'Done' || task.assignee_id !== null) ? '' :
                   <Card
                     key={task.id}
-                    bg={task.assignee_id === this.props.data.user.id ? 'primary' : 'secondary'}
                     onClick={() => this.setState({
                       task: task,
                       modalView: true
