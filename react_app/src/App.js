@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import FadeIn from 'react-fade-in';
 import './App.css';
 
 import PivotNavbar from './components/PivotNavbar';
@@ -12,7 +13,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      loading: 'Authenticating...',
+      loading: true,
       is_auth: false,
       teams: [],
       team_id: -1,
@@ -29,15 +30,14 @@ class App extends Component {
       if (res.status === 200) {
         if (this._isMounted) {
           this.setState({
-            is_auth: true,
-            loading: 'Fetching teams...'
+            is_auth: true
           }, () => this.updateTeams());
         }
       } else if (res.status === 401) {
         if (this._isMounted) {
           this.setState({
             is_auth: false,
-            loading: 'done'
+            loading: false
           });
         }
       } else {
@@ -79,8 +79,7 @@ class App extends Component {
         });
         if (data[0] !== undefined) {
           this.setState({
-            team_id: data[0].id,
-            loading: 'Fetching projects...'
+            team_id: data[0].id
           }, () => this.updateProjects());
         } else {
           this.setState({ loading: false })
@@ -105,8 +104,7 @@ class App extends Component {
         });
         if (data[0] !== undefined) {
           this.setState({
-            project_id: data[0].id,
-            loading: 'Fetching tasks...'
+            project_id: data[0].id
           }, () => this.updateTasks());
         } else {
           this.setState({ loading: false })
@@ -154,7 +152,7 @@ class App extends Component {
       this.setState({
         all_tasks: data.reverse(),
         tasks: taskDist,
-        loading: 'done'
+        loading: false
       });
     }
   }
@@ -167,7 +165,8 @@ class App extends Component {
           handleDataChange={this.handleDataChange}
           updateProjects={this.updateProjects}
         />
-      { this.state.loading !== 'done' ? <p>{this.state.loading}</p> :
+        { this.state.loading ?
+          <FadeIn transitionDuration='5000'><h1>Loading...</h1></FadeIn> :
           <Routes
             data={this.state}
             updateTeams={this.updateTeams}
@@ -176,9 +175,8 @@ class App extends Component {
             logout={() => this.setState({teams: [], projects: [], tasks: []})}
           />
         }
-
-
       </div>
+
     );
   }
 }

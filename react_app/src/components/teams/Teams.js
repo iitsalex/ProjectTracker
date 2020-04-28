@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { ListGroup, Button, Card } from "react-bootstrap";
+import FadeIn from 'react-fade-in';
 import ModalTemplate from "../ModalTemplate";
 import CreateTeam from "./CreateTeam";
 import InviteMembers from "./InviteMembers";
@@ -18,16 +19,16 @@ class Teams extends Component {
 
   render() {
     return (
-      <>
+      <FadeIn>
         <h3>Team List</h3>
+        <ModalTemplate
+          show={this.state.show_team}
+          onHide={() => this.setState({show_team: false})}
+          title="Members List"
+          component={ViewMembers}
+          team_id={this.state.show_id}
+        />
         <ListGroup horizontal='lg'>
-          <ModalTemplate
-            show={this.state.show_team}
-            onHide={() => this.setState({show_team: false})}
-            title="Members List"
-            component={ViewMembers}
-            team_id={this.state.show_id}
-          />
           {this.props.data.teams.map(team =>
             <Card key={team.id} onClick={() => this.setState({ show_id: team.id, show_team: true})}>
               {team.name}
@@ -43,21 +44,21 @@ class Teams extends Component {
           component={CreateTeam}
           updateTeams={this.props.updateTeams}
         />
-      <br/>
-      <Button variant="secondary" className="btn-block btn-center" onClick={() => this.setState({show_create: true})}>
-        Create Team
-      </Button>
-      <ModalTemplate
-        show={this.state.show_invite}
-        onHide={() => this.setState({show_invite: false})}
-        title="Invite Members"
-        component={InviteMembers}
-        teams={this.props.data.teams}
-      />
-      <Button variant="secondary" className="btn-block btn-center" onClick={() => this.setState({show_invite: true})}>
-        Invite Team Members
-      </Button>
-      </>
+        <br/>
+        <Button variant="secondary" className="btn-block btn-center" onClick={() => this.setState({show_create: true})}>
+          Create Team
+        </Button>
+        <ModalTemplate
+          show={this.state.show_invite}
+          onHide={() => this.setState({show_invite: false})}
+          title="Invite Members"
+          component={InviteMembers}
+          teams={this.props.data.teams}
+        />
+        <Button variant="secondary" className="btn-block btn-center" onClick={() => this.setState({show_invite: true})}>
+          Invite Team Members
+        </Button>
+      </FadeIn>
     );
   }
 }
