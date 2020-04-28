@@ -9,9 +9,10 @@ class Home extends Component {
         <img src={ require('../assets/images/Pivot_logo.png') } alt="Pivot Logo" />
         <h1>Your Project Tracking Solution</h1>
         <br/>
-        <p>Welcome {this.props.user.fname + ' ' + this.props.user.lname}</p>
-        <br/>
-        {this.props.is_auth ? '' : <Button href="/signup"type="submit">Sign Up</Button>}
+        {this.props.is_auth ?
+          <p>Welcome {this.props.user.fname + ' ' + this.props.user.lname}</p> :
+          <Button href="/signup"type="submit">Sign Up</Button>
+        }
       </FadeIn>
     );
   }
