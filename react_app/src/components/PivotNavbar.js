@@ -19,15 +19,17 @@ class PivotNavbar extends Component {
 
   authNav = () =>
     <div className="PivotNavbar">
-      <ModalTemplate
-        show={this.state.showCreateProject}
-        onHide={() => this.setState({showCreateProject: false})}
-        title="Create Project"
-        component={CreateProject}
-        teams={this.props.data.teams}
-        team_id={this.props.data.team_id}
-        updateProjects={this.props.updateProjects}
-      />
+      {this.props.data.teams.length > 0 ?
+        <ModalTemplate
+          show={this.state.showCreateProject}
+          onHide={() => this.setState({showCreateProject: false})}
+          title="Create Project"
+          component={CreateProject}
+          teams={this.props.data.teams}
+          team_id={this.props.data.team_id}
+          updateProjects={this.props.updateProjects}
+        />
+      : ''}
     <Navbar variant="dark" bg="dark" expand="sm">
       <FadeIn>
         <Navbar.Brand as={Link} to="/">Pivot</Navbar.Brand>
