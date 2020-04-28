@@ -12,7 +12,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      loading: true,
+      loading: 'Authenticating...',
       is_auth: false,
       teams: [],
       team_id: -1,
@@ -28,9 +28,10 @@ class App extends Component {
     fetch('/api/user/auth').then(res => {
       if (res.status === 200) {
         if (this._isMounted) {
-          this.setState({ is_auth: true }, () =>
-            this.updateTeams()
-          );
+          this.setState({
+            is_auth: true,
+            loading: 'Fetching teams...'
+          }, () => this.updateTeams());
         }
       } else if (res.status === 401) {
         if (this._isMounted) {
@@ -75,7 +76,8 @@ class App extends Component {
         });
         if (data[0] !== undefined) {
           this.setState({
-            team_id: data[0].id
+            team_id: data[0].id,
+            loading: 'Fetching projects...'
           }, () => this.updateProjects());
         } else {
           this.setState({ loading: false })
@@ -100,7 +102,8 @@ class App extends Component {
         });
         if (data[0] !== undefined) {
           this.setState({
-            project_id: data[0].id
+            project_id: data[0].id,
+            loading: 'Fetching tasks...'
           }, () => this.updateTasks());
         } else {
           this.setState({ loading: false })
@@ -148,7 +151,7 @@ class App extends Component {
       this.setState({
         all_tasks: data.reverse(),
         tasks: taskDist,
-        loading: false
+        loading: 'done'
       });
     }
   }
@@ -161,7 +164,7 @@ class App extends Component {
           handleDataChange={this.handleDataChange}
           updateProjects={this.updateProjects}
         />
-        { this.state.loading ? 'loading...' :
+      { this.state.loading !== 'done' ? <p>{this.state.loading}</p> :
           <Routes
             data={this.state}
             updateTeams={this.updateTeams}
