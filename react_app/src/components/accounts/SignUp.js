@@ -58,6 +58,7 @@ class SignUp extends Component {
             value={this.state.fname}
             onChange={this.handleInputChange}
             autoComplete="given-name"
+            maxLength="50"
             required
           />
         </FormGroup>
@@ -71,6 +72,7 @@ class SignUp extends Component {
             value={this.state.lname}
             onChange={this.handleInputChange}
             autoComplete="family-name"
+            maxLength="50"
             required
           />
         </FormGroup>
@@ -84,6 +86,7 @@ class SignUp extends Component {
             value={this.state.email}
             onChange={this.handleInputChange}
             autoComplete="email"
+            maxLength="100"
             required
           />
         </FormGroup>
@@ -97,6 +100,7 @@ class SignUp extends Component {
             value={this.state.password}
             onChange={this.handleInputChange}
             autoComplete="password"
+            maxLength="60"
             required
           />
         </FormGroup>
