@@ -160,6 +160,7 @@ class App extends Component {
   render () {
     return (
       <div className="App">
+
         { this.state.loading ?
           <FadeIn transitionDuration='5000'><h1>Loading...</h1></FadeIn> :
           <Fragment>
