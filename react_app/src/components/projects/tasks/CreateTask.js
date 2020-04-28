@@ -7,7 +7,7 @@ class CreateTask extends Component {
     this.state = {
       name: '',
       description: '',
-      assignee_id: '',
+      assignee_id: this.props.team_members[0].id,
       project_id: this.props.project_id,
       status: 'New',
       priority: ''
