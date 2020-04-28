@@ -97,9 +97,7 @@ class ViewTask extends Component {
             rows="5"
           />
         </FormGroup>
-
-        <Form.Row>
-          <FormGroup as={Col}>
+          <FormGroup>
             <FormLabel className="text-muted">Assignee</FormLabel>
             <FormControl
               as="select"
@@ -109,6 +107,7 @@ class ViewTask extends Component {
               value={this.state.assignee_id === null ? '-1' : this.state.assignee_id}
               onChange={this.handleInputChange}
               autoComplete="off"
+              className="form-wide"
             >
               <option key={'-1'} value={'-1'}>Unassigned</option>
               {this.props.team_members.map(user =>
@@ -116,20 +115,6 @@ class ViewTask extends Component {
               )}
             </FormControl>
           </FormGroup>
-          <FormGroup as={Col}>
-            <FormLabel className="text-muted">Priority</FormLabel>
-            <FormControl
-              as="select"
-              type="text"
-              name="description"
-              placeholder="Select Priority Level"
-              value={this.state.priority}
-              onChange={this.handleInputChange}
-              autoComplete="off"
-            />
-          </FormGroup>
-        </Form.Row>
-
         <Button type="submit" className="btn-block btn-wide">Update</Button>
       </Form>
     );
