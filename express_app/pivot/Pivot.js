@@ -14,7 +14,8 @@ var Pivot = {
     },
     getusersbyteam: function(team_id, callback) {
         return db.query('SELECT id, fname, lname, email FROM users WHERE id IN ' +
-            '(SELECT user_id FROM user_team WHERE team_id=?)',
+            '(SELECT user_id FROM user_team WHERE team_id=?)' +
+            'ORDER BY lname ASC',
             team_id, callback);
     },
 
