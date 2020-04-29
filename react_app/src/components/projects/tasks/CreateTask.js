@@ -128,7 +128,11 @@ class CreateTask extends Component {
           </FormGroup>
         </Form.Row>
 
-        <Button className="btn-block btn-wide">Template</Button>
+        <Button className="btn-block btn-wide" onClick={() => this.setState({
+          name: 'Possible Name',
+          description: 'Possible Description',
+          points: 1
+          })}>Template</Button>
         <Button variant='info' type="submit" className="btn-block btn-wide">Submit</Button>
       </Form>
     );
