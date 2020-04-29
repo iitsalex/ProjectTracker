@@ -149,11 +149,11 @@ class ViewTask extends Component {
             />
           </FormGroup>
         </Form.Row>
+        <Button variant='info' type="submit" className="btn-block btn-wide">Update</Button>
         <Button variant='danger' className="btn-block btn-wide" onClick={() =>
             window.confirm('Are you sure you want to delete ' + this.state.name + '?') ?
             this.deleteTask() : ''
           }>Delete</Button>
-        <Button variant='info' type="submit" className="btn-block btn-wide">Update</Button>
       </Form>
     );
   }
