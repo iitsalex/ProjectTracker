@@ -50,6 +50,27 @@ class ViewTask extends Component {
     this.setState({[name]: value});
   }
 
+  deleteTask = () => {
+    fetch('/api/tasks/' + this.state.id, {
+      method: 'DELETE',
+      body: JSON.stringify(this.state),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }).then(res => {
+      if (res.status === 200) {
+        this.props.updateTasks();
+        this.props.onHide();
+      } else {
+        const error = new Error(res.error);
+        throw error;
+      }
+    }).catch(err => {
+      console.error(err);
+      alert('Error logging in please try again');
+    });
+  }
+
   render() {
     return (
       <Form onSubmit={this.onSubmit} className="form-wide">
@@ -128,6 +149,10 @@ class ViewTask extends Component {
             />
           </FormGroup>
         </Form.Row>
+        <Button variant='danger' className="btn-block btn-wide" onClick={() =>
+            window.confirm('Are you sure you want to delete ' + this.state.name + '?') ?
+            this.deleteTask() : ''
+          }>Delete</Button>
         <Button variant='info' type="submit" className="btn-block btn-wide">Update</Button>
       </Form>
     );
