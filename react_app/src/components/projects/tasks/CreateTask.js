@@ -8,6 +8,7 @@ class CreateTask extends Component {
       name: '',
       description: '',
       status: 'New',
+      points: 0,
       assignee_id: -1,
       project_id: this.props.project_id,
       priority: ''
@@ -96,7 +97,8 @@ class CreateTask extends Component {
             rows="5"
           />
         </FormGroup>
-          <FormGroup>
+        <Form.Row>
+          <FormGroup as={Col}>
             <FormLabel className="text-muted">Assignee</FormLabel>
             <FormControl
               as="select"
@@ -106,7 +108,6 @@ class CreateTask extends Component {
               value={this.state.assignee_id}
               onChange={this.handleInputChange}
               autoComplete="off"
-              className="form-wide"
             >
               <option key={'-1'} value={'-1'}>Unassigned</option>
               {this.props.team_members.map(user =>
@@ -114,6 +115,19 @@ class CreateTask extends Component {
               )}
             </FormControl>
           </FormGroup>
+          <FormGroup as={Col}>
+            <FormLabel className="text-muted">Points</FormLabel>
+            <FormControl
+              type="number"
+              name="points"
+              placeholder="Hours spent on task"
+              value={this.state.points}
+              onChange={this.handleInputChange}
+              autoComplete="off"
+            />
+          </FormGroup>
+        </Form.Row>
+
         <Button className="btn-block btn-wide">Template</Button>
         <Button type="submit" className="btn-block btn-wide">Submit</Button>
       </Form>
