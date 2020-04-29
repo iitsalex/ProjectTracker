@@ -42,6 +42,7 @@ CREATE TABLE tasks(
     name VARCHAR(100) NOT NULL,
     description TEXT,
     status VARCHAR(20) NOT NULL,
+    points INT NOT NULL,
     created DATE,
     PRIMARY KEY (id),
     FOREIGN KEY (owner_id) REFERENCES users(id) ON DELETE CASCADE,
