@@ -95,9 +95,13 @@ class App extends Component {
           message: ''
         });
         if (data[0] !== undefined) {
-          this.setState({
-            team_id: data[0].id
-          }, () => this.updateTeamMembers());
+          if (this.state.team_id === -1) {
+            this.setState({
+              team_id:  data[0].id
+            }, () => this.updateTeamMembers());
+          } else {
+            this.updateTeamMembers();
+          }
         } else {
           this.setState({ loading: false })
         }
@@ -148,9 +152,13 @@ class App extends Component {
           message: ''
         });
         if (data[0] !== undefined) {
-          this.setState({
-            project_id: data[0].id
-          }, () => this.updateTasks());
+          if (this.state.team_id === -1) {
+            this.setState({
+              project_id: data[0].id
+            }, () => this.updateTasks());
+          } else {
+            this.updateTasks();
+          }
         } else {
           this.setState({ loading: false })
         }
