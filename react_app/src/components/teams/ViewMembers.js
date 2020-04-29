@@ -24,24 +24,27 @@ class ViewMembers extends Component {
   }
 
   render() {
-    return (<div className="ViewMembers">
-      <ListGroup as="ul">
-        {this.props.members.map(member =>
-          member.id === this.props.user_id ?
-            <ListGroup.Item as="li" key={member.id} value={member.id} active>
-              {member.lname + ", " + member.fname}
-            </ListGroup.Item>
-            :
-            <ListGroup.Item as="li" key={member.id} value={member.id} >
-              {member.lname + ", " + member.fname}
-            </ListGroup.Item>
-        )}
-      </ListGroup>
-      <Button variant='danger' className="btn-block centered pad-em" onClick={() =>
-          window.confirm('Are you sure you want to delete ' + this.props.team.name + '?') ?
-          this.deleteTeam() : ''
-        }>Delete</Button>
-    </div>);
+    return (
+      <div className="ViewMembers">
+        <p className='pad-em'>Members:</p>
+        <ListGroup as="ul">
+          {this.props.members.map(member =>
+            member.id === this.props.user_id ?
+              <ListGroup.Item as="li" key={member.id} value={member.id} active>
+                {member.lname + ", " + member.fname}
+              </ListGroup.Item>
+              :
+              <ListGroup.Item as="li" key={member.id} value={member.id} >
+                {member.lname + ", " + member.fname}
+              </ListGroup.Item>
+          )}
+        </ListGroup>
+        <Button variant='danger' className="btn-block centered pad-em" onClick={() =>
+            window.confirm('Are you sure you want to delete ' + this.props.team.name + '?') ?
+            this.deleteTeam() : ''
+          }>Delete</Button>
+      </div>
+    );
   }
 }
 
