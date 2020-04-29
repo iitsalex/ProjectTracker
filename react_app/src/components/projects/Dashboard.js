@@ -65,7 +65,7 @@ class Dashboard extends Component {
                         modalView: true
                       })}>
                       <Card.Body>
-                        <Card.Title>{task.name}</Card.Title>
+                        <Card.Title>{task.name}<p class='unpadded text-muted'> ({task.points} points) </p></Card.Title>
                           <Card.Subtitle className="text-muted pad-em-bottom">Date Created: {task.created.substring(0,10)}</Card.Subtitle>
                           <Card.Text className="slight-muted">
                             {task.description.substring(0,50)}
