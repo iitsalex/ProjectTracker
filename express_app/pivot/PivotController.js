@@ -26,7 +26,7 @@ router.get('/user/auth', withAuth, function(req, res) {
     if (user === undefined || user.length === 0) {
       res.status(401).send('Invalid cookie');
     } else {
-      res.status(200).send(user[0]);
+      res.status(200).json(user[0]);
     }
   });
 });
