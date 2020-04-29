@@ -48,6 +48,7 @@ class Dashboard extends Component {
                 <h3>{taskType.name}</h3>
                 <div className="task-cards">
                   <Button
+                    variant='info'
                     className='btn-block centered pad-em'
                     onClick={() => this.setState({
                       taskType: taskType.name,

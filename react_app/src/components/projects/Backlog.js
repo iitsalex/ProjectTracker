@@ -76,6 +76,7 @@ class Backlog extends React.Component {
             <Col lg>
               <FadeIn>
                 <Button
+                  variant='info'
                   className='btn-block centered pad-em'
                   onClick={() => this.setState({
                     taskType: 'New',
