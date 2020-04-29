@@ -4,7 +4,7 @@
 
 ### Express
 
-`cd express_app`
+`cd react_app/api`
 
 This step can be done with a GUI for easier set up.
 
@@ -12,7 +12,7 @@ This step can be done with a GUI for easier set up.
 
 `npm install`
 
-`node server.js`
+`npm start`
 
 This should print out all API paths available.
 As a general rule, posts and puts will rely on JSON body.
