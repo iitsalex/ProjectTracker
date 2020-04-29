@@ -1,4 +1,5 @@
 import React from "react";
+import { Redirect } from "react-router-dom";
 import { Button, Container, Row, Col } from 'react-bootstrap';
 import FadeIn from 'react-fade-in';
 import ModalTemplate from "../ModalTemplate";
@@ -46,58 +47,60 @@ class Backlog extends React.Component {
 
   render() {
     return (
-      <FadeIn>
-        <h3> Backlog </h3>
-        <ModalTemplate
-          show={this.state.modalCreate}
-          onHide={() => this.setState({
-            modalCreate: false,
-          })}
-          title="Create Task"
-          component={CreateTask}
-          user_id={this.props.data.user.id}
-          project_id={this.props.data.project_id}
-          team_members={this.state.team_members}
-          updateTasks={this.props.updateTasks}
-          taskType={this.state.taskType}
-        />
-        <Container>
+      this.props.data.projects.length > 0 ?
+        <FadeIn>
+          <h3> Backlog </h3>
           <ModalTemplate
-            show={this.state.modalView}
-            onHide={() => this.setState({modalView: false})}
-            title={this.state.task.name}
-            component={ViewTask}
-            task={this.state.task}
+            show={this.state.modalCreate}
+            onHide={() => this.setState({
+              modalCreate: false,
+            })}
+            title="Create Task"
+            component={CreateTask}
+            user_id={this.props.data.user.id}
             project_id={this.props.data.project_id}
             team_members={this.state.team_members}
             updateTasks={this.props.updateTasks}
+            taskType={this.state.taskType}
           />
-          <Row>
-            <Col lg>
-              <FadeIn>
-                <Button
-                  variant='info'
-                  className='btn-block centered pad-em'
-                  onClick={() => this.setState({
-                    taskType: 'New',
-                    modalCreate: true
-                  })}>Create New Task</Button>
-                {this.props.data.all_tasks.map(task =>
-                  (task.status === 'Done' || task.assignee_id !== null) ? '' :
-                  <TaskCard
-                    key={task.id}
-                    task={task}
-                    bg={''}
+          <Container>
+            <ModalTemplate
+              show={this.state.modalView}
+              onHide={() => this.setState({modalView: false})}
+              title={this.state.task.name}
+              component={ViewTask}
+              task={this.state.task}
+              project_id={this.props.data.project_id}
+              team_members={this.state.team_members}
+              updateTasks={this.props.updateTasks}
+            />
+            <Row>
+              <Col lg>
+                <FadeIn>
+                  <Button
+                    variant='info'
+                    className='btn-block centered pad-em'
                     onClick={() => this.setState({
-                      task: task,
-                      modalView: true
-                    })}/>
-                )}
-            </FadeIn>
-            </Col>
-          </Row>
-        </Container>
-      </FadeIn>
+                      taskType: 'New',
+                      modalCreate: true
+                    })}>Create New Task</Button>
+                  {this.props.data.all_tasks.map(task =>
+                    (task.status === 'Done' || task.assignee_id !== null) ? '' :
+                    <TaskCard
+                      key={task.id}
+                      task={task}
+                      bg={''}
+                      onClick={() => this.setState({
+                        task: task,
+                        modalView: true
+                      })}/>
+                  )}
+              </FadeIn>
+              </Col>
+            </Row>
+          </Container>
+        </FadeIn>
+      : <Redirect to='teams'></Redirect>
     );
   }
 }
