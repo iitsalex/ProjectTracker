@@ -91,6 +91,10 @@ div.task-cards {
   margin-bottom: 20px;
 }
 
+.inline {
+  display: inline !important;
+}
+
 .unpadded {
   margin: 0px !important;
 }
