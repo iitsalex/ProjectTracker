@@ -15,6 +15,7 @@ class Backlog extends React.Component {
       modalCreate: false,
       modalView: false,
       task: '',
+      taskType: 'New',
       team_members: []
     };
   }
@@ -46,18 +47,27 @@ class Backlog extends React.Component {
     return (
       <FadeIn>
         <h3> Backlog </h3>
-        <Button variant="primary" onClick={() => this.setState({modalCreate: true})}>
-          Create Task
-        </Button>
+          <Button
+            variant='btn-block'
+            onClick={() => this.setState({
+              taskType: 'New',
+              modalCreate: true
+            })}
+          >
+            Create New Task
+          </Button>
         <ModalTemplate
           show={this.state.modalCreate}
-          onHide={() => this.setState({modalCreate: false})}
+          onHide={() => this.setState({
+            modalCreate: false,
+          })}
           title="Create Task"
           component={CreateTask}
           user_id={this.props.data.user.id}
           project_id={this.props.data.project_id}
           team_members={this.state.team_members}
           updateTasks={this.props.updateTasks}
+          taskType={this.state.taskType}
         />
         <Container>
           <ModalTemplate

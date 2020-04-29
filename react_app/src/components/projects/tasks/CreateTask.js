@@ -7,7 +7,7 @@ class CreateTask extends Component {
     this.state = {
       name: '',
       description: '',
-      status: 'New',
+      status: this.props.taskType,
       points: 0,
       assignee_id: 'null',
       project_id: this.props.project_id,
