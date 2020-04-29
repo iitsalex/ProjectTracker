@@ -124,7 +124,15 @@ div.task-cards {
   color: #DDD !important;
 }
 
+.medium-muted {
+  color: #BBB !important;
+}
+
 .centered {
   margin-left: auto !important;
   margin-right: auto !important;
+}
+
+.text-small {
+  font-size: 0.9em !important;
 }

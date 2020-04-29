@@ -9,9 +9,9 @@ class TaskCard extends React.Component {
         onClick={this.props.onClick}>
         <Card.Body>
           <Card.Title><b>{this.props.task.name}</b></Card.Title>
-            <Card.Subtitle className="text-muted pad-em-half pad-em-bottom">
+            <Card.Subtitle className="slight-muted pad-em-bottom text-small">
               {this.props.task.created.substring(0,10)}
-              <h5 className="inline white slight-muted">/</h5>
+              <h5 className="inline white text-muted">/</h5>
               {this.props.task.points} points
             </Card.Subtitle>
           <Card.Text className="slight-muted">
