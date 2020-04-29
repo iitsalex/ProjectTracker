@@ -99,8 +99,16 @@ div.task-cards {
   margin: 0px !important;
 }
 
+.white {
+  color: #ffffff !important;
+}
+
 .pad-em {
   margin: 1em !important;
+}
+
+.pad-em-half {
+  margin: 0.5em !important;
 }
 
 .pad-em-sides {

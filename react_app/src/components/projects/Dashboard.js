@@ -4,6 +4,7 @@ import FadeIn from 'react-fade-in';
 import ModalTemplate from "../ModalTemplate";
 import ViewTask from "./tasks/ViewTask";
 import CreateTask from "./tasks/CreateTask";
+import TaskCard from "./tasks/TaskCard";
 
 class Dashboard extends Component {
   constructor(props) {
@@ -54,25 +55,18 @@ class Dashboard extends Component {
                     })}
                   >Create {taskType.name} Task</Button>
                   {taskType.container.map(task =>
-                    <Card
+                    <TaskCard
                       key={task.id}
+                      task={task}
                       bg={task.assignee_id === this.props.data.user.id ?
-                            'success' : task.assignee_id === null ?
-                            'secondary' :
-                            'primary'}
+                            'success' : task.assignee_id !== null ?
+                            'primary' :
+                            ''}
                       onClick={() => this.setState({
                         task: task,
                         modalView: true
                       })}>
-                      <Card.Body>
-                        <Card.Title>{task.name}<p class='unpadded text-muted'> ({task.points} points) </p></Card.Title>
-                          <Card.Subtitle className="text-muted pad-em-bottom">Date Created: {task.created.substring(0,10)}</Card.Subtitle>
-                          <Card.Text className="slight-muted">
-                            {task.description.substring(0,50)}
-                            {task.description.length > 50 ? '...' : ''}
-                          </Card.Text>
-                      </Card.Body>
-                    </Card>
+                    </TaskCard>
                   )}
                 </div>
               </Col>
