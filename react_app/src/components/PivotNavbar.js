@@ -110,6 +110,7 @@ class PivotNavbar extends Component {
         onHide={() => this.setState({showLogin: false})}
         title="Sign In"
         component={Login}
+        updateAuth={this.props.updateAuth}
       />
       <Nav.Link style={{color: "white"}} onClick={() => this.setState({showLogin: true})}>
         Login
