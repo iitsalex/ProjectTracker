@@ -133,6 +133,11 @@ div.task-cards {
   margin-right: auto !important;
 }
 
+.centered-vertical {
+  margin-top: auto !important;
+  margin-bottom: auto !important;
+}
+
 .text-small {
   font-size: 0.9em !important;
 }

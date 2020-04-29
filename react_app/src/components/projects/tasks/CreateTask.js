@@ -11,7 +11,8 @@ class CreateTask extends Component {
       points: 0,
       assignee_id: 'null',
       project_id: this.props.project_id,
-      priority: ''
+      priority: '',
+      message: ''
     };
   }
 
@@ -40,7 +41,9 @@ class CreateTask extends Component {
       }
     }).catch(err => {
       console.error(err);
-      alert('Error logging in please try again');
+      this.setState({
+        message: 'An unknown error occured, try again later'
+      });
     });
   }
 
@@ -134,6 +137,7 @@ class CreateTask extends Component {
           points: 1
           })}>Template</Button>
         <Button variant='info' type="submit" className="btn-block btn-wide">Submit</Button>
+        <p>{this.state.message}&nbsp;</p>
       </Form>
     );
   }

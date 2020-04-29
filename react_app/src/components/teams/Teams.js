@@ -15,7 +15,8 @@ class Teams extends Component {
       team: {name: '', id: '', lead_id: ''},
       show_create: false,
       show_invite: false,
-      show_team: false
+      show_team: false,
+      message: ''
     };
   }
 
@@ -35,7 +36,9 @@ class Teams extends Component {
       });
     }).catch(err => {
       console.error(err);
-      alert('Error logging in please try again');
+      this.setState({
+        message: 'An error occured fetching this team'
+      });
     });
   }
 
@@ -85,6 +88,7 @@ class Teams extends Component {
             </Card>
           )}
         </ListGroup>
+        <p>{this.state.message}&nbsp;</p>
       </FadeIn>
     );
   }

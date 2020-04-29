@@ -3,6 +3,13 @@ import { Button, ListGroup } from "react-bootstrap";
 import "./Teams.css";
 
 class ViewMembers extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      message: ''
+    };
+  }
+
   deleteTeam = () => {
     fetch('/api/teams/' + this.props.team.id, {
       method: 'DELETE',
@@ -19,7 +26,9 @@ class ViewMembers extends Component {
       }
     }).catch(err => {
       console.error(err);
-      alert('Error logging in please try again');
+      this.setState({
+        message: 'An error occured deleting this team'
+      });
     });
   }
 
@@ -43,6 +52,7 @@ class ViewMembers extends Component {
             window.confirm('Are you sure you want to delete ' + this.props.team.name + '?') ?
             this.deleteTeam() : ''
           }>Delete</Button>
+        <p>{this.state.message}&nbsp;</p>
       </div>
     );
   }

@@ -12,7 +12,8 @@ class ViewTask extends Component {
       points: this.props.task.points,
       assignee_id: this.props.task.assignee_id,
       project_id: this.props.project_id,
-      priority: ""
+      priority: '',
+      message: ''
     };
   }
 
@@ -41,7 +42,9 @@ class ViewTask extends Component {
       }
     }).catch(err => {
       console.error(err);
-      alert('Error logging in please try again');
+      this.setState({
+        message: 'An unknown error occured, try again later'
+      })
     });
   }
 
@@ -153,6 +156,7 @@ class ViewTask extends Component {
             window.confirm('Are you sure you want to delete ' + this.state.name + '?') ?
             this.deleteTask() : ''
           }>Delete</Button>
+        <p>{this.state.message}&nbsp;</p>
       </Form>
     );
   }

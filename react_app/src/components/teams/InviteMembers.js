@@ -29,9 +29,13 @@ class InviteMembers extends Component {
       if (res.status === 200) {
         return res.json();
       } else if (res.status === 404) {
-        this.setState({message: "No such user"})
+        this.setState({
+          message: "No such user"
+        });
       } else if (res.status === 412) {
-        this.setState({message: "User is already in this team"})
+        this.setState({
+          message: "User is already in this team"
+        });
       } else {
         const error = new Error(res.error);
         throw error;
@@ -40,11 +44,13 @@ class InviteMembers extends Component {
       if (data !== undefined) {
         this.props.updateTeamMembers();
         this.props.onHide();
-        alert(data.fname + " " + data.lname + " has been added to the team.");
+        alert(data.fname + " " + data.lname + " has been added to the team."); // TODO replace with toast
       }
     }).catch(err => {
       console.error(err);
-      alert('Error logging in please try again');
+      this.setState({
+        message: 'An error occured inviting this user'
+      });
     });
   }
 
@@ -53,7 +59,13 @@ class InviteMembers extends Component {
       <Form onSubmit={this.onSubmit}>
         <FormGroup>
           <FormLabel className="text-muted">Team Select</FormLabel>
-          <FormControl as="select" name="team_id" value={this.state.team_id} onChange={this.handleInputChange} maxLength="100" autoComplete="off" required="required">
+          <FormControl
+            as="select" name="team_id"
+            value={this.state.team_id}
+             onChange={this.handleInputChange}
+             maxLength="100"
+             autoComplete="off"
+             required="required">
             {this.props.teams.map(team =>
               <option key={team.id} value={team.id}>{team.name}</option>
             )}
@@ -65,7 +77,7 @@ class InviteMembers extends Component {
         </FormGroup>
 
         <Button variant='info' type="submit" className="btn-block">Submit</Button>
-        <p>{this.state.message}</p>
+        <p>{this.state.message}&nbsp;</p>
       </Form>
     </div>);
   }

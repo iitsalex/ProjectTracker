@@ -1,11 +1,10 @@
 import React, { Component, Fragment } from 'react';
 import FadeIn from 'react-fade-in';
+import ReactLoading from 'react-loading';
 import './App.css';
 
 import PivotNavbar from './components/PivotNavbar';
 import Routes from './Routes';
-
-// const Context = React.createContext();
 
 class App extends Component {
   _isMounted = false;
@@ -22,7 +21,8 @@ class App extends Component {
       projects: [],
       project_id: -1,
       tasks: [],
-      all_tasks: []
+      all_tasks: [],
+      message: ''
     }
   }
 
@@ -73,7 +73,12 @@ class App extends Component {
           user: data
         }, () => this.updateTeams());
       }
-    }).catch(console.error);
+    }).catch(err => {
+      console.error(err);
+      this.setState({
+        message: 'An error occured with authentication'
+      });
+    });
   }
 
   updateTeams = () => {
@@ -88,6 +93,7 @@ class App extends Component {
       if (this._isMounted) {
         this.setState({
           teams: data,
+          message: ''
         });
         if (data[0] !== undefined) {
           this.setState({
@@ -97,7 +103,12 @@ class App extends Component {
           this.setState({ loading: false })
         }
       }
-    }).catch(console.error);
+    }).catch(err => {
+      console.error(err);
+      this.setState({
+        message: 'An error occured fetching teams'
+      });
+    });
   }
 
   updateTeamMembers = () => {
@@ -111,12 +122,15 @@ class App extends Component {
     }).then(data => {
       if (this._isMounted) {
         this.setState({
-          team_members: data
+          team_members: data,
+          message: ''
         }, () => this.updateProjects());
       }
     }).catch(err => {
       console.error(err);
-      alert('Error fetching team members');
+      this.setState({
+        message: 'An error occured fetching team members'
+      });
     });
   }
 
@@ -132,6 +146,7 @@ class App extends Component {
       if (this._isMounted) {
         this.setState({
           projects: data,
+          message: ''
         });
         if (data[0] !== undefined) {
           this.setState({
@@ -141,7 +156,12 @@ class App extends Component {
           this.setState({ loading: false })
         }
       }
-    }).catch(console.error);
+    }).catch(err => {
+      console.error(err);
+      this.setState({
+        message: 'An error occured fetching projects'
+      });
+    });
   }
 
   updateTasks = (p_id) => {
@@ -154,7 +174,12 @@ class App extends Component {
       }
     }).then(data => {
       this.distributeTasks(data);
-    }).catch(console.error);
+    }).catch(err => {
+      console.error(err);
+      this.setState({
+        message: 'An error occured fetching tasks'
+      });
+    });
   }
 
   distributeTasks = (data) => {
@@ -183,7 +208,8 @@ class App extends Component {
       this.setState({
         all_tasks: data.reverse(),
         tasks: taskDist,
-        loading: false
+        loading: false,
+        message: ''
       });
     }
   }
@@ -192,7 +218,11 @@ class App extends Component {
     return (
       <div className="App">
         { this.state.loading ?
-          <FadeIn transitionDuration='5000'><h1>Loading...</h1></FadeIn> :
+          <FadeIn delay={500}>
+            <header className="App-header" style={{backgroundColor: 'transparent'}}>
+              <ReactLoading type={"bars"} color={"white"} height={'5%'} width={'5%'} />
+            </header>
+          </FadeIn> :
           <Fragment>
             <PivotNavbar
               data={this.state}
@@ -210,6 +240,7 @@ class App extends Component {
             />
           </Fragment>
         }
+        <p>{this.state.message}&nbsp;</p>
       </div>
 
     );

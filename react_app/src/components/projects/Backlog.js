@@ -9,40 +9,14 @@ import TaskCard from "./tasks/TaskCard";
 
 
 class Backlog extends React.Component {
-  _isMounted = false;
-
   constructor(props) {
     super(props);
     this.state = {
+      task: '',
       modalCreate: false,
       modalView: false,
-      task: '',
-      taskType: 'New',
-      team_members: []
+      taskType: 'New'
     };
-  }
-
-  componentDidMount() {
-    this._isMounted = true;
-    fetch('/api/user/team/' + this.props.data.team_id).then(res => {
-      if (res.status === 200) {
-        return res.json();
-      } else {
-        const error = new Error(res.error);
-        throw error;
-      }
-    }).then(data => {
-      if (this._isMounted) {
-        this.setState({team_members: data});
-      }
-    }).catch(err => {
-      console.error(err);
-      alert('Error fetching team members');
-    });
-  }
-
-  componentWillUnmount() {
-    this._isMounted = false;
   }
 
   render() {
@@ -59,7 +33,7 @@ class Backlog extends React.Component {
             component={CreateTask}
             user_id={this.props.data.user.id}
             project_id={this.props.data.project_id}
-            team_members={this.state.team_members}
+            team_members={this.props.data.team_members}
             updateTasks={this.props.updateTasks}
             taskType={this.state.taskType}
           />
@@ -71,7 +45,7 @@ class Backlog extends React.Component {
               component={ViewTask}
               task={this.state.task}
               project_id={this.props.data.project_id}
-              team_members={this.state.team_members}
+              team_members={this.props.data.team_members}
               updateTasks={this.props.updateTasks}
             />
             <Row>

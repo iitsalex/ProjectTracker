@@ -9,7 +9,8 @@ class CreateProject extends Component {
     this.state = {
       name: '',
       description: '',
-      team_id: props.team_id
+      team_id: props.team_id,
+      message: ''
     };
   }
 
@@ -36,7 +37,9 @@ class CreateProject extends Component {
       }
     }).catch(err => {
       console.error(err);
-      alert('Error logging in please try again');
+      this.setState({
+        message: 'An error occured creating this project'
+      });
     });
   }
 
@@ -91,6 +94,7 @@ class CreateProject extends Component {
         </FormGroup>
 
         <Button variant='info' type="submit" className="btn-block">Submit</Button>
+        <p>{this.state.message}&nbsp;</p>
       </Form>
     );
   }

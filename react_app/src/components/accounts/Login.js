@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Form, Button, FormGroup, FormControl, FormLabel, Row, Col } from "react-bootstrap"
+import { Form, Button, FormGroup, FormControl, FormLabel, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 class Login extends Component {
@@ -7,7 +7,8 @@ class Login extends Component {
     super(props);
     this.state = {
       email: '',
-      password: ''
+      password: '',
+      message: ''
     };
   }
 
@@ -30,13 +31,19 @@ class Login extends Component {
       if (res.status === 200) {
         this.props.onHide();
         window.location.href = 'teams';
+      } else if (res.status === 401) {
+        this.setState({
+          message: 'Invalid username or password'
+        });
       } else {
         const error = new Error(res.error);
         throw error;
       }
     }).catch(err => {
       console.error(err);
-      alert('Error logging in please try again');
+      this.setState({
+        message: 'An unknown error occured, try again later'
+      });
     });
   }
 
@@ -80,6 +87,7 @@ class Login extends Component {
             </div>
           </Col>
         </Row>
+        <p>{this.state.message}&nbsp;</p>
       </Form>
     );
   }

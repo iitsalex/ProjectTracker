@@ -7,6 +7,7 @@ class CreateTeam extends Component {
     super(props);
     this.state = {
       name: '',
+      message: ''
     };
   }
 
@@ -35,7 +36,9 @@ class CreateTeam extends Component {
       }
     }).catch(err => {
       console.error(err);
-      alert('Error logging in please try again');
+      this.setState({
+        message: 'An error occured creating this team'
+      });
     });
   }
 
@@ -56,6 +59,7 @@ class CreateTeam extends Component {
           />
         </FormGroup>
         <Button variant='info' type="submit" className="btn-block">Submit</Button>
+        <p>{this.state.message}&nbsp;</p>
       </Form>
     );
   }

@@ -33,14 +33,18 @@ class SignUp extends Component {
       if (res.status === 200) {
         window.location.href = '/';
       } else if (res.status === 403) {
-        this.setState({message: 'Email already in use'})
+        this.setState({
+          message: 'Email already in use'
+        });
       } else {
         const error = new Error(res.error);
         throw error;
       }
     }).catch(err => {
       console.error(err);
-      alert('Error logging in please try again');
+      this.setState({
+        message: 'An unknown error occured, try again later'
+      });
     });
   }
 
@@ -107,7 +111,7 @@ class SignUp extends Component {
 
         <Button type="submit" variant='info' className="btn-block">Submit</Button>
         <Link to="login">Already signed up? Login</Link>
-        <p>{this.state.message}</p>
+        <p>{this.state.message}&nbsp;</p>
       </Form>
     );
   }
