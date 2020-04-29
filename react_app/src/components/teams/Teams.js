@@ -12,14 +12,14 @@ class Teams extends Component {
     super(props);
     this.state = {
       members: [],
-      team: {name: '', id: ''},
+      team: {name: '', id: '', lead_id: ''},
       show_create: false,
       show_invite: false,
       show_team: false
     };
   }
 
-  fetchMembers(tid, tname) {
+  fetchMembers(tid, tname, tlead) {
     fetch('/api/user/team/' + tid).then(res => {
       if (res.status === 200) {
         return res.json();
@@ -30,7 +30,7 @@ class Teams extends Component {
     }).then(data => {
       this.setState({
         members: data,
-        team: {name: tname, id: tid},
+        team: {name: tname, id: tid, lead_id: tlead},
         show_team: true
       });
     }).catch(err => {
@@ -50,7 +50,6 @@ class Teams extends Component {
           component={ViewMembers}
           team={this.state.team}
           members={this.state.members}
-          user_id={this.props.data.user.id}
           updateTeams={this.props.updateTeams}
         />
         <ListGroup horizontal='lg'>
@@ -58,7 +57,7 @@ class Teams extends Component {
             <Card
               key={team.id}
               bg={team.lead_id === this.props.data.user.id ? 'primary' : 'secondary'}
-              onClick={() => this.fetchMembers(team.id, team.name)}>
+              onClick={() => this.fetchMembers(team.id, team.name, team.lead_id)}>
               {team.name}
               <br/>
               <p className='unpadded medium-muted text-small'>Click to view team details</p>

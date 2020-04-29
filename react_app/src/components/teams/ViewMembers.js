@@ -29,7 +29,7 @@ class ViewMembers extends Component {
         <p className='pad-em'>Members:</p>
         <ListGroup as="ul">
           {this.props.members.map(member =>
-            member.id === this.props.user_id ?
+            member.id === this.props.team.lead_id ?
               <ListGroup.Item as="li" key={member.id} value={member.id} active>
                 {member.lname + ", " + member.fname}
               </ListGroup.Item>
