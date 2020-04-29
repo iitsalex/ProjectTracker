@@ -5,7 +5,6 @@ class TaskCard extends React.Component {
   render () {
     return (
       <Card
-        key={this.props.key}
         onClick={this.props.onClick}>
         <Card.Body>
           <Card.Title><b>{this.props.task.name}</b></Card.Title>
