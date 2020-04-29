@@ -49,7 +49,6 @@ class App extends Component {
   }
 
   updateAuth = () => {
-    console.log('test')
     fetch('/api/user/auth').then(res => {
       if (res.status === 200) {
         if (this._isMounted) {
