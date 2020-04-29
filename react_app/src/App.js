@@ -28,11 +28,13 @@ class App extends Component {
 
   componentDidMount() {
     this._isMounted = true;
+    this.intervalID = setInterval(this.updateAuth.bind(this), 5000);
     this.updateAuth();
   }
 
   componentWillUnmount() {
     this._isMounted = false;
+    clearInterval(this.intervalID);
   }
 
   handleDataChange = (event) => {
@@ -47,6 +49,7 @@ class App extends Component {
   }
 
   updateAuth = () => {
+    console.log('test')
     fetch('/api/user/auth').then(res => {
       if (res.status === 200) {
         if (this._isMounted) {
@@ -85,9 +88,6 @@ class App extends Component {
       if (this._isMounted) {
         this.setState({
           teams: data,
-          team_members: [],
-          projects: [],
-          tasks: []
         });
         if (data[0] !== undefined) {
           this.setState({
@@ -132,7 +132,6 @@ class App extends Component {
       if (this._isMounted) {
         this.setState({
           projects: data,
-          tasks: []
         });
         if (data[0] !== undefined) {
           this.setState({
