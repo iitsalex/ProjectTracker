@@ -128,7 +128,7 @@ class ViewTask extends Component {
             />
           </FormGroup>
         </Form.Row>
-        <Button type="submit" className="btn-block btn-wide">Update</Button>
+        <Button variant='info' type="submit" className="btn-block btn-wide">Update</Button>
       </Form>
     );
   }

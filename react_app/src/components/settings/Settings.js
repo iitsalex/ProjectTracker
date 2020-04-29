@@ -9,7 +9,7 @@ class Settings extends Component {
       <div>
         <FadeIn>
           <h3>Settings</h3>
-          <Button type="submit">
+          <Button variant='info' type="submit">
             <Link to="/settings" style={{ color: '#FFF' }}>Temp Button</Link>
           </Button>
         </FadeIn>

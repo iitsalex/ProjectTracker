@@ -11,7 +11,7 @@ class Home extends Component {
         <br/>
         {this.props.is_auth ?
           <p>Welcome {this.props.user.fname + ' ' + this.props.user.lname}</p> :
-          <Button href="/signup"type="submit">Sign Up</Button>
+          <Button variant='info' href="/signup"type="submit">Sign Up</Button>
         }
       </FadeIn>
     );

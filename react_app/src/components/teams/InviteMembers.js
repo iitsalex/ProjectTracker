@@ -64,7 +64,7 @@ class InviteMembers extends Component {
           <FormControl type="email" name="email" placeholder="Enter Team Member's Email" value={this.state.email} onChange={this.handleInputChange} maxLength="100" autoComplete="off" required="required"/>
         </FormGroup>
 
-        <Button type="submit" className="btn-block">Submit</Button>
+        <Button variant='info' type="submit" className="btn-block">Submit</Button>
         <p>{this.state.message}</p>
       </Form>
     </div>);

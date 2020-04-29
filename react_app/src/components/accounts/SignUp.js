@@ -105,7 +105,7 @@ class SignUp extends Component {
           />
         </FormGroup>
 
-        <Button type="submit" className="btn-block">Submit</Button>
+        <Button type="submit" variant='info' className="btn-block">Submit</Button>
         <Link to="login">Already signed up? Login</Link>
         <p>{this.state.message}</p>
       </Form>

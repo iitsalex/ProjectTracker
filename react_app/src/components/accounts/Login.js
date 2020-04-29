@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Form, Button, FormGroup, FormControl, FormLabel } from "react-bootstrap"
+import { Form, Button, FormGroup, FormControl, FormLabel, Row, Col } from "react-bootstrap"
 import { Link } from "react-router-dom";
 
 class Login extends Component {
@@ -69,10 +69,17 @@ class Login extends Component {
           />
         </FormGroup>
 
-        <Button type="submit" className="btn-block">Log In</Button>
-        <Link to="passwordreset" onClick={this.props.onHide} className="forgot-password">Forgot password?</Link>
-        <br/>
-        <Link to="signup" onClick={this.props.onHide}>Sign Up</Link>
+        <Button type="submit" variant='info' className="btn-block">Log In</Button>
+        <Row>
+          <Col>
+            <Link to="passwordreset" onClick={this.props.onHide} className="forgot-password">Forgot password?</Link>
+          </Col>
+          <Col>
+            <div align="right">
+              <Link to="signup" onClick={this.props.onHide}>Sign Up</Link>
+            </div>
+          </Col>
+        </Row>
       </Form>
     );
   }
