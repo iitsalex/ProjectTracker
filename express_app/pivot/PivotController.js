@@ -330,7 +330,7 @@ router.delete('/teams/:team_id', function(req, res) {
 router.post('/tasks', function(req, res) {
   const uid = req.cookies.uid;
   var today = new Date();
-  if (req.body.assignee_id === '-1') {
+  if (req.body.assignee_id === 'null') {
     req.body.assignee_id = null;
   }
   Pivot.createtask(req.body, uid, today, function(err, task) {
@@ -377,7 +377,7 @@ router.post('/tasks/assign', function(req, res) {
 });
 
 router.put('/tasks', function(req, res) {
-  if (req.body.assignee_id === '-1') {
+  if (req.body.assignee_id === 'null') {
     req.body.assignee_id = null;
   }
   Pivot.updatetask(req.body, function(err, count) {

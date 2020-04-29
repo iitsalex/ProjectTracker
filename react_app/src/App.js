@@ -27,6 +27,25 @@ class App extends Component {
 
   componentDidMount() {
     this._isMounted = true;
+    this.updateAuth();
+  }
+
+  componentWillUnmount() {
+    this._isMounted = false;
+  }
+
+  handleDataChange = (event) => {
+    const { value, name } = event.target;
+    this.setState({ [name]: value }, () => {
+      if (name === 'team_id') {
+        this.updateProjects();
+      } else if (name === 'project_id') {
+        this.updateTasks();
+      }
+    });
+  }
+
+  updateAuth = () => {
     fetch('/api/user/auth').then(res => {
       if (res.status === 200) {
         if (this._isMounted) {
@@ -51,21 +70,6 @@ class App extends Component {
         }, () => this.updateTeams());
       }
     }).catch(console.error);
-  }
-
-  componentWillUnmount() {
-    this._isMounted = false;
-  }
-
-  handleDataChange = (event) => {
-    const { value, name } = event.target;
-    this.setState({ [name]: value }, () => {
-      if (name === 'team_id') {
-        this.updateProjects();
-      } else if (name === 'project_id') {
-        this.updateTasks();
-      }
-    });
   }
 
   updateTeams = () => {
@@ -173,6 +177,7 @@ class App extends Component {
               data={this.state}
               handleDataChange={this.handleDataChange}
               updateProjects={this.updateProjects}
+              updateAuth={this.updateAuth}
             />
             <Routes
               data={this.state}

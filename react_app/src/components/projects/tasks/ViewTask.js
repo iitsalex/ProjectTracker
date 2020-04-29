@@ -105,11 +105,11 @@ class ViewTask extends Component {
               type="text"
               name="assignee_id"
               placeholder="Choose Assignee"
-              value={this.state.assignee_id}
+              value={this.state.assignee_id === null ? 'null' : this.state.assignee_id}
               onChange={this.handleInputChange}
               autoComplete="off"
             >
-              <option key={'-1'} value={'-1'}>Unassigned</option>
+              <option key={'null'} value={'null'}>Unassigned</option>
               {this.props.team_members.map(user =>
                 <option key={user.id} value={user.id}>{user.lname + ', ' + user.fname}</option>
               )}
