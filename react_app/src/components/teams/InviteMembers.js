@@ -38,6 +38,7 @@ class InviteMembers extends Component {
       }
     }).then(data => {
       if (data !== undefined) {
+        this.props.updateTeamMembers();
         this.props.onHide();
         alert(data.fname + " " + data.lname + " has been added to the team.");
       }

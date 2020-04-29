@@ -57,6 +57,7 @@ class Teams extends Component {
           title="Invite Members"
           component={InviteMembers}
           teams={this.props.data.teams}
+          updateTeamMembers={this.updateTeamMembers}
         />
         <Button variant="secondary" className="btn-block btn-center" onClick={() => this.setState({show_invite: true})}>
           Invite Team Members

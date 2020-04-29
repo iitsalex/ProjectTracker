@@ -55,7 +55,7 @@ class Routes extends Component {
         }/>
         <Route path="/teams" render={ () =>
           this.props.data.is_auth ?
-          <Teams data={this.props.data} updateTeams={this.props.updateTeams} /> :
+          <Teams data={this.props.data} updateTeams={this.props.updateTeams} updateTeamMembers={this.updateTeamMembers} /> :
           <Redirect to="/401" />
         }/>
         <Route path="/backlog" render={ () =>
