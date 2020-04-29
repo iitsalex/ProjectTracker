@@ -17,6 +17,7 @@ class App extends Component {
       is_auth: false,
       user: null,
       teams: [],
+      team_members: [],
       team_id: -1,
       projects: [],
       project_id: -1,
@@ -84,6 +85,7 @@ class App extends Component {
       if (this._isMounted) {
         this.setState({
           teams: data,
+          team_members: [],
           projects: [],
           tasks: []
         });
@@ -96,6 +98,26 @@ class App extends Component {
         }
       }
     }).catch(console.error);
+  }
+
+  updateTeamMembers = () => {
+    fetch('/api/user/team/' + this.state.team_id).then(res => {
+      if (res.status === 200) {
+        return res.json();
+      } else {
+        const error = new Error(res.error);
+        throw error;
+      }
+    }).then(data => {
+      if (this._isMounted) {
+        this.setState({
+          team_members: data
+        }, () => this.updateProjects());
+      }
+    }).catch(err => {
+      console.error(err);
+      alert('Error fetching team members');
+    });
   }
 
   updateProjects = () => {

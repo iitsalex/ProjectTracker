@@ -6,38 +6,12 @@ import ViewTask from "./tasks/ViewTask";
 import CreateTask from "./tasks/CreateTask";
 
 class Dashboard extends Component {
-  _isMounted = false;
-
   constructor(props) {
     super(props);
     this.state = {
       task: '',
       show_task: false,
-      team_members: []
     }
-  }
-
-  componentDidMount() {
-    this._isMounted = true;
-    fetch('/api/user/team/' + this.props.data.team_id).then(res => {
-      if (res.status === 200) {
-        return res.json();
-      } else {
-        const error = new Error(res.error);
-        throw error;
-      }
-    }).then(data => {
-      if (this._isMounted) {
-        this.setState({team_members: data});
-      }
-    }).catch(err => {
-      console.error(err);
-      alert('Error fetching team members');
-    });
-  }
-
-  componentWillUnmount() {
-    this._isMounted = false;
   }
 
   render() {
@@ -53,7 +27,7 @@ class Dashboard extends Component {
           component={CreateTask}
           user_id={this.props.data.user.id}
           project_id={this.props.data.project_id}
-          team_members={this.state.team_members}
+          team_members={this.props.data.team_members}
           updateTasks={this.props.updateTasks}
         />
         <Container>
@@ -64,7 +38,7 @@ class Dashboard extends Component {
             component={ViewTask}
             task={this.state.task}
             project_id={this.props.data.project_id}
-            team_members={this.state.team_members}
+            team_members={this.props.data.team_members}
             updateTasks={this.props.updateTasks}
           />
           <Row>
