@@ -321,7 +321,7 @@ router.delete('/teams/:team_id', function(req, res) {
       res.status(400).json(err);
       console.log(err);
     } else {
-      res.json(req.body);
+      res.json(req.params.team_id);
     }
   });
 });

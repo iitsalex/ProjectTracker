@@ -53,7 +53,6 @@ class ViewTask extends Component {
   deleteTask = () => {
     fetch('/api/tasks/' + this.state.id, {
       method: 'DELETE',
-      body: JSON.stringify(this.state),
       headers: {
         'Content-Type': 'application/json'
       }

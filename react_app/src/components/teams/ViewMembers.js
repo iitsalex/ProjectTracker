@@ -1,29 +1,21 @@
 import React, {Component} from "react";
-import {ListGroup} from "react-bootstrap";
+import { Button, ListGroup } from "react-bootstrap";
 import "./Teams.css";
 
 class ViewMembers extends Component {
-  _isMounted = false;
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      members: []
-    };
-  }
-
-  componentDidMount() {
-    this._isMounted = true;
-    fetch('/api/user/team/' + this.props.team_id).then(res => {
+  deleteTeam = () => {
+    fetch('/api/teams/' + this.props.team.id, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }).then(res => {
       if (res.status === 200) {
-        return res.json();
+        this.props.updateTeams();
+        this.props.onHide();
       } else {
         const error = new Error(res.error);
         throw error;
-      }
-    }).then(data => {
-      if (this._isMounted) {
-        this.setState({members: data});
       }
     }).catch(err => {
       console.error(err);
@@ -31,19 +23,24 @@ class ViewMembers extends Component {
     });
   }
 
-  componentWillUnmount() {
-    this._isMounted = false;
-  }
-
   render() {
     return (<div className="ViewMembers">
-      <ListGroup>
-        {this.state.members.map(member =>
-          <ListGroup.Item key={member.id} value={member.id}>
-            {member.lname + ", " + member.fname}
-          </ListGroup.Item>
+      <ListGroup as="ul">
+        {this.props.members.map(member =>
+          member.id === this.props.user_id ?
+            <ListGroup.Item as="li" key={member.id} value={member.id} active>
+              {member.lname + ", " + member.fname}
+            </ListGroup.Item>
+            :
+            <ListGroup.Item as="li" key={member.id} value={member.id} >
+              {member.lname + ", " + member.fname}
+            </ListGroup.Item>
         )}
       </ListGroup>
+      <Button variant='danger' className="btn-block centered pad-em" onClick={() =>
+          window.confirm('Are you sure you want to delete ' + this.props.team.name + '?') ?
+          this.deleteTeam() : ''
+        }>Delete</Button>
     </div>);
   }
 }
