@@ -39,7 +39,7 @@ class App extends Component {
     const { value, name } = event.target;
     this.setState({ [name]: value }, () => {
       if (name === 'team_id') {
-        this.updateProjects();
+        this.updateTeamMembers();
       } else if (name === 'project_id') {
         this.updateTasks();
       }
@@ -92,7 +92,7 @@ class App extends Component {
         if (data[0] !== undefined) {
           this.setState({
             team_id: data[0].id
-          }, () => this.updateProjects());
+          }, () => this.updateTeamMembers());
         } else {
           this.setState({ loading: false })
         }
@@ -205,6 +205,7 @@ class App extends Component {
               data={this.state}
               updateTeams={this.updateTeams}
               updateProjects={this.updateProjects}
+              updateTeamMembers={this.updateTeamMembers}
               updateTasks={this.updateTasks}
               logout={() => this.setState({teams: [], projects: [], tasks: []})}
             />
