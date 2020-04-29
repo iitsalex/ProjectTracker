@@ -47,14 +47,12 @@ class Dashboard extends Component {
                 <h3>{taskType.name}</h3>
                 <div className="task-cards">
                   <Button
-                    variant='btn-block'
+                    className='btn-block centered pad-em'
                     onClick={() => this.setState({
                       taskType: taskType.name,
                       modalCreate: true
                     })}
-                  >
-                    Create {taskType.name} Task
-                  </Button>
+                  >Create {taskType.name} Task</Button>
                   {taskType.container.map(task =>
                     <Card
                       key={task.id}

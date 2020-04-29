@@ -47,15 +47,6 @@ class Backlog extends React.Component {
     return (
       <FadeIn>
         <h3> Backlog </h3>
-          <Button
-            variant='btn-block'
-            onClick={() => this.setState({
-              taskType: 'New',
-              modalCreate: true
-            })}
-          >
-            Create New Task
-          </Button>
         <ModalTemplate
           show={this.state.modalCreate}
           onHide={() => this.setState({
@@ -83,24 +74,31 @@ class Backlog extends React.Component {
           <Row>
             <Col lg>
               <FadeIn>
-              {this.props.data.all_tasks.map(task =>
-                (task.status === 'Done' || task.assignee_id !== null) ? '' :
-                  <Card
-                    key={task.id}
-                    onClick={() => this.setState({
-                      task: task,
-                      modalView: true
-                    })}>
-                    <Card.Body>
-                      <Card.Title><b>{task.name}</b></Card.Title>
-                      <Card.Subtitle className="text-muted pad-em-bottom">Date Created: {task.created.substring(0,10)}</Card.Subtitle>
-                      <Card.Text className="slight-muted">
-                        {task.description.substring(0,50)}
-                        {task.description.length > 50 ? '...' : ''}
-                      </Card.Text>
-                    </Card.Body>
-                  </Card>
-              )}
+                <Button
+                  className='btn-block centered pad-em'
+                  onClick={() => this.setState({
+                    taskType: 'New',
+                    modalCreate: true
+                  })}
+                >Create New Task</Button>
+                {this.props.data.all_tasks.map(task =>
+                  (task.status === 'Done' || task.assignee_id !== null) ? '' :
+                    <Card
+                      key={task.id}
+                      onClick={() => this.setState({
+                        task: task,
+                        modalView: true
+                      })}>
+                      <Card.Body>
+                        <Card.Title><b>{task.name}</b></Card.Title>
+                        <Card.Subtitle className="text-muted pad-em-bottom">Date Created: {task.created.substring(0,10)}</Card.Subtitle>
+                        <Card.Text className="slight-muted">
+                          {task.description.substring(0,50)}
+                          {task.description.length > 50 ? '...' : ''}
+                        </Card.Text>
+                      </Card.Body>
+                    </Card>
+                )}
             </FadeIn>
             </Col>
           </Row>
