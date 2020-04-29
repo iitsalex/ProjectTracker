@@ -52,8 +52,7 @@ class Dashboard extends Component {
                     onClick={() => this.setState({
                       taskType: taskType.name,
                       modalCreate: true
-                    })}
-                  >Create {taskType.name} Task</Button>
+                    })}>Create {taskType.name} Task</Button>
                   {taskType.container.map(task =>
                     <TaskCard
                       key={task.id}
