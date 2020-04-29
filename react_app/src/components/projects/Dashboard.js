@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Container, Card, Col, Row, Button } from "react-bootstrap";
+import { Container, Col, Row, Button } from "react-bootstrap";
 import FadeIn from 'react-fade-in';
 import ModalTemplate from "../ModalTemplate";
 import ViewTask from "./tasks/ViewTask";
@@ -65,8 +65,7 @@ class Dashboard extends Component {
                       onClick={() => this.setState({
                         task: task,
                         modalView: true
-                      })}>
-                    </TaskCard>
+                      })}/>
                   )}
                 </div>
               </Col>

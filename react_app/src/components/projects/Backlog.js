@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Container, Row, Col, Card } from 'react-bootstrap';
+import { Button, Container, Row, Col } from 'react-bootstrap';
 import FadeIn from 'react-fade-in';
 import ModalTemplate from "../ModalTemplate";
 import CreateTask from "./tasks/CreateTask";
@@ -91,8 +91,7 @@ class Backlog extends React.Component {
                     onClick={() => this.setState({
                       task: task,
                       modalView: true
-                    })}>
-                  </TaskCard>
+                    })}/>
                 )}
             </FadeIn>
             </Col>
