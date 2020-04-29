@@ -47,7 +47,7 @@ class App extends Component {
   }
 
   updateAuth = () => {
-    fetch('/api/user/auth', { credentials: 'include' }).then(res => {
+    fetch('/api/user/auth').then(res => {
       if (res.status === 200) {
         if (this._isMounted) {
           return res.json();

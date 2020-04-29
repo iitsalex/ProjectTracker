@@ -92,7 +92,7 @@ router.post('/user/create', function(req, res) {
   });
 });
 
-router.get('/user/team/:team_id', function(req, res) {
+router.get('/user/team/:team_id', withAuth, function(req, res) {
   Pivot.getusersbyteam(req.params.team_id, function(err, rows) {
     if (err) {
       res.status(400).json(err);
@@ -104,7 +104,7 @@ router.get('/user/team/:team_id', function(req, res) {
 });
 
 // Projects
-router.post('/projects', function(req, res) {
+router.post('/projects', withAuth, function(req, res) {
   const uid = req.cookies.uid;
   var today = new Date();
   Pivot.createproject(req.body, uid, today, function(err, project) {
@@ -124,7 +124,7 @@ router.post('/projects', function(req, res) {
   });
 });
 
-router.get('/projects/id/:project_id', function(req, res) {
+router.get('/projects/id/:project_id', withAuth, function(req, res) {
   Pivot.getproject(req.params.project_id, function(err, rows) {
     if (err) {
       res.status(400).json(err);
@@ -135,7 +135,7 @@ router.get('/projects/id/:project_id', function(req, res) {
   });
 });
 
-router.get('/projects/owner/:user_id', function(req, res) {
+router.get('/projects/owner/:user_id', withAuth, function(req, res) {
   Pivot.getprojectsbyowner(req.params.user_id, function(err, rows) {
     if (err) {
       res.status(400).json(err);
@@ -146,7 +146,7 @@ router.get('/projects/owner/:user_id', function(req, res) {
   });
 });
 
-router.get('/projects/team/:team', function(req, res) {
+router.get('/projects/team/:team', withAuth, function(req, res) {
   Pivot.getprojectsbyteam(req.params.team, function(err, rows) {
     if (err) {
       res.status(400).json(err);
@@ -157,7 +157,7 @@ router.get('/projects/team/:team', function(req, res) {
   });
 });
 
-router.put('/projects', function(req, res) {
+router.put('/projects', withAuth, function(req, res) {
   Pivot.updateproject(req.body, function(err, count) {
     if (err) {
       res.status(400).json(err);
@@ -168,7 +168,7 @@ router.put('/projects', function(req, res) {
   });
 });
 
-router.delete('/projects/:project_id', function(req, res) {
+router.delete('/projects/:project_id', withAuth, function(req, res) {
   Pivot.deleteproject(req.params.project_id, function(err, count) {
     if (err) {
       res.status(400).json(err);
@@ -180,7 +180,7 @@ router.delete('/projects/:project_id', function(req, res) {
 });
 
 // Teams
-router.post('/teams', function(req, res) {
+router.post('/teams', withAuth, function(req, res) {
   const uid = req.cookies.uid;
   Pivot.createteam(req.body.name, uid, function(err, team) {
     if (err) {
@@ -199,7 +199,7 @@ router.post('/teams', function(req, res) {
   });
 });
 
-router.get('/teams/id/:team_id', function(req, res) {
+router.get('/teams/id/:team_id', withAuth, function(req, res) {
   Pivot.getteam(req.params.team_id, function(err, rows) {
     if (err) {
       res.status(400).json(err);
@@ -210,7 +210,7 @@ router.get('/teams/id/:team_id', function(req, res) {
   });
 });
 
-router.get('/teams/user/:user_id', function(req, res) {
+router.get('/teams/user/:user_id', withAuth, function(req, res) {
   Pivot.getteamsbyuser(req.params.user_id, function(err, rows) {
     if (err) {
       res.status(400).json(err);
@@ -221,7 +221,7 @@ router.get('/teams/user/:user_id', function(req, res) {
   });
 });
 
-router.get('/teams/currentuser', function(req, res) {
+router.get('/teams/currentuser', withAuth, function(req, res) {
   const uid = req.cookies.uid;
   Pivot.getteamsbyuser(uid, function(err, rows) {
     if (err) {
@@ -233,7 +233,7 @@ router.get('/teams/currentuser', function(req, res) {
   });
 });
 
-router.post('/teams/join', function(req, res) {
+router.post('/teams/join', withAuth, function(req, res) {
   Pivot.getuser(req.body.email, function(err, user) {
     if (err) {
       res.status(400).json(err);
@@ -269,7 +269,7 @@ router.post('/teams/join', function(req, res) {
   });
 });
 
-router.post('/teams/leave', function(req, res) {
+router.post('/teams/leave', withAuth, function(req, res) {
   Pivot.getteam(req.body.team_id, function(err, team) {
     if (err) {
       res.status(400).json(err);
@@ -304,7 +304,7 @@ router.post('/teams/leave', function(req, res) {
   });
 });
 
-router.put('/teams', function(req, res) {
+router.put('/teams', withAuth, function(req, res) {
   Pivot.updateteam(req.body, function(err, count) {
     if (err) {
       res.status(400).json(err);
@@ -315,7 +315,7 @@ router.put('/teams', function(req, res) {
   });
 });
 
-router.delete('/teams/:team_id', function(req, res) {
+router.delete('/teams/:team_id', withAuth, function(req, res) {
   Pivot.deleteteam(req.params.team_id, function(err, count) {
     if (err) {
       res.status(400).json(err);
@@ -327,7 +327,7 @@ router.delete('/teams/:team_id', function(req, res) {
 });
 
 // Tasks
-router.post('/tasks', function(req, res) {
+router.post('/tasks', withAuth, function(req, res) {
   const uid = req.cookies.uid;
   var today = new Date();
   if (req.body.assignee_id === 'null') {
@@ -343,7 +343,7 @@ router.post('/tasks', function(req, res) {
   });
 });
 
-router.get('/tasks/id/:task_id', function(req, res) {
+router.get('/tasks/id/:task_id', withAuth, function(req, res) {
   Pivot.gettask(req.params.task_id, function(err, rows) {
     if (err) {
       res.status(400).json(err);
@@ -354,7 +354,7 @@ router.get('/tasks/id/:task_id', function(req, res) {
   });
 });
 
-router.get('/tasks/project/:project_id', function(req, res) {
+router.get('/tasks/project/:project_id', withAuth, function(req, res) {
   Pivot.gettasksbyproject(req.params.project_id, function(err, tasks) {
     if (err) {
       res.status(400).json(err);
@@ -365,7 +365,7 @@ router.get('/tasks/project/:project_id', function(req, res) {
   });
 });
 
-router.post('/tasks/assign', function(req, res) {
+router.post('/tasks/assign', withAuth, function(req, res) {
   Pivot.assigntask(req.body, function(err, tasks) {
     if (err) {
       res.status(400).json(err);
@@ -376,7 +376,7 @@ router.post('/tasks/assign', function(req, res) {
   });
 });
 
-router.put('/tasks', function(req, res) {
+router.put('/tasks', withAuth, function(req, res) {
   if (req.body.assignee_id === 'null') {
     req.body.assignee_id = null;
   }
@@ -390,7 +390,7 @@ router.put('/tasks', function(req, res) {
   });
 });
 
-router.delete('/tasks/:task_id', function(req, res) {
+router.delete('/tasks/:task_id', withAuth, function(req, res) {
   Pivot.deletetask(req.params.task_id, function(err, count) {
     if (err) {
       res.status(400).json(err);
