@@ -120,19 +120,12 @@ router.post('/projects', withAuth, function(req, res) {
       res.status(400).json(err);
       console.log(err);
     } else {
-      Pivot.addproject(req.body.team_id, project.insertId, function(err) {
+      Pivot.createsprint('Sprint X', project.insertId, today, function(err, sprint) {
         if (err) {
           res.status(400).json(err);
           console.log(err);
         } else {
-          Pivot.createsprint('Sprint X', project.insertId, today, function(err, sprint) {
-            if (err) {
-              res.status(400).json(err);
-              console.log(err);
-            } else {
-              res.status(200).json(req.body);
-            }
-          });
+          res.status(200).json(req.body);
         }
       });
     }
