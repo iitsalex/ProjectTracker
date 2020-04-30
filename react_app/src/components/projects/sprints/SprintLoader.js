@@ -48,6 +48,8 @@ class SprintLoader extends Component {
         sprints: data,
         message: ''
       });
+      console.log(data)
+      
     }).catch(err => {
       console.error(err);
       this.setState({

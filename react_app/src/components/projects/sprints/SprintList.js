@@ -68,6 +68,9 @@ class SprintList extends React.Component {
               onClick={() => this.fetchTasks(sprint.id, sprint.name)}>
               {sprint.name}
               <br/>
+              <p className='unpadded text-muted text-small'>
+                {sprint.created.substring(0, 10)} - {sprint.ended ? sprint.ended.substring(0, 10) : 'Now'}
+              </p>
               <p className='unpadded medium-muted text-small'>Click to view sprint details</p>
             </Card>
           )}

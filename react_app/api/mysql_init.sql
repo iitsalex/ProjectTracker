@@ -21,7 +21,7 @@ CREATE TABLE projects(
     owner_id INT, -- May be null
     name VARCHAR(100) NOT NULL,
     description TEXT,
-    created DATE,
+    created DATETIME,
     PRIMARY KEY (id),
     FOREIGN KEY (owner_id) REFERENCES users(id) ON DELETE SET NULL
 );
@@ -38,8 +38,8 @@ CREATE TABLE project_sprint(
     id INT NOT NULL AUTO_INCREMENT,
     project_id INT NOT NULL,
     name VARCHAR(100) NOT NULL,
-    date_start DATE NOT NULL,
-    date_end DATE,
+    created DATETIME NOT NULL,
+    ended DATETIME,
     PRIMARY KEY (id),
     FOREIGN KEY (project_id) REFERENCES projects(id) ON DELETE CASCADE
 );
@@ -56,7 +56,7 @@ CREATE TABLE tasks(
     status INT NOT NULL,
     state INT DEFAULT 1, -- 0: in backlog, 1: in sprint,  2: completed not in sprint
     points INT NOT NULL,
-    created DATE NOT NULL,
+    created DATETIME NOT NULL,
     PRIMARY KEY (id),
     FOREIGN KEY (owner_id) REFERENCES users(id) ON DELETE SET NULL,
     FOREIGN KEY (assignee_id) REFERENCES users(id) ON DELETE SET NULL,

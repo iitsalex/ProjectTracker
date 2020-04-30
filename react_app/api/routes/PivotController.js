@@ -47,7 +47,7 @@ router.post('/user/login', function(req, res) {
       } else {
         bcrypt.compare(req.body.password, user[0].password, function(err, valid) {
           if (valid) {
-            const id = user[0].id
+            const id = user[0].id;
             const payload = {
               id
             };
@@ -83,7 +83,15 @@ router.post('/user/create', function(req, res) {
               res.status(400).json(err);
               console.log(err);
             } else {
-              res.status(200).json(req.body.email);
+              const id = user.insertId;
+              const payload = {
+                id
+              };
+              const token = jwt.sign(payload, secret, {expiresIn: '1h'});
+              req.body.password = '';
+              res.cookie('uid', id, {httpOnly: true});
+              res.cookie('token', token, {httpOnly: true});
+              res.status(200).json(req.body);
             }
           });
         });

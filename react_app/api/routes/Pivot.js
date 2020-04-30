@@ -135,22 +135,22 @@ var Pivot = {
 
   // Sprint
   createsprint: function(name, project_id, today, callback) {
-    return db.query('INSERT INTO project_sprint(name, project_id, date_start) VALUES(?, ?, ?)', [
+    return db.query('INSERT INTO project_sprint(name, project_id, created) VALUES(?, ?, ?)', [
       name, project_id, today
     ], callback);
   },
   latestsprint: function(project_id, callback) {
-    return db.query('SELECT * FROM project_sprint WHERE project_id=? ORDER BY date_start DESC LIMIT 1', [project_id], callback);
+    return db.query('SELECT * FROM project_sprint WHERE project_id=? ORDER BY created DESC LIMIT 1', [project_id], callback);
   },
   completelatestsprint: function(project_id, today, callback) {
     console.log(project_id)
-    return db.query('UPDATE project_sprint SET date_end=? WHERE id=(SELECT id FROM project_sprint WHERE project_id=? ORDER BY date_start DESC LIMIT 1);' +
+    return db.query('UPDATE project_sprint SET ended=? WHERE id=(SELECT id FROM project_sprint WHERE project_id=? ORDER BY created DESC LIMIT 1);' +
     'UPDATE tasks SET state=status WHERE project_id=?', [
       today, project_id, project_id
     ], callback);
   },
   getsprintsbyproject: function(project_id, callback) {
-    return db.query('SELECT * FROM project_sprint WHERE project_id=? ORDER BY date_start DESC', [project_id], callback);
+    return db.query('SELECT * FROM project_sprint WHERE project_id=? ORDER BY created DESC', [project_id], callback);
   }
 }
 
