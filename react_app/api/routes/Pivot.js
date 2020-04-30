@@ -26,20 +26,15 @@ var Pivot = {
 
   // Projects
   createproject: function(project, uid, today, callback) {
-    return db.query('INSERT INTO projects(name, description, owner_id, created) VALUES(?, ?, ?, ?)', [
-      project.name, project.description, uid, today
+    return db.query('INSERT INTO projects(name, description, owner_id, team_id, created) VALUES(?, ?, ?, ?, ?)', [
+      project.name, project.description, uid, project.team_id, today
     ], callback);
   },
   getproject: function(project_id, callback) {
     return db.query('SELECT * FROM projects WHERE id=?', project_id, callback);
   },
   getprojectsbyteam: function(team_id, callback) {
-    return db.query('SELECT * FROM projects WHERE id IN ' + '(SELECT project_id FROM team_project WHERE team_id=?) ' + 'ORDER BY name', team_id, callback);
-  },
-  addproject: function(team_id, project_id, callback) {
-    return db.query('INSERT INTO team_project (team_id, project_id) VALUES(?, ?)', [
-      team_id, project_id
-    ], callback);
+    return db.query('SELECT * FROM projects WHERE team_id=? ORDER BY name', team_id, callback);
   },
   updateproject: function(project, callback) {
     return db.query('UPDATE projects SET name=?, owner_id=? WHERE id=?', [
