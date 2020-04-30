@@ -78,7 +78,7 @@ class SprintList extends React.Component {
           {this.props.sprints.map((sprint, index) =>
             <Card
               key={sprint.id}
-              bg={index === 0 ? 'primary' : 'secondary'}
+              bg={index === 0 ? 'secondary' : ''}
               onClick={() => this.fetchTasks(sprint.id, sprint.name)}>
               {sprint.name}
               <br/>
