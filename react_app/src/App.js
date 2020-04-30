@@ -152,7 +152,7 @@ class App extends Component {
           message: ''
         });
         if (data[0] !== undefined) {
-          if (this.state.team_id === -1) {
+          if (this.state.project_id === -1) {
             this.setState({
               project_id: data[0].id
             }, () => this.updateTasks());
