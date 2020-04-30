@@ -63,7 +63,10 @@ class SprintList extends React.Component {
     return (
       <FadeIn>
         <h3>Sprints List</h3>
-        <Button variant="info" className="btn-block centered pad-em" onClick={() => this.completeSprint()}>Complete Sprint</Button>
+        <Button variant='info' className="btn-block centered pad-em" onClick={() =>
+            window.confirm('Are you sure you want to complete the current sprint?') ?
+            this.completeSprint() : ''
+          }>Complete Sprint</Button>
         <ModalTemplate
           show={this.state.show_sprint}
           onHide={() => this.setState({show_sprint: false})}
