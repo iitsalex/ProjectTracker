@@ -95,12 +95,12 @@ class App extends Component {
           message: ''
         });
         if (data[0] !== undefined) {
-          if (this.state.team_id === -1) {
+          if (this.state.team_id !== -1) {
+            this.updateTeamMembers();
+          } else {
             this.setState({
               team_id:  data[0].id
             }, () => this.updateTeamMembers());
-          } else {
-            this.updateTeamMembers();
           }
         } else {
           this.setState({ loading: false })
@@ -152,12 +152,12 @@ class App extends Component {
           message: ''
         });
         if (data[0] !== undefined) {
-          if (this.state.project_id === -1) {
+          if (this.state.project_id in data.map((project) => project.id)) {
+            this.updateTasks();
+          } else {
             this.setState({
               project_id: data[0].id
             }, () => this.updateTasks());
-          } else {
-            this.updateTasks();
           }
         } else {
           this.setState({ loading: false })
