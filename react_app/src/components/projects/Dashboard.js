@@ -19,36 +19,10 @@ class Dashboard extends Component {
     }
   }
 
-  completeSprint = () => {
-    fetch('/api/sprints/complete/latest', {
-      method: 'POST',
-      body: JSON.stringify({project_id: this.props.data.project_id}),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    }).then(res => {
-      if (res.status === 200) {
-        this.setState({
-          message: 'Sprint Completed'
-        });
-        this.props.updateTasks();
-      } else {
-        const error = new Error(res.error);
-        throw error;
-      }
-    }).catch(err => {
-      console.error(err);
-      this.setState({
-        message: 'An unknown error occured, try again later'
-      });
-    });
-  }
-
   render() {
     return (
       this.props.data.projects.length > 0 ?
         <FadeIn>
-          <Button className="btn-block btn-wide centered" onClick={() => this.completeSprint()}>Complete Sprint</Button>
           <ModalTemplate
             show={this.state.modalCreate}
             onHide={() => this.setState({modalCreate: false})}
@@ -101,7 +75,6 @@ class Dashboard extends Component {
               )}
             </Row>
           </Container>
-          <p>{this.state.message}&nbsp;</p>
         </FadeIn>
       : <Redirect to='teams'></Redirect>
     );

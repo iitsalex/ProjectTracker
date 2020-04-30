@@ -48,8 +48,6 @@ class SprintLoader extends Component {
         sprints: data,
         message: ''
       });
-      console.log(data)
-      
     }).catch(err => {
       console.error(err);
       this.setState({
@@ -69,9 +67,12 @@ class SprintLoader extends Component {
           </FadeIn> :
           <SprintList
             user_id={this.props.data.user.id}
+            project_id={this.props.data.project_id}
             sprints={this.state.sprints}
             setMessage={(val) => this.setState({message: val})}
             updateSprints={this.fetchSprints}
+            updateTasks={this.props.updateTasks}
+            message={this.state.message}
           />
         }
         <p>{this.state.message}&nbsp;</p>

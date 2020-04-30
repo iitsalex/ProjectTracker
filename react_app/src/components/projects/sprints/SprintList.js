@@ -1,5 +1,5 @@
 import React from 'react';
-import { ListGroup, Card } from 'react-bootstrap';
+import { ListGroup, Card, Button } from 'react-bootstrap';
 import FadeIn from 'react-fade-in';
 
 import ModalTemplate from '../../ModalTemplate';
@@ -17,6 +17,27 @@ class SprintList extends React.Component {
     };
   }
 
+  completeSprint = () => {
+    fetch('/api/sprints/complete/latest', {
+      method: 'POST',
+      body: JSON.stringify({project_id: this.props.project_id}),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }).then(res => {
+      if (res.status === 200) {
+        this.props.setMessage('Sprint Completed');
+        this.props.updateTasks();
+      } else {
+        const error = new Error(res.error);
+        throw error;
+      }
+    }).catch(err => {
+      console.error(err);
+      this.props.setMessage('An error occured completing this sprint');
+    });
+  }
+
   fetchTasks = (sid, sname) => {
     fetch('/api/tasks/sprint/' + sid).then(res => {
       if (res.status === 200) {
@@ -26,6 +47,7 @@ class SprintList extends React.Component {
         throw error;
       }
     }).then(data => {
+      this.props.setMessage('');
       this.setState({
         tasks: data,
         sprint: {name: sname, id: sid},
@@ -37,19 +59,11 @@ class SprintList extends React.Component {
     });
   }
 
-  firstSprint = () => {
-    if (this.state.first_sprint) {
-      return true;
-    } else {
-      this.setState({ first_sprint: false });
-      return false;
-    }
-  }
-
   render () {
     return (
       <FadeIn>
         <h3>Sprints List</h3>
+        <Button variant="info" className="btn-block centered pad-em" onClick={() => this.completeSprint()}>Complete Sprint</Button>
         <ModalTemplate
           show={this.state.show_sprint}
           onHide={() => this.setState({show_sprint: false})}
@@ -61,10 +75,10 @@ class SprintList extends React.Component {
         />
         <ListGroup horizontal='lg'>
           <FadeIn>
-          {this.props.sprints.map(sprint =>
+          {this.props.sprints.map((sprint, index) =>
             <Card
               key={sprint.id}
-              bg={this.firstSprint() ? 'primary' : 'secondary'}
+              bg={index === 0 ? 'primary' : 'secondary'}
               onClick={() => this.fetchTasks(sprint.id, sprint.name)}>
               {sprint.name}
               <br/>
