@@ -7,6 +7,7 @@ import PasswordReset from './components/accounts/PasswordReset';
 import Settings from './components/settings/Settings';
 import Dashboard from './components/projects/Dashboard';
 import Backlog from './components/projects/Backlog';
+import SprintLoader from './components/projects/sprints/SprintLoader';
 import Teams from './components/teams/Teams';
 
 class Routes extends Component {
@@ -53,14 +54,19 @@ class Routes extends Component {
           <Dashboard data={this.props.data} updateTasks={this.props.updateTasks} /> :
           <Redirect to="/401" />
         }/>
-        <Route path="/teams" render={ () =>
-          this.props.data.is_auth ?
-          <Teams data={this.props.data} updateTeams={this.props.updateTeams} updateTeamMembers={this.props.updateTeamMembers} /> :
-          <Redirect to="/401" />
-        }/>
         <Route path="/backlog" render={ () =>
           this.props.data.is_auth ?
           <Backlog data={this.props.data} updateTasks={this.props.updateTasks} /> :
+          <Redirect to="/401" />
+        }/>
+        <Route path="/sprints" render={ () =>
+          this.props.data.is_auth ?
+          <SprintLoader data={this.props.data} updateTasks={this.props.updateTasks} /> :
+          <Redirect to="/401" />
+        }/>
+        <Route path="/teams" render={ () =>
+          this.props.data.is_auth ?
+          <Teams data={this.props.data} updateTeams={this.props.updateTeams} updateTeamMembers={this.props.updateTeamMembers} /> :
           <Redirect to="/401" />
         }/>
       </Switch>

@@ -357,6 +357,17 @@ router.get('/tasks/id/:task_id', withAuth, function(req, res) {
   });
 });
 
+router.get('/tasks/sprint/:sprint_id', withAuth, function(req, res) {
+  Pivot.gettasksbysprint(req.params.sprint_id, function(err, rows) {
+    if (err) {
+      res.status(400).json(err);
+      console.log(err);
+    } else {
+      res.json(rows);
+    }
+  });
+});
+
 router.get('/tasks/project/:project_id', withAuth, function(req, res) {
   Pivot.gettasksbyproject(req.params.project_id, function(err, tasks) {
     if (err) {
@@ -446,11 +457,29 @@ router.post('/sprints/complete/latest', withAuth, function(req, res) {
           res.status(400).json(err);
           console.log(err);
         } else {
-          res.status(200).json(sprint.insertId);
+          Pivot.updateinprogresstasks(req.body.project_id, sprint.insertId, function(err, sprints) {
+            if (err) {
+              res.status(400).json(err);
+              console.log(err);
+            } else {
+              res.status(200).json(sprint.insertId);
+            }
+          });
         }
       });
     }
   })
+});
+
+router.get('/sprints/project/:project_id', withAuth, function(req, res) {
+  Pivot.getsprintsbyproject(req.params.project_id, function(err, sprints) {
+    if (err) {
+      res.status(400).json(err);
+      console.log(err);
+    } else {
+      res.status(200).json(sprints);
+    }
+  });
 });
 
 module.exports = router;

@@ -49,12 +49,13 @@ CREATE TABLE tasks(
     owner_id INT, -- May be null
     assignee_id INT, -- May be null
     project_id INT NOT NULL,
+    sprint_id INT NOT NULL,
+    closed_sprint_id INT,
     name VARCHAR(100) NOT NULL,
     description TEXT,
     status INT NOT NULL,
-    points INT NOT NULL,
-    sprint_id INT NOT NULL,
     state INT DEFAULT 1, -- 0: in backlog, 1: in sprint,  2: completed not in sprint
+    points INT NOT NULL,
     created DATE NOT NULL,
     PRIMARY KEY (id),
     FOREIGN KEY (owner_id) REFERENCES users(id) ON DELETE SET NULL,

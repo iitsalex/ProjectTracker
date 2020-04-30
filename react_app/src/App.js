@@ -180,7 +180,6 @@ class App extends Component {
         throw error;
       }
     }).then(data => {
-      console.log(this.state.project_id);
       if (this._isMounted) {
         this.setState({
           backlog_tasks: data.backlog,
@@ -225,7 +224,6 @@ class App extends Component {
         }
         <p>{this.state.message}&nbsp;</p>
       </div>
-
     );
   }
 }

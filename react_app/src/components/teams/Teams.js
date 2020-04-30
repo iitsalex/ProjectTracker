@@ -20,7 +20,7 @@ class Teams extends Component {
     };
   }
 
-  fetchMembers(tid, tname, tlead) {
+  fetchMembers = (tid, tname, tlead) => {
     fetch('/api/user/team/' + tid).then(res => {
       if (res.status === 200) {
         return res.json();

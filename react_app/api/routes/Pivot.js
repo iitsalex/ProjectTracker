@@ -108,6 +108,9 @@ var Pivot = {
   gettask: function(task_id, callback) {
     return db.query('SELECT * FROM tasks WHERE id=?', task_id, callback);
   },
+  gettasksbysprint: function(sprint_id, callback) {
+    return db.query('SELECT * FROM tasks WHERE sprint_id=?', sprint_id, callback);
+  },
   gettasksbyproject: function(project_id, callback) {
     return db.query('SELECT * from tasks WHERE project_id=? AND state <> 2', project_id, callback);
   },
@@ -119,6 +122,11 @@ var Pivot = {
       task.status,
       task.points,
       task.id
+    ], callback);
+  },
+  updateinprogresstasks: function(project_id, sprint_id, callback) {
+    return db.query('UPDATE tasks SET sprint_id=? WHERE project_id=? AND (status=? OR status=?)', [
+      sprint_id, project_id, 0, 1
     ], callback);
   },
   deletetask: function(task_id, callback) {
@@ -140,6 +148,9 @@ var Pivot = {
     'UPDATE tasks SET state=status WHERE project_id=?', [
       today, project_id, project_id
     ], callback);
+  },
+  getsprintsbyproject: function(project_id, callback) {
+    return db.query('SELECT * FROM project_sprint WHERE project_id=? ORDER BY date_start DESC', [project_id], callback);
   }
 }
 
