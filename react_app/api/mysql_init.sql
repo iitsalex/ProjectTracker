@@ -16,6 +16,14 @@ CREATE TABLE users(
     PRIMARY KEY (id)
 );
 
+CREATE TABLE teams(
+    id INT NOT NULL AUTO_INCREMENT,
+    name VARCHAR(100) NOT NULL,
+    size INT NOT NULL,
+    lead_id INT NOT NULL,
+    PRIMARY KEY (id)
+);
+
 CREATE TABLE projects(
     id INT NOT NULL AUTO_INCREMENT,
     owner_id INT, -- May be null
@@ -26,14 +34,6 @@ CREATE TABLE projects(
     PRIMARY KEY (id),
     FOREIGN KEY (owner_id) REFERENCES users(id) ON DELETE SET NULL,
     FOREIGN KEY (team_id) REFERENCES teams(id) ON DELETE CASCADE
-);
-
-CREATE TABLE teams(
-    id INT NOT NULL AUTO_INCREMENT,
-    name VARCHAR(100) NOT NULL,
-    size INT NOT NULL,
-    lead_id INT NOT NULL,
-    PRIMARY KEY (id)
 );
 
 CREATE TABLE project_sprint(
