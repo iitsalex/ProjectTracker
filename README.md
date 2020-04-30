@@ -2,19 +2,21 @@
 
 ## Initial Setup
 
-### Express
-
-`cd react_app/api`
+### MySQL
 
 This step can be done with a GUI for easier set up.
 
-`mysql -u username -p password pivot < ./mysql_init.sql`
+`mysql -u username -p password pivot < ./react_app/api/mysql_init.sql`
+
+### Express
+
+`cd react_app/api`
 
 `npm install`
 
 `npm start`
 
-This should print out all API paths available.
+This will print all API calls to the console.
 As a general rule, posts and puts will rely on JSON body.
 
 To test functionality, visit http://localhost:3000/.
