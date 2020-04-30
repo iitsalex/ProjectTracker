@@ -53,6 +53,8 @@ class PivotNavbar extends Component {
             <NavDropdown.Item onClick={() => this.setState({showCreateProject: true})}>
               Create Project
             </NavDropdown.Item>
+            <NavDropdown.Item as={Link} to="/projects">View Projects
+            </NavDropdown.Item>
             </NavDropdown>
           : ''}
           <Nav.Link as={Link} to="/settings">Settings</Nav.Link>

@@ -9,6 +9,7 @@ import Dashboard from './components/projects/Dashboard';
 import Backlog from './components/projects/Backlog';
 import SprintLoader from './components/projects/sprints/SprintLoader';
 import Teams from './components/teams/Teams';
+import Projects from './components/projects/Projects';
 
 class Routes extends Component {
   logout = () => {
@@ -67,6 +68,11 @@ class Routes extends Component {
         <Route path="/teams" render={ () =>
           this.props.data.is_auth ?
           <Teams data={this.props.data} updateTeams={this.props.updateTeams} updateTeamMembers={this.props.updateTeamMembers} /> :
+          <Redirect to="/401" />
+        }/>
+      <Route path="/projects" render={ () =>
+          this.props.data.is_auth ?
+          <Projects data={this.props.data} updateProjects={this.props.updateProjects}/> :
           <Redirect to="/401" />
         }/>
       </Switch>
