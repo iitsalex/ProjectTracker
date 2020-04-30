@@ -49,7 +49,7 @@ class SprintList extends React.Component {
   render () {
     return (
       <FadeIn>
-        <h3>Team List</h3>
+        <h3>Sprints List</h3>
         <ModalTemplate
           show={this.state.show_sprint}
           onHide={() => this.setState({show_sprint: false})}
