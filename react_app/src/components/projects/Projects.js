@@ -10,7 +10,7 @@ class Projects extends Component {
     this.state = {
       projects: this.props.data.projects,
       show_project: false,
-      show_project: false
+      showCreateProject: false
     };
   }
 
@@ -49,16 +49,14 @@ class Projects extends Component {
           team_id={this.props.data.team_id}
           updateProjects={this.props.updateProjects}
         />
-        <Button variant="info" className='btn-block centered pad-em' onClick={() => this.setState({show_create: true})}>
+        <Button variant="info" className='btn-block centered pad-em' onClick={() => this.setState({showCreateProject: true})}>
           Create Project
         </Button>
         <ListGroup horizontal='lg'>
-          {this.props.data.teams.map(team =>
+          {this.props.data.projects.map(project =>
             <Card
-              key={team.id}
-              bg={team.lead_id === this.props.data.user.id ? 'primary' : 'secondary'}
-              onClick={() => this.fetchMembers(team.id, team.name, team.lead_id)}>
-              {team.name}
+              key={project.id}>
+              {project.name}
               <br/>
               <p className='unpadded medium-muted text-small'>Click to view team details</p>
             </Card>
