@@ -7,7 +7,7 @@ class Home extends Component {
     return (
       <header>
         <FadeIn delay='200'>
-          <img src={ require('../assets/images/Pivot_logo.png') } alt="Pivot Logo" />
+          <h1 style={{color: '#3498DB', fontSize: '100px', margin: '2rem'}}>Pivot</h1>
           <h1>Your Project Tracking Solution</h1>
           <br/>
           {this.props.is_auth ?
