@@ -1,10 +1,5 @@
 var mysql = require('mysql');
-var db = mysql.createConnection({
-  host: 'localhost',
-  user: 'pivot',
-  password: 'pivot!Node.js',
-  database: 'pivot'
-});
+var db = mysql.createConnection({host: 'localhost', user: 'pivot', password: 'pivot!Node.js', database: 'pivot', multipleStatements: true});
 
 db.connect(function(err) {
   if (err)
@@ -37,9 +32,6 @@ var Pivot = {
   },
   getproject: function(project_id, callback) {
     return db.query('SELECT * FROM projects WHERE id=?', project_id, callback);
-  },
-  getprojectsbyowner: function(user_id, callback) {
-    return db.query('SELECT * FROM projects WHERE owner_id=? ORDER BY name', user_id, callback);
   },
   getprojectsbyteam: function(team_id, callback) {
     return db.query('SELECT * FROM projects WHERE id IN ' + '(SELECT project_id FROM team_project WHERE team_id=?) ' + 'ORDER BY name', team_id, callback);
@@ -100,8 +92,8 @@ var Pivot = {
   },
 
   // Tasks
-  createtask: function(data, uid, today, callback) {
-    return db.query('INSERT INTO tasks (owner_id, assignee_id, project_id, name, description, status, points, created) ' + 'VALUES(?, ?, ?, ?, ?, ?, ?, ?)', [
+  createtask: function(data, uid, sprint_id, today, callback) {
+    return db.query('INSERT INTO tasks (owner_id, assignee_id, project_id, name, description, status, points, created, sprint_id)  VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)', [
       uid,
       data.assignee_id,
       data.project_id,
@@ -109,19 +101,16 @@ var Pivot = {
       data.description,
       data.status,
       data.points,
-      today
+      today,
+      sprint_id
     ], callback);
   },
   gettask: function(task_id, callback) {
     return db.query('SELECT * FROM tasks WHERE id=?', task_id, callback);
   },
   gettasksbyproject: function(project_id, callback) {
-    return db.query('SELECT * from tasks WHERE project_id=?', project_id, callback);
+    return db.query('SELECT * from tasks WHERE project_id=? AND state <> 2', project_id, callback);
   },
-  // assigntask: function(data, callback) {
-  //     return db.query('INSERT INTO user_task (user_id, task_id) VALUES(?, ?)',
-  //         [data.user_id, data.task_id], callback);
-  // },
   updatetask: function(task, callback) {
     return db.query('UPDATE tasks SET assignee_id=?, name=?, description=?, status=?, points=? WHERE id=?', [
       task.assignee_id,
@@ -134,6 +123,23 @@ var Pivot = {
   },
   deletetask: function(task_id, callback) {
     return db.query('DELETE FROM tasks WHERE id=?', task_id, callback);
+  },
+
+  // Sprint
+  createsprint: function(name, project_id, today, callback) {
+    return db.query('INSERT INTO project_sprint(name, project_id, date_start) VALUES(?, ?, ?)', [
+      name, project_id, today
+    ], callback);
+  },
+  latestsprint: function(project_id, callback) {
+    return db.query('SELECT * FROM project_sprint WHERE project_id=? ORDER BY date_start DESC LIMIT 1', [project_id], callback);
+  },
+  completelatestsprint: function(project_id, today, callback) {
+    console.log(project_id)
+    return db.query('UPDATE project_sprint SET date_end=? WHERE id=(SELECT id FROM project_sprint WHERE project_id=? ORDER BY date_start DESC LIMIT 1);' +
+    'UPDATE tasks SET state=status WHERE project_id=?', [
+      today, project_id, project_id
+    ], callback);
   }
 }
 

@@ -14,14 +14,41 @@ class Dashboard extends Component {
       task: '',
       modalView: false,
       modalCreate: false,
-      taskType: 'New'
+      taskType: 'New',
+      message: ''
     }
+  }
+
+  completeSprint = () => {
+    fetch('/api/sprints/complete/latest', {
+      method: 'POST',
+      body: JSON.stringify({project_id: this.props.data.project_id}),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }).then(res => {
+      if (res.status === 200) {
+        this.setState({
+          message: 'Sprint Completed'
+        });
+        this.props.updateTasks();
+      } else {
+        const error = new Error(res.error);
+        throw error;
+      }
+    }).catch(err => {
+      console.error(err);
+      this.setState({
+        message: 'An unknown error occured, try again later'
+      });
+    });
   }
 
   render() {
     return (
       this.props.data.projects.length > 0 ?
         <FadeIn>
+          <Button className="btn-block btn-wide centered" onClick={() => this.completeSprint()}>Complete Sprint</Button>
           <ModalTemplate
             show={this.state.modalCreate}
             onHide={() => this.setState({modalCreate: false})}
@@ -45,15 +72,15 @@ class Dashboard extends Component {
           />
           <Container>
             <Row>
-              {this.props.data.tasks.map(taskType =>
-                <Col lg key={taskType.name}>
+              {this.props.data.active_tasks.map((taskType, index) =>
+                <Col lg key={index}>
                   <h3>{taskType.name}</h3>
                   <div className="task-cards">
                     <Button
                       variant='info'
                       className='btn-block centered pad-em'
                       onClick={() => this.setState({
-                        taskType: taskType.name,
+                        taskType: index,
                         modalCreate: true
                       })}>Create {taskType.name} Task</Button>
                     {taskType.container.map(task =>
@@ -74,6 +101,7 @@ class Dashboard extends Component {
               )}
             </Row>
           </Container>
+          <p>{this.state.message}&nbsp;</p>
         </FadeIn>
       : <Redirect to='teams'></Redirect>
     );

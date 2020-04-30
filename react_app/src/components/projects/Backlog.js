@@ -58,12 +58,14 @@ class Backlog extends React.Component {
                       taskType: 'New',
                       modalCreate: true
                     })}>Create New Task</Button>
-                  {this.props.data.all_tasks.map(task =>
-                    (task.status === 'Done' || task.assignee_id !== null) ? '' :
+                  {this.props.data.backlog_tasks.map(task =>
                     <TaskCard
                       key={task.id}
                       task={task}
-                      bg={''}
+                      bg={task.assignee_id === this.props.data.user.id ?
+                            'success' : task.assignee_id !== null ?
+                            'primary' :
+                            ''}
                       onClick={() => this.setState({
                         task: task,
                         modalView: true

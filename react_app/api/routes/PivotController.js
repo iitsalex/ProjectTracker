@@ -117,7 +117,14 @@ router.post('/projects', withAuth, function(req, res) {
           res.status(400).json(err);
           console.log(err);
         } else {
-          res.status(200).json(req.body);
+          Pivot.createsprint('Sprint X', project.insertId, today, function(err, sprint) {
+            if (err) {
+              res.status(400).json(err);
+              console.log(err);
+            } else {
+              res.status(200).json(req.body);
+            }
+          });
         }
       });
     }
@@ -131,17 +138,6 @@ router.get('/projects/id/:project_id', withAuth, function(req, res) {
       console.log(err);
     } else {
       res.json(rows[0]);
-    }
-  });
-});
-
-router.get('/projects/owner/:user_id', withAuth, function(req, res) {
-  Pivot.getprojectsbyowner(req.params.user_id, function(err, rows) {
-    if (err) {
-      res.status(400).json(err);
-      console.log(err);
-    } else {
-      res.json(rows);
     }
   });
 });
@@ -333,14 +329,21 @@ router.post('/tasks', withAuth, function(req, res) {
   if (req.body.assignee_id === 'null') {
     req.body.assignee_id = null;
   }
-  Pivot.createtask(req.body, uid, today, function(err, task) {
+  Pivot.latestsprint(req.body.project_id, function(err, sprints) {
     if (err) {
       res.status(400).json(err);
       console.log(err);
     } else {
-      res.json(task.insertId);
+      Pivot.createtask(req.body, uid, sprints[0].id, today, function(err, task) {
+        if (err) {
+          res.status(400).json(err);
+          console.log(err);
+        } else {
+          res.json(task.insertId);
+        }
+      });
     }
-  });
+  })
 });
 
 router.get('/tasks/id/:task_id', withAuth, function(req, res) {
@@ -360,18 +363,35 @@ router.get('/tasks/project/:project_id', withAuth, function(req, res) {
       res.status(400).json(err);
       console.log(err);
     } else {
-      res.json(tasks);
-    }
-  });
-});
+      let backlog_tasks = tasks.filter(task => task.state === 0);
+      let active_tasks = tasks.filter(task => task.state === 1);
+      let task_dist = [
+        {name: 'New', container: []},
+        {name: 'In Progress', container: []},
+        {name: 'Done', container: []}
+      ]
 
-router.post('/tasks/assign', withAuth, function(req, res) {
-  Pivot.assigntask(req.body, function(err, tasks) {
-    if (err) {
-      res.status(400).json(err);
-      console.log(err);
-    } else {
-      res.json(req.body);
+      active_tasks.forEach((task) => {
+        switch (task.status) {
+          case 0:
+            task_dist[0].container.push(task);
+            break;
+          case 1:
+            task_dist[1].container.push(task);
+            break;
+          case 2:
+            task_dist[2].container.push(task);
+            break;
+          default:
+            const error = new Error('Unknown task status: ' + task.status);
+            throw error;
+        }
+      });
+      sorted_tasks = {
+        backlog: backlog_tasks, // list of tasks
+        active: task_dist // list of objects, each with container for tasks
+      }
+      res.json(sorted_tasks);
     }
   });
 });
@@ -399,6 +419,38 @@ router.delete('/tasks/:task_id', withAuth, function(req, res) {
       res.json(req.body);
     }
   });
+});
+
+// Sprints
+router.post('/sprints', withAuth, function(req, res) {
+  var today = new Date();
+  Pivot.createsprint(req.body.name, req.body.project_id, today, function(err, sprint) {
+    if (err) {
+      res.status(400).json(err);
+      console.log(err);
+    } else {
+      res.json(sprint.insertId);
+    }
+  });
+});
+
+router.post('/sprints/complete/latest', withAuth, function(req, res) {
+  var today = new Date();
+  Pivot.completelatestsprint(req.body.project_id, today, function(err) {
+    if (err) {
+      res.status(400).json(err);
+      console.log(err);
+    } else {
+      Pivot.createsprint('Sprint X', req.body.project_id, today, function(err, sprint) {
+        if (err) {
+          res.status(400).json(err);
+          console.log(err);
+        } else {
+          res.status(200).json(sprint.insertId);
+        }
+      });
+    }
+  })
 });
 
 module.exports = router;

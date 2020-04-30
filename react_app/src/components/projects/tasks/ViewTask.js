@@ -101,9 +101,9 @@ class ViewTask extends Component {
               autoComplete="off"
               required
             >
-              <option>{"New"}</option>
-              <option>{"In Progress"}</option>
-              <option>{"Done"}</option>
+              <option key={0} value={0}>{"New"}</option>
+              <option key={1} value={1}>{"In Progress"}</option>
+              <option key={2} value={2}>{"Done"}</option>
             </FormControl>
           </FormGroup>
         </Form.Row>

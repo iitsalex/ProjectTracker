@@ -20,8 +20,8 @@ class App extends Component {
       team_id: -1,
       projects: [],
       project_id: -1,
-      tasks: [],
-      all_tasks: [],
+      backlog_tasks: [],
+      active_tasks: [],
       message: ''
     }
   }
@@ -180,45 +180,21 @@ class App extends Component {
         throw error;
       }
     }).then(data => {
-      this.distributeTasks(data);
+      console.log(this.state.project_id);
+      if (this._isMounted) {
+        this.setState({
+          backlog_tasks: data.backlog,
+          active_tasks: data.active,
+          loading: false,
+          message: ''
+        });
+      }
     }).catch(err => {
       console.error(err);
       this.setState({
         message: 'An error occured fetching tasks'
       });
     });
-  }
-
-  distributeTasks = (data) => {
-    let taskDist = [
-      {name: 'New', container: []},
-      {name: 'In Progress', container: []},
-      {name: 'Done', container: []}
-    ]
-    data.forEach((task) => {
-      switch (task.status) {
-        case 'New':
-          taskDist[0].container.push(task);
-          break;
-        case 'In Progress':
-          taskDist[1].container.push(task);
-          break;
-        case 'Done':
-          taskDist[2].container.push(task);
-          break;
-        default:
-          const error = new Error('Unknown task status: ' + task.status);
-          throw error;
-      }
-    });
-    if (this._isMounted) {
-      this.setState({
-        all_tasks: data.reverse(),
-        tasks: taskDist,
-        loading: false,
-        message: ''
-      });
-    }
   }
 
   render () {

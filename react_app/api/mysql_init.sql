@@ -34,6 +34,16 @@ CREATE TABLE teams(
     PRIMARY KEY (id)
 );
 
+CREATE TABLE project_sprint(
+    id INT NOT NULL AUTO_INCREMENT,
+    project_id INT NOT NULL,
+    name VARCHAR(100) NOT NULL,
+    date_start DATE NOT NULL,
+    date_end DATE,
+    PRIMARY KEY (id),
+    FOREIGN KEY (project_id) REFERENCES projects(id) ON DELETE CASCADE
+);
+
 CREATE TABLE tasks(
     id INT NOT NULL AUTO_INCREMENT,
     owner_id INT, -- May be null
@@ -41,14 +51,16 @@ CREATE TABLE tasks(
     project_id INT NOT NULL,
     name VARCHAR(100) NOT NULL,
     description TEXT,
-    status VARCHAR(20) NOT NULL,
+    status INT NOT NULL,
     points INT NOT NULL,
+    sprint_id INT NOT NULL,
     state INT DEFAULT 1, -- 0: in backlog, 1: in sprint,  2: completed not in sprint
-    created DATE,
+    created DATE NOT NULL,
     PRIMARY KEY (id),
     FOREIGN KEY (owner_id) REFERENCES users(id) ON DELETE SET NULL,
     FOREIGN KEY (assignee_id) REFERENCES users(id) ON DELETE SET NULL,
-    FOREIGN KEY (project_id) REFERENCES projects(id) ON DELETE CASCADE
+    FOREIGN KEY (project_id) REFERENCES projects(id) ON DELETE CASCADE,
+    FOREIGN KEY (sprint_id) REFERENCES project_sprint(id) ON DELETE CASCADE
 );
 
 CREATE TABLE user_team(
@@ -59,15 +71,6 @@ CREATE TABLE user_team(
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
     FOREIGN KEY (team_id) REFERENCES teams(id) ON DELETE CASCADE
 );
-
--- CREATE TABLE project_sprint(
---     id INT NOT NULL AUTO_INCREMENT,
---     user_id INT NOT NULL,
---     task_id INT NOT NULL,
---     PRIMARY KEY (id),
---     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
---     FOREIGN KEY (task_id) REFERENCES tasks(id) ON DELETE CASCADE
--- );
 
 CREATE TABLE team_project(
     id INT NOT NULL AUTO_INCREMENT,
