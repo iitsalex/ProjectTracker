@@ -28,7 +28,7 @@ class App extends Component {
 
   componentDidMount() {
     this._isMounted = true;
-    this.intervalID = setInterval(this.updateAuth.bind(this), 5000);
+    this.intervalID = setInterval(this.updateAuth.bind(this), 60000);
     this.updateAuth();
   }
 
@@ -70,7 +70,11 @@ class App extends Component {
         this.setState({
           is_auth: true,
           user: data
-        }, () => this.updateTeams());
+        }, () => {
+          clearInterval(this.intervalID);
+          this.intervalID = setInterval(this.updateAuth.bind(this), 5000);
+          this.updateTeams();
+        });
       }
     }).catch(err => {
       console.error(err);
