@@ -88,7 +88,7 @@ var Pivot = {
 
   // Tasks
   createtask: function(data, uid, sprint_id, today, callback) {
-    return db.query('INSERT INTO tasks (owner_id, assignee_id, project_id, name, description, status, points, created, sprint_id)  VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)', [
+    return db.query('INSERT INTO tasks (owner_id, assignee_id, project_id, name, description, status, state, points, created, sprint_id)  VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)', [
       uid,
       data.assignee_id,
       data.project_id,
@@ -110,11 +110,12 @@ var Pivot = {
     return db.query('SELECT * from tasks WHERE project_id=? AND state <> 2', project_id, callback);
   },
   updatetask: function(task, callback) {
-    return db.query('UPDATE tasks SET assignee_id=?, name=?, description=?, status=?, points=? WHERE id=?', [
+    return db.query('UPDATE tasks SET assignee_id=?, name=?, description=?, status=?, state=?, points=? WHERE id=?', [
       task.assignee_id,
       task.name,
       task.description,
       task.status,
+      task.state,
       task.points,
       task.id
     ], callback);
