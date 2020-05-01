@@ -103,7 +103,7 @@ class ViewMembers extends Component {
         </Form>
 
         <Button variant='danger' className="btn-block wide centered" onClick={() =>
-            window.confirm('Are you sure you want to delete ' + this.props.team.name + '?') ?
+            window.confirm('Are you sure you want to delete "' + this.props.team.name + '" ?') ?
             this.deleteTeam() : ''
           }>Delete Team</Button>
         <p>{this.state.message}&nbsp;</p>
