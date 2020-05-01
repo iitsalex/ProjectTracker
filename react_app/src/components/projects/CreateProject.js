@@ -49,27 +49,11 @@ class CreateProject extends Component {
 
   render() {
     return (
-      <Form onSubmit={this.onSubmit}>
-        <FormGroup>
-          <FormLabel className="text-muted">Select a Team</FormLabel>
-            <FormControl
-              as="select"
-              name="team_id"
-              value={this.state.team_id}
-              onChange={this.handleInputChange}
-              maxLength="100"
-              autoComplete="off"
-              required="required"
-            >
-              {this.props.teams.map(team =>
-                <option key={team.id} value={team.id}>{team.name}</option>
-              )}
-            </FormControl>
-        </FormGroup>
-
+      <Form onSubmit={this.onSubmit} className="wide">
         <FormGroup>
           <FormLabel className="text-muted">Project Name</FormLabel>
           <FormControl
+            className="wide"
             type="text"
             name="name"
             placeholder="Enter Project Name"
@@ -84,6 +68,7 @@ class CreateProject extends Component {
         <FormGroup>
           <FormLabel className="text-muted">Project Description</FormLabel>
           <FormControl
+            className="wide"
             as="textarea"
             type="text"
             name="description"
@@ -95,7 +80,7 @@ class CreateProject extends Component {
           />
         </FormGroup>
 
-        <Button variant='info' type="submit" className="btn-block">Submit</Button>
+        <Button variant='info' type="submit" className="btn-block wide">Submit</Button>
         <p>{this.state.message}&nbsp;</p>
       </Form>
     );

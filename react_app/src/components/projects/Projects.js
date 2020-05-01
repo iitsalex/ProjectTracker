@@ -3,7 +3,7 @@ import { ListGroup, Button, Card } from "react-bootstrap";
 import FadeIn from 'react-fade-in';
 import ModalTemplate from "../ModalTemplate";
 import CreateProject from "./CreateProject";
-import ViewProjectDetails from "./ViewProjectDetails";
+import ViewProject from "./ViewProject";
 
 class Projects extends Component {
   constructor(props) {
@@ -47,7 +47,6 @@ class Projects extends Component {
           onHide={() => this.setState({showCreateProject: false})}
           title="Create Project"
           component={CreateProject}
-          teams={this.props.data.teams}
           team_id={this.props.data.team_id}
           updateProjects={this.props.updateProjects}
         />
@@ -55,7 +54,7 @@ class Projects extends Component {
           show={this.state.show_project}
           onHide={() => this.setState({show_project: false})}
           title="Project Details"
-          component={ViewProjectDetails}
+          component={ViewProject}
           project={this.state.project}
           team_id={this.props.data.team_id}
           updateProjects={this.props.updateProjects}

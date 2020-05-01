@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import { Button, Form, FormControl, FormGroup, FormLabel } from "react-bootstrap";
 
-class ViewProjectDetails extends Component {
+class ViewProject extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -111,4 +111,4 @@ class ViewProjectDetails extends Component {
   }
 }
 
-export default ViewProjectDetails;
+export default ViewProject;
