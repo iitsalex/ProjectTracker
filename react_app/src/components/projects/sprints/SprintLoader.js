@@ -61,9 +61,7 @@ class SprintLoader extends Component {
       <div>
         { this.state.loading ?
           <FadeIn delay={500}>
-            <header className="App-header" style={{backgroundColor: 'transparent'}}>
-              <ReactLoading type={"bars"} color={"white"} height={'5%'} width={'5%'} />
-            </header>
+            <ReactLoading className="centered" type={"bars"} color={"white"} height={'5%'} width={'5%'} />
           </FadeIn> :
           <SprintList
             user_id={this.props.data.user.id}

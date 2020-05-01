@@ -96,7 +96,7 @@ class ViewMembers extends Component {
 
         <Form onSubmit={this.onSubmit} className='wide pad-em centered'>
           <FormGroup>
-            <FormLabel className="wide pad-em-bottom text-muted">Team Member's Email:</FormLabel>
+            <FormLabel className="wide pad-em-bottom text-muted">Invite Team Member:</FormLabel>
             <FormControl type="email" name="email" className='wide' placeholder="Enter Team Member's Email" value={this.state.email} onChange={this.handleInputChange} maxLength="100" autoComplete="off" required="required"/>
           </FormGroup>
 
