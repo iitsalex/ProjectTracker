@@ -70,16 +70,14 @@ class ViewProjectDetails extends Component {
   render() {
     return (
       <div className="ViewMembers wide">
-        <p>Team ID: {this.state.team_id}</p>
-
-
         <Form onSubmit={this.onSubmit} className="wide">
           <FormGroup>
             <FormLabel className="text-muted">Project Name</FormLabel>
             <FormControl
+              className="wide"
               type="text"
               name="name"
-              placeholder="how did you manage to put no project name???"
+              placeholder="Enter Project Name"
               value={this.state.name}
               onChange={this.handleInputChange}
               maxLength="100"
@@ -90,19 +88,19 @@ class ViewProjectDetails extends Component {
           <FormGroup>
             <FormLabel className="text-muted">Project Description</FormLabel>
             <FormControl
+              className="wide"
               as="textarea"
               type="text"
               name="description"
-              placeholder="Enter Project Name"
+              placeholder="Enter Project Description"
               value={this.state.description}
               onChange={this.handleInputChange}
               autoComplete="off"
               rows="5"
-              required
             />
           </FormGroup>
-          <Button variant='info' type="submit" className="btn-block btn-wide">Update</Button>
-          <Button variant='danger' className="btn-block wide centered" onClick={() =>
+          <Button variant='info' type="submit" className="btn-block wide">Update</Button>
+          <Button variant='danger' className="btn-block wide" onClick={() =>
               window.confirm('Are you sure you want to delete "' + this.props.project.name + '" ?') ?
               this.deleteProject() : ''
             }>Delete Team</Button>
