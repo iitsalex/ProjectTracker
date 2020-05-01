@@ -88,7 +88,7 @@ var Pivot = {
 
   // Tasks
   createtask: function(data, uid, sprint_id, today, callback) {
-    return db.query('INSERT INTO tasks (owner_id, assignee_id, project_id, name, description, status, state, points, created, sprint_id)  VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)', [
+    return db.query('INSERT INTO tasks (owner_id, assignee_id, project_id, name, description, status, points, created, sprint_id)  VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)', [
       uid,
       data.assignee_id,
       data.project_id,
