@@ -11,7 +11,6 @@ class CreateTask extends Component {
       points: 0,
       assignee_id: 'null',
       project_id: this.props.project_id,
-      priority: '',
       message: ''
     };
   }

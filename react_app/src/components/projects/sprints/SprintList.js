@@ -74,7 +74,9 @@ class SprintList extends React.Component {
           user_id={this.props.user_id}
           tasks={this.state.tasks}
           component={SprintView}
+          team_members={this.props.team_members}
           updateSprints={this.props.updateSprints}
+          updateTasks={this.props.updateTasks}
         />
         <ListGroup horizontal='lg'>
           <FadeIn>

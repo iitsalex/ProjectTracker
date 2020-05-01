@@ -39,6 +39,10 @@ div.card {
   cursor: pointer;
 }
 
+li.list-group-item {
+  cursor: pointer;
+}
+
 div.PivotNavbar {
   margin-bottom: 1em;
 }

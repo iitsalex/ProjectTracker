@@ -101,7 +101,7 @@ class App extends Component {
           message: ''
         });
         if (data[0] !== undefined) {
-          if (this.state.team_id !== -1) {
+          if (this.state.team_id in data.map((team) => team.id)) {
             this.updateTeamMembers();
           } else {
             this.setState({

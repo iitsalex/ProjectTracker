@@ -67,6 +67,7 @@ class SprintLoader extends Component {
             project_id={this.props.data.project_id}
             sprints={this.state.sprints}
             setMessage={(val) => this.setState({message: val})}
+            team_members={this.props.data.team_members}
             updateSprints={this.fetchSprints}
             updateTasks={this.props.updateTasks}
             message={this.state.message}

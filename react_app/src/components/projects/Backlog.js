@@ -9,7 +9,6 @@ import TaskCard from "./tasks/TaskCard";
 
 
 class Backlog extends React.Component {
-  // TODO sort out how to move tasks to sprint when changing status to in progress
   constructor(props) {
     super(props);
     this.state = {
@@ -45,7 +44,6 @@ class Backlog extends React.Component {
               title={this.state.task.name}
               component={ViewTask}
               task={this.state.task}
-              project_id={this.props.data.project_id}
               team_members={this.props.data.team_members}
               updateTasks={this.props.updateTasks}
             />
