@@ -57,7 +57,7 @@ CREATE TABLE tasks(
     description TEXT,
     status INT NOT NULL,
     state INT DEFAULT 1, -- 0: in backlog, 1: in sprint,  2: completed not in sprint
-    points INT NOT NULL,
+    points FLOAT NOT NULL,
     created DATETIME NOT NULL,
     PRIMARY KEY (id),
     FOREIGN KEY (owner_id) REFERENCES users(id) ON DELETE SET NULL,
