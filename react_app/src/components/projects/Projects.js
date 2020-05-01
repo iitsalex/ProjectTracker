@@ -3,12 +3,14 @@ import { ListGroup, Button, Card } from "react-bootstrap";
 import FadeIn from 'react-fade-in';
 import ModalTemplate from "../ModalTemplate";
 import CreateProject from "./CreateProject";
+import ViewProjectDetails from "./ViewProjectDetails";
 
 class Projects extends Component {
   constructor(props) {
     super(props);
     this.state = {
       projects: this.props.data.projects,
+      project: '',
       show_project: false,
       showCreateProject: false
     };
@@ -49,16 +51,25 @@ class Projects extends Component {
           team_id={this.props.data.team_id}
           updateProjects={this.props.updateProjects}
         />
+        <ModalTemplate
+          show={this.state.show_project}
+          onHide={() => this.setState({show_project: false})}
+          title="Project Details"
+          component={ViewProjectDetails}
+          project={this.state.project}
+        />
         <Button variant="info" className='btn-block centered pad-em' onClick={() => this.setState({showCreateProject: true})}>
           Create Project
         </Button>
         <ListGroup horizontal='lg'>
           {this.props.data.projects.map(project =>
             <Card
-              key={project.id}>
+              key={project.id}
+              onClick={() => this.setState({show_project: true, project: project})}
+              >
               {project.name}
               <br/>
-              <p className='unpadded medium-muted text-small'>Click to view team details</p>
+              <p className='unpadded medium-muted text-small'>Click to view project details</p>
             </Card>
           )}
         </ListGroup>
