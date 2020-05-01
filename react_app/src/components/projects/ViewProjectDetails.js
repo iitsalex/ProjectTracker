@@ -79,7 +79,7 @@ class ViewProjectDetails extends Component {
             <FormControl
               type="text"
               name="name"
-              placeholder="how did you manage to put no project name???"
+              placeholder="Enter Project Name"
               value={this.state.name}
               onChange={this.handleInputChange}
               maxLength="100"
@@ -93,12 +93,11 @@ class ViewProjectDetails extends Component {
               as="textarea"
               type="text"
               name="description"
-              placeholder="Enter Project Name"
+              placeholder="Enter Project Description"
               value={this.state.description}
               onChange={this.handleInputChange}
               autoComplete="off"
               rows="5"
-              required
             />
           </FormGroup>
           <Button variant='info' type="submit" className="btn-block btn-wide">Update</Button>
