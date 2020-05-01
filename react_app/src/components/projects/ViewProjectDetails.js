@@ -70,13 +70,11 @@ class ViewProjectDetails extends Component {
   render() {
     return (
       <div className="ViewMembers wide">
-        <p>Team ID: {this.state.team_id}</p>
-
-
         <Form onSubmit={this.onSubmit} className="wide">
           <FormGroup>
             <FormLabel className="text-muted">Project Name</FormLabel>
             <FormControl
+              className="wide"
               type="text"
               name="name"
               placeholder="Enter Project Name"
@@ -90,6 +88,7 @@ class ViewProjectDetails extends Component {
           <FormGroup>
             <FormLabel className="text-muted">Project Description</FormLabel>
             <FormControl
+              className="wide"
               as="textarea"
               type="text"
               name="description"
@@ -100,8 +99,8 @@ class ViewProjectDetails extends Component {
               rows="5"
             />
           </FormGroup>
-          <Button variant='info' type="submit" className="btn-block btn-wide">Update</Button>
-          <Button variant='danger' className="btn-block wide centered" onClick={() =>
+          <Button variant='info' type="submit" className="btn-block wide">Update</Button>
+          <Button variant='danger' className="btn-block wide" onClick={() =>
               window.confirm('Are you sure you want to delete "' + this.props.project.name + '" ?') ?
               this.deleteProject() : ''
             }>Delete Team</Button>
