@@ -37,8 +37,8 @@ var Pivot = {
     return db.query('SELECT * FROM projects WHERE team_id=? ORDER BY name', team_id, callback);
   },
   updateproject: function(project, callback) {
-    return db.query('UPDATE projects SET name=?, owner_id=? WHERE id=?', [
-      project.name, project.owner_id, project.id
+    return db.query('UPDATE projects SET name=?, description=? WHERE id=?', [
+      project.name, project.description, project.id
     ], callback);
   },
   deleteproject: function(project_id, callback) {
