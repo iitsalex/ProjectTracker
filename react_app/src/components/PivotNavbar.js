@@ -12,12 +12,24 @@ class PivotNavbar extends Component {
     super(props);
     this.state = {
       isAuthenticated: false,
-      showLogin: false
+      showLogin: false,
+      showCreateProject: false
     }
   }
 
   authNav = () =>
     <div className="PivotNavbar">
+      {this.props.data.teams.length > 0 ?
+        <ModalTemplate
+          show={this.state.showCreateProject}
+          onHide={() => this.setState({showCreateProject: false})}
+          title="Create Project"
+          component={CreateProject}
+          teams={this.props.data.teams}
+          team_id={this.props.data.team_id}
+          updateProjects={this.props.updateProjects}
+        />
+      : ''}
       <Navbar variant="dark" bg="dark" expand="sm">
         <FadeIn>
           <Navbar.Brand as={Link} to="/">Pivot</Navbar.Brand>

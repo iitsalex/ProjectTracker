@@ -42,7 +42,7 @@ class ViewMembers extends Component {
       }
     }).then(data => {
       if (data !== undefined) {
-        this.props.updateTeamMembers();
+        this.props.updateTeams();
         this.props.onHide();
         alert(data.fname + " " + data.lname + " has been added to the team."); // TODO replace with toast
       }
@@ -76,6 +76,29 @@ class ViewMembers extends Component {
     });
   }
 
+  leaveTeam = () => {
+    fetch('/api/user/team/', {
+      method: 'DELETE',
+      body: JSON.stringify({user_id: this.props.user_id, team_id: this.props.team.id}),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }).then(res => {
+      if (res.status === 200) {
+        this.props.updateTeams();
+        this.props.onHide();
+      } else {
+        const error = new Error(res.error);
+        throw error;
+      }
+    }).catch(err => {
+      console.error(err);
+      this.setState({
+        message: 'An error occured leaving this team'
+      });
+    });
+  }
+
   render() {
     return (
       <div className="ViewMembers wide">
@@ -102,10 +125,18 @@ class ViewMembers extends Component {
           <Button variant='info' type="submit" className="btn-block wide centered">Invite New Member</Button>
         </Form>
 
-        <Button variant='danger' className="btn-block wide centered" onClick={() =>
-            window.confirm('Are you sure you want to delete "' + this.props.team.name + '" ?') ?
-            this.deleteTeam() : ''
-          }>Delete Team</Button>
+        {this.props.user_id === this.props.team.lead_id ?
+          <Button variant='danger' className="btn-block wide centered" onClick={() =>
+              window.confirm('Are you sure you want to delete "' + this.props.team.name + '" ?') ?
+              this.deleteTeam() : ''
+            }>Delete Team</Button>
+          :
+          <Button variant='danger' className="btn-block wide centered" onClick={() =>
+              window.confirm('Are you sure you want to leave "' + this.props.team.name + '" ?') ?
+              this.leaveTeam() : ''
+            }>Leave Team</Button>
+        }
+
         <p>{this.state.message}&nbsp;</p>
       </div>
     );

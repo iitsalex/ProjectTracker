@@ -57,8 +57,10 @@ class Teams extends Component {
           onHide={() => this.setState({show_team: false})}
           title={this.state.team.name}
           component={ViewMembers}
+          user_id={this.props.data.user.id}
           team={this.state.team}
           members={this.state.members}
+          updateTeams={this.props.updateTeams}
           updateTeamMembers={this.props.updateTeamMembers}
         />
         <Button variant="info" className='btn-block centered pad-em' onClick={() => this.setState({show_create: true})}>

@@ -111,6 +111,17 @@ router.get('/user/team/:team_id', withAuth, function(req, res) {
   });
 });
 
+router.delete('/user/team/', withAuth, function(req, res) {
+  Pivot.removeuserfromteam(req.body, function(err) {
+    if (err) {
+      res.status(400).json(err);
+      console.log(err);
+    } else {
+      res.status(200).send('Successfully left team');
+    }
+  });
+});
+
 // Projects
 router.post('/projects', withAuth, function(req, res) {
   const uid = req.cookies.uid;
