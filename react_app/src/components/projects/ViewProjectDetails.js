@@ -31,11 +31,11 @@ class ViewProjectDetails extends Component {
         return res.json();
       } else if (res.status === 404) {
         this.setState({
-          message: "No such user"
+          message: "TEMP ERROR MESSAGE"
         });
       } else if (res.status === 412) {
         this.setState({
-          message: "User is already in this team"
+          message: "TEMP ERROR MESSAGE"
         });
       } else {
         const error = new Error(res.error);
