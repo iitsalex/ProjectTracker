@@ -36,7 +36,6 @@ class ViewProject extends Component {
     }).then(data => {
       this.props.updateProjects();
       this.props.onHide();
-      // TODO replace with toast
     }).catch(err => {
       console.error(err);
       this.setState({
