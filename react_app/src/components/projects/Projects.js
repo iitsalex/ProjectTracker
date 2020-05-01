@@ -57,6 +57,8 @@ class Projects extends Component {
           title="Project Details"
           component={ViewProjectDetails}
           project={this.state.project}
+          team_id={this.props.data.team_id}
+          updateProjects={this.props.updateProjects}
         />
         <Button variant="info" className='btn-block centered pad-em' onClick={() => this.setState({showCreateProject: true})}>
           Create Project

@@ -1,11 +1,14 @@
 import React, {Component} from "react";
-import { Button } from "react-bootstrap";
+import { Button, Form, FormControl, FormGroup, FormLabel } from "react-bootstrap";
 
-class V extends Component {
+class ViewProjectDetails extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      description: '',
+      project: props.project,
+      name: props.project.name,
+      description: props.project.description,
+      team_id: props.team_id,
       message: '',
     };
   }
@@ -17,9 +20,9 @@ class V extends Component {
 
   onSubmit = (event) => {
     event.preventDefault();
-    fetch('/api/teams/join', {
-      method: 'POST',
-      body: JSON.stringify({team_id: this.props.team.id, email: this.state.email}),
+    fetch('/api/projects/', {
+      method: 'PUT',
+      body: JSON.stringify(this.state),
       headers: {
         'Content-Type': 'application/json'
       }
@@ -42,12 +45,12 @@ class V extends Component {
       if (data !== undefined) {
         this.props.updateProjects();
         this.props.onHide();
-        alert(data.fname + " " + data.lname + " has been added to the team."); // TODO replace with toast
+        // TODO replace with toast
       }
     }).catch(err => {
       console.error(err);
       this.setState({
-        message: 'An error occured inviting this user'
+        message: 'An error occured updating this project'
       });
     });
   }
@@ -77,18 +80,47 @@ class V extends Component {
   render() {
     return (
       <div className="ViewMembers wide">
-        <p className='pad-em-bottom'>Project Created: {this.props.project.created.substring(0,10)}</p>
-        <p className='pad-em-bottom'>Description: {this.props.project.description}</p>
-        <p></p>
+        <p>Team ID: {this.state.team_id}</p>
 
+
+      <Form onSubmit={this.onSubmit} className="wide">
+        <FormGroup>
+          <FormLabel className="text-muted">Project Name</FormLabel>
+          <FormControl
+            type="text"
+            name="name"
+            placeholder="how did you manage to put no project name???"
+            value={this.state.name}
+            onChange={this.handleInputChange}
+            maxLength="100"
+            autoComplete="off"
+            required
+          />
+        </FormGroup>
+        <FormGroup>
+          <FormLabel className="text-muted">Project Description</FormLabel>
+          <FormControl
+            as="textarea"
+            type="text"
+            name="description"
+            placeholder="Enter Project Name"
+            value={this.state.description}
+            onChange={this.handleInputChange}
+            autoComplete="off"
+            rows="5"
+            required
+          />
+        </FormGroup>
+        <Button variant='info' type="submit" className="btn-block btn-wide">Update</Button>
         <Button variant='danger' className="btn-block wide centered" onClick={() =>
             window.confirm('Are you sure you want to delete "' + this.props.project.name + '" ?') ?
             this.deleteProject() : ''
           }>Delete Team</Button>
         <p>{this.state.message}&nbsp;</p>
+      </Form>
       </div>
     );
   }
 }
 
-export default V;
+export default ViewProjectDetails;
