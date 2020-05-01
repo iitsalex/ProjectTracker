@@ -84,12 +84,14 @@ class CreateProject extends Component {
         <FormGroup>
           <FormLabel className="text-muted">Project Description</FormLabel>
           <FormControl
+            as="textarea"
             type="text"
             name="description"
             placeholder="Enter Project Description"
             value={this.state.description}
             onChange={this.handleInputChange}
             autoComplete="off"
+            rows="5"
           />
         </FormGroup>
 
