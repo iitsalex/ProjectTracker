@@ -59,6 +59,8 @@ class App extends Component {
           this.setState({
             is_auth: false,
             loading: false
+          }, () => {
+            clearInterval(this.intervalID);
           });
         }
       } else {
