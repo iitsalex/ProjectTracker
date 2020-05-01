@@ -103,7 +103,12 @@ class App extends Component {
             }, () => this.updateTeamMembers());
           }
         } else {
-          this.setState({ loading: false })
+          this.setState({
+            loading: false,
+            projects: [],
+            backlog_tasks: [],
+            active_tasks: []
+          })
         }
       }
     }).catch(err => {
@@ -160,7 +165,11 @@ class App extends Component {
             }, () => this.updateTasks());
           }
         } else {
-          this.setState({ loading: false })
+          this.setState({
+            loading: false,
+            backlog_tasks: [],
+            active_tasks: []
+          })
         }
       }
     }).catch(err => {

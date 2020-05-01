@@ -75,7 +75,7 @@ class ViewTask extends Component {
 
   render() {
     return (
-      <Form onSubmit={this.onSubmit} className="form-wide">
+      <Form onSubmit={this.onSubmit} className="wide">
         <Form.Row>
           <FormGroup as={Col}>
             <FormLabel className="text-muted">Task Name</FormLabel>

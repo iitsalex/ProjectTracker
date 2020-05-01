@@ -3,7 +3,6 @@ import { ListGroup, Button, Card } from "react-bootstrap";
 import FadeIn from 'react-fade-in';
 import ModalTemplate from "../ModalTemplate";
 import CreateTeam from "./CreateTeam";
-import InviteMembers from "./InviteMembers";
 import ViewMembers from "./ViewMembers";
 import "./Teams.css";
 
@@ -54,27 +53,16 @@ class Teams extends Component {
           updateTeams={this.props.updateTeams}
         />
         <ModalTemplate
-          show={this.state.show_invite}
-          onHide={() => this.setState({show_invite: false})}
-          title="Invite Members"
-          component={InviteMembers}
-          teams={this.props.data.teams}
-          updateTeamMembers={this.props.updateTeamMembers}
-        />
-        <ModalTemplate
           show={this.state.show_team}
           onHide={() => this.setState({show_team: false})}
           title={this.state.team.name}
           component={ViewMembers}
           team={this.state.team}
           members={this.state.members}
-          updateTeams={this.props.updateTeams}
+          updateTeamMembers={this.props.updateTeamMembers}
         />
         <Button variant="info" className='btn-block centered pad-em' onClick={() => this.setState({show_create: true})}>
           Create Team
-        </Button>
-        <Button variant="secondary" className='btn-block centered pad-em' onClick={() => this.setState({show_invite: true})}>
-          Invite Team Members
         </Button>
         <ListGroup horizontal='lg'>
           {this.props.data.teams.map(team =>

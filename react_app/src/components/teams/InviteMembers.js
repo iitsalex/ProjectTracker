@@ -7,7 +7,6 @@ class InviteMembers extends Component {
     super(props);
     this.state = {
       email: '',
-      team_id: props.teams[0].id,
       message: ''
     };
   }
@@ -21,7 +20,7 @@ class InviteMembers extends Component {
     event.preventDefault();
     fetch('/api/teams/join', {
       method: 'POST',
-      body: JSON.stringify(this.state),
+      body: JSON.stringify({team_id: this.props.team_id}),
       headers: {
         'Content-Type': 'application/json'
       }
@@ -55,31 +54,18 @@ class InviteMembers extends Component {
   }
 
   render() {
-    return (<div className="InviteMembers">
-      <Form onSubmit={this.onSubmit}>
-        <FormGroup>
-          <FormLabel className="text-muted">Team Select</FormLabel>
-          <FormControl
-            as="select" name="team_id"
-            value={this.state.team_id}
-             onChange={this.handleInputChange}
-             maxLength="100"
-             autoComplete="off"
-             required="required">
-            {this.props.teams.map(team =>
-              <option key={team.id} value={team.id}>{team.name}</option>
-            )}
-          </FormControl>
-        </FormGroup>
-        <FormGroup>
-          <FormLabel className="text-muted">Team Member's Email</FormLabel>
-          <FormControl type="email" name="email" placeholder="Enter Team Member's Email" value={this.state.email} onChange={this.handleInputChange} maxLength="100" autoComplete="off" required="required"/>
-        </FormGroup>
+    return (
+      <div className="InviteMembers">
+        <Form onSubmit={this.onSubmit} className='wide pad-em'>
+          <FormGroup>
+            <FormLabel className="text-muted">Team Member's Email</FormLabel>
+            <FormControl type="email" name="email" placeholder="Enter Team Member's Email" value={this.state.email} onChange={this.handleInputChange} maxLength="100" autoComplete="off" required="required"/>
+          </FormGroup>
 
-        <Button variant='info' type="submit" className="btn-block">Submit</Button>
-        <p>{this.state.message}&nbsp;</p>
-      </Form>
-    </div>);
+          <Button variant='info' type="submit" className="btn-block">Submit</Button>
+          <p>{this.state.message}&nbsp;</p>
+        </Form>
+      </div>);
   }
 }
 
