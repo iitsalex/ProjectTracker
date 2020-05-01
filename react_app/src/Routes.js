@@ -37,7 +37,7 @@ class Routes extends Component {
         <Route path="/signup" render={ () =>
           this.props.data.is_auth ?
           <Redirect to="/403" /> :
-          <SignUp data={this.props.data} />
+          <SignUp data={this.props.data} updateAuth={this.props.updateAuth} />
         }/>
         <Route path="/passwordreset" render={ () =>
           this.props.data.is_auth ?

@@ -26,11 +26,8 @@ class ViewTask extends Component {
 
   onSubmit = (event) => {
     event.preventDefault();
-    console.log('state before ' + this.state.state);
-    console.log('status before ' + this.state.status);
     if (this.props.task.state !== this.state.status) {
       // in backlog and no longer new
-      console.log('switched state to 1')
       this.setState({
         state: 1
       }, () => this.updateTask());
@@ -40,8 +37,6 @@ class ViewTask extends Component {
   }
 
   updateTask = () => {
-    console.log('state after ' + this.state.state);
-    console.log('status after ' + this.state.status);
     fetch('/api/tasks', {
       method: 'PUT',
       body: JSON.stringify(this.state),

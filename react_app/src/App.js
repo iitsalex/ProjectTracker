@@ -227,6 +227,7 @@ class App extends Component {
               updateProjects={this.updateProjects}
               updateTeamMembers={this.updateTeamMembers}
               updateTasks={this.updateTasks}
+              updateAuth={this.updateAuth}
               logout={() => this.setState({teams: [], projects: [], tasks: []})}
             />
           </Fragment>

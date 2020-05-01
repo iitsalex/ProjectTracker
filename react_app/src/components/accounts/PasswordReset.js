@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import FadeIn from 'react-fade-in';
 
 class PasswordReset extends Component {
   constructor(props) {
@@ -10,8 +11,8 @@ class PasswordReset extends Component {
 
   render() {
     return (
-      <div className="Login">
-        <form>
+      <form>
+        <FadeIn>
           <h3>Password Reset</h3>
 
           <div className="form-group">
@@ -24,8 +25,8 @@ class PasswordReset extends Component {
           <p className="Intructions">
             {this.state.message}
           </p>
-        </form>
-      </div>
+        </FadeIn>
+      </form>
     );
   }
 }
