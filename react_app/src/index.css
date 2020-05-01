@@ -95,6 +95,26 @@ div.task-cards {
   margin-bottom: 20px;
 }
 
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #222;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #333;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #444;
+}
+
+.modal {
+  background-color: rgba(0, 0, 0, 0.5) !important;
+}
+
 .inline {
   display: inline !important;
 }
@@ -144,20 +164,4 @@ div.task-cards {
 
 .text-small {
   font-size: 0.9em !important;
-}
-
-::-webkit-scrollbar {
-  width: 10px;
-}
-
-::-webkit-scrollbar-track {
-  background: #f1f1f1;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #888;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #555;
 }
