@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import FadeIn from 'react-fade-in';
 import { Form, Button, FormGroup, FormControl, FormLabel } from "react-bootstrap"
-import { Link } from "react-router-dom";
 
 import ModalTemplate from '../ModalTemplate';
 import Login from './Login';

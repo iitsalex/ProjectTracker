@@ -1,6 +1,5 @@
 import React, {Component} from "react";
 import { Button, ListGroup, Form, FormGroup, FormControl, FormLabel } from "react-bootstrap";
-import InviteMembers from "./InviteMembers";
 
 import "./Teams.css";
 
