@@ -29,3 +29,15 @@ Alternatively, use CURL or Postman to test POST and GET
 `npm install`
 
 `npm start`
+
+## Deployment
+
+Deployment may also involve setting environment variables for database access.
+
+`cd react_app`
+
+`npm run build`
+
+`cd api`
+
+`npm start`
