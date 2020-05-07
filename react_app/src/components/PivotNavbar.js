@@ -40,7 +40,6 @@ class PivotNavbar extends Component {
             {this.props.data.projects.length > 0 ?
               <Nav.Link as={Link} to="/dashboard">Dashboard</Nav.Link>
             : ''}
-            <Nav.Link as={Link} to="/teams">Teams</Nav.Link>
             {this.props.data.teams.length > 0 ?
               <NavDropdown title="Projects" id="basic-nav-dropdown">
                 {this.props.data.projects.length > 0 ?
@@ -54,6 +53,7 @@ class PivotNavbar extends Component {
               </NavDropdown.Item>
               </NavDropdown>
             : ''}
+            <Nav.Link as={Link} to="/teams">Teams</Nav.Link>
             <Nav.Link as={Link} to="/settings">Settings</Nav.Link>
           </Nav>
           {this.props.data.projects.length > 0 ?
