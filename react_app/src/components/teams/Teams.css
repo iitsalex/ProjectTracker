@@ -10,3 +10,7 @@ div.list-group-item {
   padding: 10px;
   margin: 10px;
 }
+
+li.list-group-item {
+  cursor: default !important;
+}
