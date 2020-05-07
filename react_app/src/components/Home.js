@@ -7,7 +7,7 @@ class Home extends Component {
     return (
       <header>
         <FadeIn delay='200'>
-          <h1 style={{color: '#3498DB', fontSize: '100px', marginTop: '2rem', display: 'inline'}}>
+          <h1 style={{color: '#3498DB', fontSize: '100px', marginTop: '2rem'}}>
             Pivot <span className='slight-muted' style={{color: '#FFF'}}>Beta</span>
           </h1>
           <h3>Project Tracking</h3>
