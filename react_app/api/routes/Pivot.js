@@ -129,6 +129,11 @@ var Pivot = {
       sprint_id, project_id, 0, 1
     ], callback);
   },
+  updatetasksprint: function(task_id, sprint_id, callback) {
+    return db.query('UPDATE tasks SET sprint_id=? WHERE id=?', [
+      sprint_id, task_id
+    ], callback);
+  },
   deletetask: function(task_id, callback) {
     return db.query('DELETE FROM tasks WHERE id=?', task_id, callback);
   },

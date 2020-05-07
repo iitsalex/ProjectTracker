@@ -428,7 +428,25 @@ router.put('/tasks', withAuth, function(req, res) {
       res.status(400).json(err);
       console.log(err);
     } else {
-      res.json(req.body);
+      if (req.body.status !== 2) {
+        Pivot.getsprintsbyproject(req.body.project_id, function(err, rows) {
+          if (err) {
+            res.status(400).json(err);
+            console.log(err);
+          } else {
+            Pivot.updatetasksprint(req.body.id, rows[0].id, function(err, count) {
+              if (err) {
+                res.status(400).json(err);
+                console.log(err);
+              } else {
+                res.json(req.body);
+              }
+            });
+          }
+        });
+      } else {
+        res.json(req.body);
+      }
     }
   });
 });

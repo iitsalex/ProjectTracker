@@ -12,6 +12,7 @@ class ViewTask extends Component {
       state: this.props.task.state,
       points: this.props.task.points,
       assignee_id: this.props.task.assignee_id,
+      project_id: this.props.task.project_id,
       message: ''
     };
   }
