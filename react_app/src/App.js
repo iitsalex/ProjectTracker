@@ -58,7 +58,10 @@ class App extends Component {
         if (this._isMounted) {
           this.setState({
             is_auth: false,
-            loading: false
+            loading: false,
+            projects: [],
+            backlog_tasks: [],
+            active_tasks: []
           }, () => {
             clearInterval(this.intervalID);
           });
@@ -234,7 +237,6 @@ class App extends Component {
               updateTeamMembers={this.updateTeamMembers}
               updateTasks={this.updateTasks}
               updateAuth={this.updateAuth}
-              logout={() => this.setState({teams: [], projects: [], tasks: []})}
             />
           </Fragment>
         }

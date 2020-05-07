@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Switch, Redirect } from "react-router-dom";
+import { Route, Switch, Redirect, withRouter } from "react-router-dom";
 
 import Home from './components/Home';
 import SignUp from './components/accounts/SignUp';
@@ -18,8 +18,8 @@ class Routes extends Component {
         const error = new Error(res.error);
         throw error;
       }
-      this.props.logout();
-      window.location.href = '/';
+      this.props.updateAuth();
+      this.props.history.push('/');
     }).catch(err => {
       console.error(err);
     });
@@ -80,4 +80,4 @@ class Routes extends Component {
   }
 }
 
-export default Routes;
+export default withRouter(Routes);
