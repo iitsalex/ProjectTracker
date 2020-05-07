@@ -14,7 +14,7 @@ class Dashboard extends Component {
       task: '',
       modalView: false,
       modalCreate: false,
-      taskType: 'New',
+      taskType: 0,
       message: ''
     }
   }
@@ -33,6 +33,7 @@ class Dashboard extends Component {
             team_members={this.props.data.team_members}
             updateTasks={this.props.updateTasks}
             taskType={this.state.taskType}
+            taskState={1}
           />
           <ModalTemplate
             show={this.state.modalView}

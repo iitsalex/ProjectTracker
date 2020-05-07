@@ -56,7 +56,7 @@ CREATE TABLE tasks(
     name VARCHAR(100) NOT NULL,
     description TEXT,
     status INT NOT NULL,
-    state INT DEFAULT 1, -- 0: in backlog, 1: in sprint,  2: completed not in sprint
+    state INT DEFAULT 1 NOT NULL, -- 0: in backlog, 1: in sprint,  2: completed not in sprint
     points FLOAT NOT NULL,
     created DATETIME NOT NULL,
     PRIMARY KEY (id),

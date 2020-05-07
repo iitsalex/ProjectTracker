@@ -15,7 +15,6 @@ class Backlog extends React.Component {
       task: '',
       modalCreate: false,
       modalView: false,
-      taskType: 'New'
     };
   }
 
@@ -35,7 +34,8 @@ class Backlog extends React.Component {
             project_id={this.props.data.project_id}
             team_members={this.props.data.team_members}
             updateTasks={this.props.updateTasks}
-            taskType={this.state.taskType}
+            taskType={0}
+            taskState={0}
           />
           <Container>
             <ModalTemplate

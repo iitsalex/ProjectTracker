@@ -8,10 +8,12 @@ class CreateTask extends Component {
       name: '',
       description: '',
       status: this.props.taskType,
+      state: this.props.taskState,
       points: 0,
       assignee_id: 'null',
       project_id: this.props.project_id,
-      message: ''
+      message: '',
+      disabled_status: this.props.taskState === 0
     };
   }
 
@@ -78,6 +80,7 @@ class CreateTask extends Component {
               onChange={this.handleInputChange}
               autoComplete="off"
               required
+              disabled={this.state.disabled_status}
             >
               <option key={0} value={0}>{"New"}</option>
               <option key={1} value={1}>{"In Progress"}</option>
