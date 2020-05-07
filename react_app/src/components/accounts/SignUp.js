@@ -12,6 +12,7 @@ class SignUp extends Component {
       showLogin: false,
       email: '',
       password: '',
+      password_confirm: '',
       fname: '',
       lname: '',
       message: ''
@@ -27,29 +28,35 @@ class SignUp extends Component {
 
   onSubmit = (event) => {
     event.preventDefault();
-    fetch('/api/user/create', {
-      method: 'POST',
-      body: JSON.stringify(this.state),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    }).then(res => {
-      if (res.status === 200) {
-        window.location.href = '/';
-      } else if (res.status === 403) {
+    if (this.state.password === this.state.password_confirm) {
+      fetch('/api/user/create', {
+        method: 'POST',
+        body: JSON.stringify(this.state),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }).then(res => {
+        if (res.status === 200) {
+          window.location.href = '/';
+        } else if (res.status === 403) {
+          this.setState({
+            message: 'Email already in use'
+          });
+        } else {
+          const error = new Error(res.error);
+          throw error;
+        }
+      }).catch(err => {
+        console.error(err);
         this.setState({
-          message: 'Email already in use'
+          message: 'An unknown error occured, try again later'
         });
-      } else {
-        const error = new Error(res.error);
-        throw error;
-      }
-    }).catch(err => {
-      console.error(err);
-      this.setState({
-        message: 'An unknown error occured, try again later'
       });
-    });
+    } else {
+      this.setState({
+        message: 'Passwords do not match'
+      });
+    }
   }
 
   render() {
@@ -107,6 +114,20 @@ class SignUp extends Component {
               name="password"
               placeholder="Enter password"
               value={this.state.password}
+              onChange={this.handleInputChange}
+              autoComplete="password"
+              maxLength="60"
+              required
+            />
+          </FormGroup>
+
+          <FormGroup>
+            <FormLabel className="text-muted">Confirm Password</FormLabel>
+            <FormControl
+              type="password"
+              name="password_confirm"
+              placeholder="Enter password"
+              value={this.state.password_confirm}
               onChange={this.handleInputChange}
               autoComplete="password"
               maxLength="60"
