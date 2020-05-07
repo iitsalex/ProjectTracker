@@ -11,6 +11,9 @@ import SprintLoader from './components/projects/sprints/SprintLoader';
 import Teams from './components/teams/Teams';
 import Projects from './components/projects/Projects';
 
+import Unauthorized from './components/errors/Unauthorized.js';
+import NotFound from './components/errors/NotFound.js';
+
 class Routes extends Component {
   logout = () => {
     fetch('/api/user/deauth').then(res => {
@@ -70,11 +73,14 @@ class Routes extends Component {
           <Teams data={this.props.data} updateTeams={this.props.updateTeams} updateTeamMembers={this.props.updateTeamMembers} /> :
           <Redirect to="/401" />
         }/>
-      <Route path="/projects" render={ () =>
-          this.props.data.is_auth ?
-          <Projects data={this.props.data} updateProjects={this.props.updateProjects}/> :
-          <Redirect to="/401" />
-        }/>
+        <Route path="/projects" render={ () =>
+            this.props.data.is_auth ?
+            <Projects data={this.props.data} updateProjects={this.props.updateProjects}/> :
+            <Redirect to="/401" />
+          }/>
+
+        <Route path="/401" component={Unauthorized} />
+        <Route path="/" component={NotFound} />
       </Switch>
     );
   }

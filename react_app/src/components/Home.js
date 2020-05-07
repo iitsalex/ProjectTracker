@@ -7,12 +7,15 @@ class Home extends Component {
     return (
       <header>
         <FadeIn delay='200'>
-          <h1 style={{color: '#3498DB', fontSize: '100px', margin: '2rem'}}>Pivot</h1>
-          <h1>Your Project Tracking Solution</h1>
+          <h1 style={{color: '#3498DB', fontSize: '100px', marginTop: '2rem', display: 'inline'}}>
+            Pivot <span className='slight-muted' style={{color: '#FFF'}}>Beta</span>
+          </h1>
+          <h3>Project Tracking</h3>
+          <h4 className='slight-muted'>Made Easy</h4>
           <br/>
           {this.props.is_auth ?
             <p>Welcome {this.props.user.fname + ' ' + this.props.user.lname}</p> :
-            <Button variant='info' href="/signup"type="submit">Sign Up</Button>
+            <Button variant='secondary' href="/signup" type="submit" style={{minWidth: '20em'}}>Sign Up</Button>
           }
         </FadeIn>
       </header>

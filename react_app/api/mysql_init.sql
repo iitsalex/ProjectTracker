@@ -52,7 +52,6 @@ CREATE TABLE tasks(
     assignee_id INT, -- May be null
     project_id INT NOT NULL,
     sprint_id INT NOT NULL,
-    closed_sprint_id INT,
     name VARCHAR(100) NOT NULL,
     description TEXT,
     status INT NOT NULL,
