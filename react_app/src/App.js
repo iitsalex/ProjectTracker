@@ -76,7 +76,9 @@ class App extends Component {
     }).then(data => {
       if (data && this._isMounted) {
         if (this.state.is_auth) {
-          this.updateTeams();
+          this.setState({
+            user: data
+          }, () => this.updateTeams());
         } else {
           this.setState({
             is_auth: true,

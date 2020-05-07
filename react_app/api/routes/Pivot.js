@@ -20,6 +20,11 @@ var Pivot = {
       user.email, hash, user.fname, user.lname
     ], callback);
   },
+  updateuser: function(user, callback) {
+    return db.query('UPDATE users SET email=?, fname=?, lname=? WHERE id=?', [
+      user.email, user.fname, user.lname, user.id
+    ], callback);
+  },
   getusersbyteam: function(team_id, callback) {
     return db.query('SELECT id, fname, lname, email FROM users WHERE id IN ' + '(SELECT user_id FROM user_team WHERE team_id=?) ' + 'ORDER BY lname', team_id, callback);
   },
