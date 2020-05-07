@@ -1,8 +1,6 @@
 import React, {Component} from "react";
 import { Button, ListGroup, Form, FormGroup, FormControl, FormLabel } from "react-bootstrap";
 
-import "./Teams.css";
-
 class ViewMembers extends Component {
   constructor(props) {
     super(props);

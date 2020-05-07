@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Form, Button, FormGroup, FormControl, FormLabel } from "react-bootstrap"
-import "./Teams.css";
 
 class CreateTeam extends Component {
   constructor(props) {

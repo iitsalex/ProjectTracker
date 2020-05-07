@@ -39,12 +39,21 @@ div.card {
   cursor: pointer;
 }
 
-li.list-group-item {
-  cursor: pointer;
-}
-
 div.PivotNavbar {
   margin-bottom: 1em;
+}
+
+div.list-group {
+  max-width: 500px;
+  margin: auto;
+  display: block;
+}
+
+div.list-group-item {
+  max-width: 500px;
+  align-items: center;
+  padding: 10px;
+  margin: 10px;
 }
 
 button {
@@ -112,7 +121,7 @@ div.task-cards {
 }
 
 .modal {
-  background-color: rgba(0, 0, 0, 0.5) !important;
+  background-color: rgba(0, 0, 0, 0.25) !important;
 }
 
 .inline {

@@ -4,7 +4,6 @@ import FadeIn from 'react-fade-in';
 import ModalTemplate from "../ModalTemplate";
 import CreateTeam from "./CreateTeam";
 import ViewMembers from "./ViewMembers";
-import "./Teams.css";
 
 class Teams extends Component {
   constructor(props) {

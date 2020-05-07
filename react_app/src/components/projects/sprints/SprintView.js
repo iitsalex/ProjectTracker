@@ -37,6 +37,7 @@ class SprintView extends React.Component {
                   task: task,
                   modalView: true
                 })}
+                style={{cursor: 'pointer'}}
                 active>
                 {task.name + ' / ' + task.points} points
               </ListGroup.Item>
@@ -48,7 +49,8 @@ class SprintView extends React.Component {
                 onClick={() => this.setState({
                   task: task,
                   modalView: true
-                })}>
+                })}
+                style={{cursor: 'pointer'}}>
                 {task.name + ' / ' + task.points} points
               </ListGroup.Item>
           )}
