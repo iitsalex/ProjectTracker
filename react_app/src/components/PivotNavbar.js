@@ -61,6 +61,7 @@ class PivotNavbar extends Component {
               <NavItem>Project Select</NavItem>
               <FormControl
                 as="select"
+                type="number"
                 name="project_id"
                 value={this.props.data.project_id}
                 onChange={this.props.handleDataChange}
@@ -81,6 +82,7 @@ class PivotNavbar extends Component {
               <NavItem>Team Select</NavItem>
               <FormControl
                 as="select"
+                type="number"
                 name="team_id"
                 value={this.props.data.team_id}
                 onChange={this.props.handleDataChange}

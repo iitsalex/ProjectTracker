@@ -38,7 +38,10 @@ class App extends Component {
   }
 
   handleDataChange = (event) => {
-    const { value, name } = event.target;
+    let { value, name } = event.target;
+    if (name === 'team_id' || name === 'project_id') {
+      value = parseInt(value);
+    }
     this.setState({ [name]: value }, () => {
       if (name === 'team_id') {
         this.updateTeamMembers();
@@ -72,14 +75,18 @@ class App extends Component {
       }
     }).then(data => {
       if (data && this._isMounted) {
-        this.setState({
-          is_auth: true,
-          user: data
-        }, () => {
-          clearInterval(this.intervalID);
-          this.intervalID = setInterval(this.updateAuth.bind(this), 5000);
+        if (this.state.is_auth) {
           this.updateTeams();
-        });
+        } else {
+          this.setState({
+            is_auth: true,
+            user: data
+          }, () => {
+            clearInterval(this.intervalID);
+            this.intervalID = setInterval(this.updateAuth.bind(this), 5000);
+            this.updateTeams();
+          });
+        }
       }
     }).catch(err => {
       console.error(err);
@@ -104,7 +111,7 @@ class App extends Component {
           message: ''
         });
         if (data[0] !== undefined) {
-          if (this.state.team_id in data.map((team) => team.id)) {
+          if (data.map((team) => team.id).includes(this.state.team_id)) {
             this.updateTeamMembers();
           } else {
             this.setState({
@@ -166,7 +173,7 @@ class App extends Component {
           message: ''
         });
         if (data[0] !== undefined) {
-          if (this.state.project_id in data.map((project) => project.id)) {
+          if (data.map((project) => project.id).includes(this.state.project_id)) {
             this.updateTasks();
           } else {
             this.setState({
