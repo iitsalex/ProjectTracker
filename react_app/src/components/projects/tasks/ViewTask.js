@@ -17,10 +17,11 @@ class ViewTask extends Component {
   }
 
   handleInputChange = (event) => {
-    const { value, name } = event.target;
-    this.setState({
-      [name]: value
-    });
+    let {value, name} = event.target;
+    if (name === 'points') {
+      value = value < 0 ? 0 : value;
+    }
+    this.setState({[name]: value});
   }
 
   onSubmit = (event) => {
@@ -56,11 +57,6 @@ class ViewTask extends Component {
         message: 'An unknown error occured, try again later'
       })
     });
-  }
-
-  handleInputChange = (event) => {
-    const {value, name} = event.target;
-    this.setState({[name]: value});
   }
 
   deleteTask = () => {
