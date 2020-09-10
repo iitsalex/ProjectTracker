@@ -1,5 +1,7 @@
 # Pivot ProjectTracker
 
+Hosted on http://pivot.root.sx/
+
 ## Initial Setup
 
 ### MySQL
